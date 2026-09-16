@@ -1,0 +1,862 @@
+@import "tailwindcss";
+
+/*
+ * ── DESIGN TOKENS ────────────────────────────────────────────────────────────
+ * A desktop-first internal ops tool that also gets shown to partners in a meeting — so
+ * it should read as a considered product rather than a scaffold. Use these tokens
+ * (bg-surface, text-ink-muted, border-line, text-accent …) rather than raw Tailwind
+ * colours, so the whole app stays coherent as pages get added.
+ *
+ * CHART COLOURS ARE NOT HERE. They live in components/statistics/colors.ts as plain
+ * hex, because they are validated by the dataviz skill's validate_palette.js and the
+ * values that ship must be exactly the values that were validated — one source of
+ * truth, no indirection through a CSS variable. The accent below is UI chrome (links,
+ * active nav, focus) and is deliberately a different hue from every series colour.
+ *
+ * The neutrals in BOTH modes are cool/slate, chosen to sit in the same family as the
+ * brand navy without ever becoming a data encoding. Dark mode moved from a warm grey
+ * (#1a1a19) to this cooler #12161d in the Phase 2 overhaul; the chart palette was
+ * re-validated against the new surface and every check still passes. See the header of
+ * colors.ts — re-run the validator if you touch the surface again.
+ */
+@theme {
+  --color-canvas: #f8f7f2;
+  --color-surface: #fffefa;
+  --color-surface-sunken: #f0f3ef;
+  /* A second elevation, for popovers and the command palette over a page. */
+  --color-surface-overlay: #ffffff;
+  --color-line: #d8e2dd;
+  --color-line-strong: #b8cbc2;
+
+  --color-ink: #162d25;
+  --color-ink-muted: #5d7e73;
+  --color-ink-subtle: #829a91;
+
+  --color-accent: #276451;
+  --color-accent-hover: #1f5141;
+  --color-accent-soft: #e5eeea;
+
+  --color-positive: #197d54;
+  --color-negative: #b4232a;
+  --color-warning: #a8690b;
+
+  --radius-panel: 4px;
+  --radius-control: 3px;
+
+  /* Elevation. Kept extremely restrained — this is a data tool, not a landing page. */
+  --shadow-panel: 0 1px 2px rgba(22, 45, 37, 0.035);
+  --shadow-raised: 0 3px 8px rgba(22, 45, 37, 0.08);
+  --shadow-overlay: 0 16px 48px rgba(15, 20, 25, 0.16), 0 2px 8px rgba(15, 20, 25, 0.08);
+
+  /*
+   * Motion tokens stay short so repeated interactions remain responsive.
+   */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-quick: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+}
+
+/*
+ * Dark mode is SELECTED, not an inverted flip: each token below was chosen for a dark
+ * surface, and the chart series colours have their own validated dark steps in
+ * components/statistics/colors.ts.
+ *
+ * Declared under both scopes on purpose:
+ *   - the media query covers a "system" user (and works with JS disabled)
+ *   - [data-theme="dark"] covers an explicit choice
+ * The :not([data-theme="light"]) guard lets an explicit *light* choice beat OS-dark, so
+ * the toggle wins in both directions.
+ *
+ * Left unlayered on purpose. Wrapping these in `@layer theme { … }` also compiles
+ * correctly (verified in the built CSS), but unlayered rules win over layered ones in
+ * the cascade, so the dark tokens cannot be outranked by anything Tailwind emits into
+ * its own theme layer. Verify changes here against .next/static/css/*.css — note the
+ * minifier unquotes attribute selectors, so grep for `data-theme=dark`, not
+ * `data-theme="dark"`.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-canvas: #0b0e13;
+    --color-surface: #12161d;
+    --color-surface-sunken: #1a1f28;
+    --color-surface-overlay: #1a1f28;
+    --color-line: #242c37;
+    --color-line-strong: #3a4553;
+
+    --color-ink: #eef1f5;
+    --color-ink-muted: #9aa5b3;
+    --color-ink-subtle: #6d7887;
+
+    --color-accent: #8b83f0;
+    --color-accent-hover: #a49df4;
+    --color-accent-soft: #23223f;
+
+    --color-positive: #3cba86;
+    --color-negative: #e8696e;
+    --color-warning: #d99a3d;
+
+    /* Shadows do almost nothing on a dark surface — separation comes from the border. */
+    --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-canvas: #0b0e13;
+  --color-surface: #12161d;
+  --color-surface-sunken: #1a1f28;
+  --color-surface-overlay: #1a1f28;
+  --color-line: #242c37;
+  --color-line-strong: #3a4553;
+
+  --color-ink: #eef1f5;
+  --color-ink-muted: #9aa5b3;
+  --color-ink-subtle: #6d7887;
+
+  --color-accent: #8b83f0;
+  --color-accent-hover: #a49df4;
+  --color-accent-soft: #23223f;
+
+  --color-positive: #3cba86;
+  --color-negative: #e8696e;
+  --color-warning: #d99a3d;
+
+  --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+ * Headings read tighter than body copy at these sizes, and progressively tighter as
+ * they get larger — optical tracking, the single cheapest thing that separates a
+ * considered interface from a default one.
+ */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.014em;
+}
+
+h1 {
+  letter-spacing: -0.021em;
+}
+
+/*
+ * Tabular figures everywhere a number can change in place. Without this, a count-up
+ * animation or a re-sorting table makes columns jitter as glyph widths change.
+ */
+.ws-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Consistent focus ring for keyboard users across the whole tool. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/*
+ * Chart marks provide their own focus affordance — a focused arc goes full-opacity
+ * with a surface ring while its siblings dim, which reads better than a rectangular
+ * outline around a curved path. Suppress the default box only because that
+ * replacement exists.
+ */
+svg path:focus,
+svg path:focus-visible {
+  outline: none;
+}
+
+/* ── Brand ──────────────────────────────────────────────────────────────────
+ * The brand mark is letters cut out of moving water. These tokens are the
+ * brand palette (deep navy plate, water blues) and are separate from both the UI
+ * tokens above and the validated chart series colours in colors.ts — brand
+ * colour must never leak into a data encoding.
+ */
+:root {
+  --brand-navy: #1d2748;
+  --brand-navy-deep: #141c36;
+  --brand-navy-lift: #354060;
+  --brand-foam: #dcf0f8;
+  --brand-water-1: #a8d8ea;
+  --brand-water-2: #6fb5d2;
+  --brand-water-3: #4290b2;
+  --brand-water-4: #2c6b8d;
+  --brand-water-5: #1d4f6c;
+  /* The breaking edge of a wave — the brightest thing in the photograph. */
+  --brand-crest: #f2fbff;
+}
+
+/*
+ * Scoped to `.ws-band` on purpose. The crest highlight beside each band is a stroked
+ * path with its own colour; a bare `.ws-wave-N path` selector would fill it too, since
+ * CSS beats the element's own fill="none" attribute.
+ */
+.ws-wave-1 .ws-band {
+  fill: var(--brand-water-1);
+}
+
+.ws-wave-2 .ws-band {
+  fill: var(--brand-water-2);
+}
+
+.ws-wave-3 .ws-band {
+  fill: var(--brand-water-3);
+}
+
+.ws-wave-4 .ws-band {
+  fill: var(--brand-water-4);
+}
+
+.ws-wave-5 .ws-band {
+  fill: var(--brand-water-5);
+}
+
+/* Deeper crests are dimmer — the highlight fades as the water recedes. */
+.ws-wave-4 .ws-crest {
+  stroke-opacity: 0.32;
+}
+
+.ws-wave-5 .ws-crest {
+  stroke-opacity: 0.2;
+}
+
+/* Each band is drawn at 2x width and travels exactly half of that, so it loops
+ * seamlessly. Varied durations and directions keep them from moving as one block. */
+.ws-wave {
+  animation: ws-drift linear infinite;
+}
+
+.ws-wave-1 {
+  animation-duration: 21s;
+}
+
+.ws-wave-2 {
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+.ws-wave-3 {
+  animation-duration: 11s;
+}
+
+.ws-wave-4 {
+  animation-duration: 8s;
+  animation-direction: reverse;
+}
+
+.ws-wave-5 {
+  animation-duration: 6s;
+}
+
+@keyframes ws-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/*
+ * Splash choreography. The water climbs through the letters while the mark itself
+ * settles, then the tagline arrives late so the eye lands on the logo first.
+ * translateY is in viewBox units. The travel is 60, not the full 150 box height: the
+ * crests sit at baseY 0.38–0.84 (y 57–126) and the glyphs occupy roughly y 30–120, so
+ * water below about y+50 is hidden behind the letterforms entirely. Dropping it a full
+ * box height meant the first ~60% of the animation was invisible dead time — verified by
+ * rendering frames of the rise, not by reasoning about it.
+ */
+@keyframes ws-water-rise {
+  from {
+    transform: translateY(60px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.ws-water-rise {
+  animation: ws-water-rise 2100ms cubic-bezier(0.25, 1, 0.4, 1) both;
+}
+
+@keyframes ws-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ws-mark-in {
+  animation: ws-mark-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ws-tagline-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.22em;
+  }
+}
+
+.ws-tagline {
+  animation: ws-tagline-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms both;
+}
+
+/* Reveal used by the entry hero and the app shell. */
+@keyframes ws-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ws-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.ws-rise {
+  animation: ws-rise 620ms var(--ease-out) both;
+}
+
+/* Chart marks and panels easing in. Kept short — this is an ops tool, not a title
+ * sequence, and a partner clicking through filters must never wait on an animation. */
+@keyframes ws-arc-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ws-arc-in {
+  transform-origin: center;
+  animation: ws-arc-in 520ms var(--ease-out) both;
+}
+
+/* ── Phase 2 interaction layer ──────────────────────────────────────────────
+ * One vocabulary shared by every view, so a page added later inherits the same feel
+ * instead of inventing its own. Everything here is opacity/transform only — no layout
+ * property is animated, so none of it can cause a reflow on a 700-row table.
+ */
+
+/*
+ * Page and panel entrance. `ws-enter` is the single building block; the delay classes
+ * stagger a column of panels so a page assembles top-down rather than flashing in.
+ * Capped at 6 steps — beyond that the last element feels late rather than choreographed.
+ */
+@keyframes ws-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ws-enter {
+  animation: ws-enter var(--dur-base) var(--ease-out) both;
+}
+
+.ws-delay-1 {
+  animation-delay: 40ms;
+}
+.ws-delay-2 {
+  animation-delay: 80ms;
+}
+.ws-delay-3 {
+  animation-delay: 120ms;
+}
+.ws-delay-4 {
+  animation-delay: 160ms;
+}
+.ws-delay-5 {
+  animation-delay: 200ms;
+}
+.ws-delay-6 {
+  animation-delay: 240ms;
+}
+
+/*
+ * Interactive card lift. Transform only — a box-shadow transition on a grid of 37 logo
+ * tiles is measurably janky, a translate is composited.
+ */
+.ws-lift {
+  transition:
+    transform var(--dur-quick) var(--ease-out),
+    border-color var(--dur-quick) var(--ease-out),
+    background-color var(--dur-quick) var(--ease-out);
+}
+
+.ws-lift:hover {
+  transform: translateY(-2px);
+}
+
+.ws-lift:active {
+  transform: translateY(0);
+}
+
+/*
+ * Loading skeleton. A sweep rather than a pulse: a pulse reads as "broken", a sweep
+ * reads as "arriving". The gradient is built from the theme's own tokens, so it works
+ * in both modes with no per-mode rule.
+ */
+@keyframes ws-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.ws-skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-surface-sunken) 0%,
+    var(--color-line) 50%,
+    var(--color-surface-sunken) 100%
+  );
+  background-size: 200% 100%;
+  animation: ws-shimmer 1400ms linear infinite;
+  border-radius: 4px;
+}
+
+/*
+ * ── THE SIGNATURE MOTIF ────────────────────────────────────────────────────
+ * The brand is a waterline. Rather than repeat the wordmark anywhere else, the app
+ * echoes it as a single hairline: a 1px rule whose colour fades out toward the right,
+ * like the edge of a receding tide. It sits under page headers and section titles.
+ *
+ * It is a border-image, not an element, so it costs no DOM, cannot be tabbed to, and
+ * never animates — a motif that moves on every page would be exactly the distraction
+ * the brief warned about.
+ */
+.ws-waterline {
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      var(--color-line-strong) 0%,
+      var(--color-line) 45%,
+      transparent 100%
+    )
+    1;
+}
+
+/* The one place the motif is allowed to move: an active/loading state. */
+@keyframes ws-tide {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.ws-tide {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent) 50%,
+    transparent 100%
+  );
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  animation: ws-tide 1200ms var(--ease-out) infinite;
+}
+
+/*
+ * ── PHASE 3 MOTION: MASS AND DIRECTION ─────────────────────────────────────
+ * `ws-enter` is a fade-and-drift — right for a page shell, but it has no weight, and a
+ * card that carries a ranked result should arrive as though it were placed rather than
+ * dissolved in. `ws-settle` travels further, comes from further out, and overshoots by
+ * a hair before settling, using the existing --ease-spring token.
+ *
+ * Still opacity and transform only, so none of it can reflow the tables underneath.
+ */
+@keyframes ws-settle {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ws-settle {
+  animation: ws-settle var(--dur-slow) var(--ease-spring) both;
+}
+
+/*
+ * Index-driven stagger. Set `--i` on each item and a list assembles itself instead of
+ * flashing in whole.
+ *
+ * The cap is the important part: `min()` holds the delay at 14 steps, so a 120-company
+ * tear sheet or a 700-row grid finishes arriving in ~0.5s rather than taking eleven
+ * seconds to reach the last card. Beyond ~14 the effect stops reading as choreography
+ * and starts reading as a slow page.
+ */
+.ws-stagger {
+  animation-delay: calc(min(var(--i, 0), 14) * 36ms);
+}
+
+/*
+ * Card hover. A real micro-interaction: the card lifts AND its shadow deepens, which is
+ * what makes it feel like it left the surface rather than just moved up two pixels.
+ * Shadow is animated here (unlike `.ws-lift`, which is transform-only for the 577-tile
+ * logo grid) because these lists are tens of cards, not hundreds.
+ */
+.ws-card {
+  transition:
+    transform var(--dur-quick) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-quick) var(--ease-out);
+}
+
+.ws-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-raised);
+}
+
+.ws-card:active {
+  transform: translateY(-1px);
+}
+
+/*
+ * The waterline, doing functional work. Same motif as the static hairline under every
+ * header — no new visual vocabulary — but running as an indeterminate progress bar
+ * while a view computes. Used by the matchmaking and tear-sheet views.
+ */
+@keyframes ws-waterline-flow {
+  from {
+    background-position: -60% 0;
+  }
+  to {
+    background-position: 160% 0;
+  }
+}
+
+.ws-waterline-progress {
+  position: relative;
+  height: 1px;
+  overflow: hidden;
+  background-color: var(--color-line);
+}
+
+.ws-waterline-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent) 50%,
+    transparent 100%
+  );
+  background-size: 55% 100%;
+  background-repeat: no-repeat;
+  animation: ws-waterline-flow 1150ms var(--ease-out) infinite;
+}
+
+/*
+ * Score bars grow from zero on mount. Width is a layout property, so this is confined
+ * to a transform on an absolutely-positioned fill rather than animating width itself.
+ */
+@keyframes ws-bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.ws-bar-grow {
+  transform-origin: left center;
+  animation: ws-bar-grow var(--dur-slow) var(--ease-out) both;
+}
+
+/* ── ENTRY HERO ─────────────────────────────────────────────────────────────
+ * The one screen in the app that is allowed to be cinematic. It is seen once per
+ * browser session at most, before the dashboard, so it can afford choreography the
+ * dashboard cannot. Everything below is scoped to the hero and never leaks into the
+ * tool itself.
+ *
+ * In the internal build this was the sign-in screen, where the user is waiting on an
+ * OAuth round trip anyway. This public build has no auth, so the same choreography runs
+ * as a timed entry splash that then dissolves into the dashboard — see
+ * components/brand/EntrySplash.tsx.
+ *
+ * The timeline, in order, so it can be retuned without reverse-engineering the delays:
+ *   0ms     the navy plate and its light veil settle
+ *   150ms   the mark fades up and the water begins to rise through the letters
+ *   1150ms  a hairline waterline draws outward from the centre, under the mark
+ *   1450ms  slogan one arrives
+ *   2100ms  slogan two arrives
+ *   2500ms  the last line fades in, so the eye lands on the brand first
+ */
+
+/* Slow drifting light over the navy plate, like sun through water. Two radial pools
+   moving on different periods so the pattern never visibly repeats. */
+@keyframes ws-caustic {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1.05);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(5%, 3%, 0) scale(1.15);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1.05);
+    opacity: 0.55;
+  }
+}
+
+.ws-caustic {
+  animation: ws-caustic 18s ease-in-out infinite;
+}
+
+@keyframes ws-hero-veil {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ws-hero-veil {
+  animation: ws-hero-veil 1200ms var(--ease-out) both;
+}
+
+@keyframes ws-hero-mark {
+  from {
+    opacity: 0;
+    transform: scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ws-hero-mark {
+  animation: ws-hero-mark 1400ms var(--ease-out) 150ms both;
+}
+
+/* The waterline under the mark draws outward from the centre. scaleX on a centred
+   element is a composited transform, so this costs nothing even at full width. */
+@keyframes ws-hero-line {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.ws-hero-line {
+  transform-origin: center;
+  animation: ws-hero-line 900ms var(--ease-out) 1150ms both;
+}
+
+/* Slogans rise and let their tracking settle. */
+@keyframes ws-hero-slogan {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    letter-spacing: 0.14em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.02em;
+  }
+}
+
+.ws-hero-slogan {
+  animation: ws-hero-slogan 1000ms var(--ease-out) both;
+}
+
+/*
+ * ── PRINT ──────────────────────────────────────────────────────────────────
+ * Added for tear sheets, which exist to be read before a meeting and therefore to be
+ * printed or saved as PDF from the browser. Using the print stylesheet rather than
+ * building a PDF pipeline: the browser already paginates, embeds fonts and handles
+ * page size, and a second rendering path would be one more thing to keep in sync with
+ * the screen version.
+ *
+ * `.ws-no-print` hides chrome (nav, filters, buttons) that means nothing on paper.
+ * `.ws-break-inside` keeps a company's card from splitting across a page boundary,
+ * which is the one thing that makes a printed tear sheet unreadable.
+ */
+@media print {
+  .ws-no-print,
+  nav,
+  aside,
+  header[data-app-chrome] {
+    display: none !important;
+  }
+
+  .ws-break-inside {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Print on white regardless of the viewer's theme, and drop shadows/borders that
+     turn into grey smudges on paper. */
+  :root {
+    --color-canvas: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-sunken: #ffffff;
+    --color-ink: #000000;
+    --color-ink-muted: #333333;
+    --color-ink-subtle: #666666;
+    --shadow-panel: none;
+    --shadow-raised: none;
+  }
+
+  /* Entrance animations must not run for print — a `both`-filled keyframe can leave
+     an element at opacity 0 on the printed page. */
+  .ws-enter,
+  .ws-settle,
+  .ws-bar-grow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+}
+
+/*
+ * One switch turns every decorative animation off. Motion that conveys nothing must
+ * not be forced on anyone who has asked their OS to stop it. Transitions are killed
+ * too, not just keyframes — a hover lift is motion as much as a keyframe is.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .ws-wave,
+  .ws-rise,
+  .ws-arc-in,
+  .ws-water-rise,
+  .ws-mark-in,
+  .ws-tagline,
+  .ws-enter,
+  .ws-settle,
+  .ws-bar-grow,
+  .ws-skeleton,
+  .ws-tide,
+  .ws-hero-mark,
+  .ws-hero-line,
+  .ws-hero-slogan,
+  .ws-hero-veil,
+  .ws-caustic {
+    animation: none !important;
+  }
+
+  .ws-lift,
+  .ws-card {
+    transition: none !important;
+  }
+
+  .ws-lift:hover,
+  .ws-card:hover {
+    transform: none !important;
+  }
+
+  /*
+   * The stagger delay has to go too. Killing the animation while leaving a delay in
+   * place would leave `both`-filled elements holding their from-state — an invisible
+   * list. Same for the progress waterline, which becomes a plain static rule.
+   */
+  .ws-stagger {
+    animation-delay: 0ms !important;
+  }
+
+  .ws-waterline-progress::after {
+    animation: none !important;
+    background-image: none;
+  }
+}
+
+/*
+ * Visible, styled scrollbar for the few lists that legitimately keep an inner scroll.
+ *
+ * The usability pass found fixed-height panels with invisible (macOS overlay) scrollbars
+ * read as "the page is stuck". Most of those panels became show-more instead; where a
+ * scroll genuinely earns its place, this makes it unmistakable. Built from theme tokens
+ * so it is correct in both colour modes with no second rule.
+ */
+.ws-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+.ws-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ws-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ws-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-line-strong);
+  border: 3px solid var(--color-surface);
+  border-radius: 999px;
+}
+
+.ws-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink-subtle);
+}

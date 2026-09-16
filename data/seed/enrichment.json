@@ -1,0 +1,5460 @@
+{
+ "companies": [
+  {
+   "domain": "velthir.example",
+   "name": "Velthir",
+   "funding_total": 51250000,
+   "headcount_current": 15,
+   "headcount_growth_90d": 5.3,
+   "web_traffic_growth_90d": 5.7,
+   "funding_rounds": [
+    {
+     "round": "Series C",
+     "announced": "2026-02-15",
+     "amount": 5750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Joranth Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2026-06-15",
+     "amount": 8750000,
+     "currency": "USD",
+     "lead": "Bexrik Ventures",
+     "investors": [
+      "Bexrik Ventures",
+      "Yarveln Growth",
+      "Orvendel Capital",
+      "Zephvane Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 381000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "lomanthhealth.example",
+   "name": "Lomanth Health",
+   "funding_total": 5250000,
+   "headcount_current": 322,
+   "headcount_growth_90d": -4.3,
+   "web_traffic_growth_90d": 38.3,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2025-09-15",
+     "amount": 7750000,
+     "currency": "USD",
+     "lead": "Marvane Growth",
+     "investors": [
+      "Marvane Growth",
+      "Lomorne Capital",
+      "Harveln Partners",
+      "Palvir Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 249000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "elsterikfoundry.example",
+   "name": "Elsterik Foundry",
+   "funding_total": 1500000,
+   "headcount_current": 369,
+   "headcount_growth_90d": 46.5,
+   "web_traffic_growth_90d": 53.8,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2024-06-15",
+     "amount": 2750000,
+     "currency": "USD",
+     "lead": "Fyraselle Ventures",
+     "investors": [
+      "Fyraselle Ventures",
+      "Lomorne Capital"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2024-02-15",
+     "amount": 12250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Lomworth Capital",
+      "Umbollow Ventures",
+      "Dornowen Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "lomwoldlearning.example",
+   "name": "Lomwold Learning",
+   "funding_total": 60250000,
+   "headcount_current": 511,
+   "headcount_growth_90d": 51.6,
+   "web_traffic_growth_90d": 34.1,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2026-03-15",
+     "amount": 11500000,
+     "currency": "USD",
+     "lead": "Wexorne Partners",
+     "investors": [
+      "Wexorne Partners",
+      "Wexanto Ventures",
+      "Dornowen Growth",
+      "Jorwold Partners"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "umbollowlearning.example",
+   "name": "Umbollow Learning",
+   "funding_total": 60500000,
+   "headcount_current": 747,
+   "headcount_growth_90d": 24.6,
+   "web_traffic_growth_90d": -10.3,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 390000000,
+    "source": "Reported round",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "quoantodiagnostics.example",
+   "name": "Quoanto Diagnostics",
+   "funding_total": 12250000,
+   "headcount_current": null,
+   "headcount_growth_90d": 67.6,
+   "web_traffic_growth_90d": 9.2,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2023-01-15",
+     "amount": 8000000,
+     "currency": "USD",
+     "lead": "Ravowen Fund",
+     "investors": [
+      "Ravowen Fund",
+      "Velrrin Fund",
+      "Tesowen Growth",
+      "Glaerlon Fund"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 352000000,
+    "source": "Reported round",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "xanthir.example",
+   "name": "Xanthir",
+   "funding_total": 56250000,
+   "headcount_current": 22,
+   "headcount_growth_90d": 27.6,
+   "web_traffic_growth_90d": 11.9,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2026-09-15",
+     "amount": 8750000,
+     "currency": "USD",
+     "lead": "Glaaselle Ventures",
+     "investors": [
+      "Glaaselle Ventures",
+      "Sabowen Partners",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2026-06-15",
+     "amount": 12750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Wexanto Ventures",
+      "Draowen Growth",
+      "Glaaselle Ventures",
+      "Umbaselle Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2026-07-15",
+     "amount": 11250000,
+     "currency": "USD",
+     "lead": "Fenluvia Growth",
+     "investors": [
+      "Fenluvia Growth",
+      "Dornorne Growth",
+      "Dornvane Ventures"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "bexowan.example",
+   "name": "Bexowan",
+   "funding_total": 59750000,
+   "headcount_current": 266,
+   "headcount_growth_90d": 46.2,
+   "web_traffic_growth_90d": -1,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 95000000,
+    "source": "Filing",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "glawoldhealth.example",
+   "name": "Glawold Health",
+   "funding_total": 7000000,
+   "headcount_current": null,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": -6,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2022-04-15",
+     "amount": 1250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Fensorra Capital",
+      "Sabwold Partners",
+      "Avvir Growth",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2022-07-15",
+     "amount": 11750000,
+     "currency": "USD",
+     "lead": "Sabwold Partners",
+     "investors": [
+      "Sabwold Partners",
+      "Cindvane Growth",
+      "Harveln Partners"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2025-06-15",
+     "amount": 14750000,
+     "currency": "USD",
+     "lead": "Cindollow Ventures",
+     "investors": [
+      "Cindollow Ventures",
+      "Palrik Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "kelanthenergy.example",
+   "name": "Kelanth Energy",
+   "funding_total": 15000000,
+   "headcount_current": 244,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 14.2,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2024-01-15",
+     "amount": 1750000,
+     "currency": "USD",
+     "lead": "Palvir Capital",
+     "investors": [
+      "Palvir Capital"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2026-08-15",
+     "amount": 9500000,
+     "currency": "USD",
+     "lead": "Ravwold Fund",
+     "investors": [
+      "Ravwold Fund",
+      "Haranth Capital",
+      "Lomowan Fund",
+      "Kelrin Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "umbantohealth.example",
+   "name": "Umbanto Health",
+   "funding_total": 64250000,
+   "headcount_current": 339,
+   "headcount_growth_90d": -15.7,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 156000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "calanth.example",
+   "name": "Calanth",
+   "funding_total": 3750000,
+   "headcount_current": 263,
+   "headcount_growth_90d": -14.6,
+   "web_traffic_growth_90d": 63.7,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2026-05-15",
+     "amount": 7500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Dornvane Ventures",
+      "Wexanto Ventures",
+      "Dravane Fund",
+      "Dornowen Growth"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2023-01-15",
+     "amount": 5000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Tesowen Growth",
+      "Ravanto Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2026-04-15",
+     "amount": 5750000,
+     "currency": "USD",
+     "lead": "Fyraselle Ventures",
+     "investors": [
+      "Fyraselle Ventures",
+      "Yarerlon Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "yarowen.example",
+   "name": "Yarowen",
+   "funding_total": null,
+   "headcount_current": null,
+   "headcount_growth_90d": 68.1,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2025-01-15",
+     "amount": 14500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Joranth Fund",
+      "Bexendel Capital",
+      "Fyrluvia Ventures"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2022-05-15",
+     "amount": 1250000,
+     "currency": "USD",
+     "lead": "Avveln Ventures",
+     "investors": [
+      "Avveln Ventures",
+      "Avendel Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "tesexa.example",
+   "name": "Tesexa",
+   "funding_total": 62000000,
+   "headcount_current": 34,
+   "headcount_growth_90d": -7.5,
+   "web_traffic_growth_90d": 52.6,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "fenowencare.example",
+   "name": "Fenowen Care",
+   "funding_total": null,
+   "headcount_current": 500,
+   "headcount_growth_90d": -16.1,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2022-04-15",
+     "amount": 6000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Avveln Ventures",
+      "Dornorne Growth",
+      "Lomowan Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2025-06-15",
+     "amount": 1250000,
+     "currency": "USD",
+     "lead": "Quovane Growth",
+     "investors": [
+      "Quovane Growth",
+      "Fyraselle Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "xanhallowenergy.example",
+   "name": "Xanhallow Energy",
+   "funding_total": 44250000,
+   "headcount_current": 650,
+   "headcount_growth_90d": 16.6,
+   "web_traffic_growth_90d": 30,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "cindsorracare.example",
+   "name": "Cindsorra Care",
+   "funding_total": 45500000,
+   "headcount_current": 603,
+   "headcount_growth_90d": 25.1,
+   "web_traffic_growth_90d": 48.4,
+   "funding_rounds": [
+    {
+     "round": "Series A",
+     "announced": "2025-08-15",
+     "amount": 13500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Avendel Fund",
+      "Teslon Capital",
+      "Glaaselle Growth"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2026-07-15",
+     "amount": 8250000,
+     "currency": "USD",
+     "lead": "Lomorne Capital",
+     "investors": [
+      "Lomorne Capital",
+      "Tesluvia Capital",
+      "Fenluvia Fund",
+      "Cindollow Ventures",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series A",
+     "announced": "2022-02-15",
+     "amount": 5250000,
+     "currency": "USD",
+     "lead": "Nyssorra Ventures",
+     "investors": [
+      "Nyssorra Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 272000000,
+    "source": "Filing",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "wexollowsystems.example",
+   "name": "Wexollow Systems",
+   "funding_total": 52750000,
+   "headcount_current": 39,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 13.6,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2024-08-15",
+     "amount": 14500000,
+     "currency": "USD",
+     "lead": "Lomworth Capital",
+     "investors": [
+      "Lomworth Capital",
+      "Yarveln Growth",
+      "Cindvane Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "cindanto.example",
+   "name": "Cindanto",
+   "funding_total": 25000000,
+   "headcount_current": 72,
+   "headcount_growth_90d": 5,
+   "web_traffic_growth_90d": -2.4,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2025-07-15",
+     "amount": 11250000,
+     "currency": "USD",
+     "lead": "Avanth Ventures",
+     "investors": [
+      "Avanth Ventures",
+      "Ravowen Fund",
+      "Yarveln Growth",
+      "Jorwold Partners",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2023-09-15",
+     "amount": 8750000,
+     "currency": "USD",
+     "lead": "Elstowen Ventures",
+     "investors": [
+      "Elstowen Ventures",
+      "Sabowen Growth",
+      "Fensorra Capital",
+      "Marvane Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "palveln.example",
+   "name": "Palveln",
+   "funding_total": 14250000,
+   "headcount_current": 576,
+   "headcount_growth_90d": 30.5,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2023-09-15",
+     "amount": 14250000,
+     "currency": "USD",
+     "lead": "Velrik Fund",
+     "investors": [
+      "Velrik Fund",
+      "Nysrin Partners",
+      "Joranth Fund",
+      "Kelrin Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "xanowenlabs.example",
+   "name": "Xanowen Labs",
+   "funding_total": 6250000,
+   "headcount_current": 275,
+   "headcount_growth_90d": -8.6,
+   "web_traffic_growth_90d": 4,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2026-03-15",
+     "amount": 12250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Lomexa Partners",
+      "Velrrin Fund",
+      "Marvane Growth",
+      "Dornorne Growth"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2022-06-15",
+     "amount": 7000000,
+     "currency": "USD",
+     "lead": "Orvanth Fund",
+     "investors": [
+      "Orvanth Fund",
+      "Elstowen Ventures",
+      "Sabvara Partners",
+      "Teslon Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2024-01-15",
+     "amount": 13500000,
+     "currency": "USD",
+     "lead": "Velrrin Fund",
+     "investors": [
+      "Velrrin Fund",
+      "Tesralux Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 193000000,
+    "source": "Filing",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "elstendelworks.example",
+   "name": "Elstendel Works",
+   "funding_total": 29750000,
+   "headcount_current": 776,
+   "headcount_growth_90d": 39.4,
+   "web_traffic_growth_90d": 36.3,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2026-01-15",
+     "amount": 12500000,
+     "currency": "USD",
+     "lead": "Fyrluvia Ventures",
+     "investors": [
+      "Fyrluvia Ventures",
+      "Orvanth Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2026-03-15",
+     "amount": 10250000,
+     "currency": "USD",
+     "lead": "Velrrin Fund",
+     "investors": [
+      "Velrrin Fund",
+      "Teslon Capital",
+      "Nyssorra Ventures"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 66000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "teserlonhealth.example",
+   "name": "Teserlon Health",
+   "funding_total": 34500000,
+   "headcount_current": 417,
+   "headcount_growth_90d": -3.3,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series C",
+     "announced": "2023-07-15",
+     "amount": 15000000,
+     "currency": "USD",
+     "lead": "Dornorne Growth",
+     "investors": [
+      "Dornorne Growth",
+      "Umbowen Growth"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2025-04-15",
+     "amount": 7250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Quovane Growth",
+      "Ravexa Capital",
+      "Glaveln Ventures",
+      "Kelralux Fund"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 76000000,
+    "source": "Filing",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "sabrrinbio.example",
+   "name": "Sabrrin Bio",
+   "funding_total": 65000000,
+   "headcount_current": 244,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": -21.6,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2024-05-15",
+     "amount": 2500000,
+     "currency": "USD",
+     "lead": "Ravexa Capital",
+     "investors": [
+      "Ravexa Capital",
+      "Haranth Capital",
+      "Ravowen Fund",
+      "Lomworth Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2024-09-15",
+     "amount": 1000000,
+     "currency": "USD",
+     "lead": "Palvir Capital",
+     "investors": [
+      "Palvir Capital",
+      "Ilvveln Growth",
+      "Bexrik Ventures",
+      "Lomowan Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2026-03-15",
+     "amount": 10500000,
+     "currency": "USD",
+     "lead": "Avrrin Growth",
+     "investors": [
+      "Avrrin Growth",
+      "Glaaselle Ventures",
+      "Fenluvia Growth",
+      "Palvir Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "jorrinworks.example",
+   "name": "Jorrin Works",
+   "funding_total": 27500000,
+   "headcount_current": 312,
+   "headcount_growth_90d": 15.1,
+   "web_traffic_growth_90d": 78.2,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2025-08-15",
+     "amount": 4500000,
+     "currency": "USD",
+     "lead": "Umbollow Ventures",
+     "investors": [
+      "Umbollow Ventures",
+      "Ravexa Capital",
+      "Sabwold Partners"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2025-04-15",
+     "amount": 6000000,
+     "currency": "USD",
+     "lead": "Dornwold Capital",
+     "investors": [
+      "Dornwold Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2026-02-15",
+     "amount": 6750000,
+     "currency": "USD",
+     "lead": "Bexrik Ventures",
+     "investors": [
+      "Bexrik Ventures",
+      "Palvir Capital",
+      "Fensorra Capital",
+      "Glaaselle Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "fenendelbio.example",
+   "name": "Fenendel Bio",
+   "funding_total": 1750000,
+   "headcount_current": 242,
+   "headcount_growth_90d": 30.9,
+   "web_traffic_growth_90d": 54.8,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2024-01-15",
+     "amount": 10500000,
+     "currency": "USD",
+     "lead": "Elstrik Ventures",
+     "investors": [
+      "Elstrik Ventures",
+      "Sabrrin Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2024-03-15",
+     "amount": 10250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Dornowen Growth",
+      "Umbaselle Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2025-05-15",
+     "amount": 1000000,
+     "currency": "USD",
+     "lead": "Glaaselle Ventures",
+     "investors": [
+      "Glaaselle Ventures",
+      "Embowen Partners",
+      "Embexa Partners",
+      "Nysrin Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "nyserlonfoundry.example",
+   "name": "Nyserlon Foundry",
+   "funding_total": 33500000,
+   "headcount_current": 676,
+   "headcount_growth_90d": 66.7,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "cindanth.example",
+   "name": "Cindanth",
+   "funding_total": 28500000,
+   "headcount_current": 251,
+   "headcount_growth_90d": 28.9,
+   "web_traffic_growth_90d": 38.6,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2022-01-15",
+     "amount": 4500000,
+     "currency": "USD",
+     "lead": "Dornorne Growth",
+     "investors": [
+      "Dornorne Growth",
+      "Fensorra Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 376000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "calrrinfreight.example",
+   "name": "Calrrin Freight",
+   "funding_total": 16250000,
+   "headcount_current": 353,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 86.8,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2026-06-15",
+     "amount": 4750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Jorwold Partners"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2026-05-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Embexa Partners",
+      "Orvendel Capital",
+      "Ravworth Growth"
+     ]
+    },
+    {
+     "round": "Series A",
+     "announced": "2026-08-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Fenrik Growth",
+      "Kelrin Growth",
+      "Palexa Fund"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "dravanehealth.example",
+   "name": "Dravane Health",
+   "funding_total": 23500000,
+   "headcount_current": 4,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 363000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "quowoldenergy.example",
+   "name": "Quowold Energy",
+   "funding_total": 5750000,
+   "headcount_current": 283,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2023-05-15",
+     "amount": 1250000,
+     "currency": "USD",
+     "lead": "Palvir Capital",
+     "investors": [
+      "Palvir Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "kelowensystems.example",
+   "name": "Kelowen Systems",
+   "funding_total": 5250000,
+   "headcount_current": 642,
+   "headcount_growth_90d": 26.9,
+   "web_traffic_growth_90d": 23.8,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 316000000,
+    "source": "Reported round",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "quoluviadiagnostics.example",
+   "name": "Quoluvia Diagnostics",
+   "funding_total": null,
+   "headcount_current": 495,
+   "headcount_growth_90d": 6,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2026-07-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Palexa Capital",
+      "Harveln Partners",
+      "Lomorne Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2022-08-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": "Teslon Capital",
+     "investors": [
+      "Teslon Capital",
+      "Dornowen Growth",
+      "Cindollow Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 226000000,
+    "source": "Reported round",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "zephexalearning.example",
+   "name": "Zephexa Learning",
+   "funding_total": 8500000,
+   "headcount_current": 145,
+   "headcount_growth_90d": 36.3,
+   "web_traffic_growth_90d": 46.2,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2023-03-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": "Glahallow Partners",
+     "investors": [
+      "Glahallow Partners",
+      "Kelralux Fund",
+      "Quoendel Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "quorrinhealth.example",
+   "name": "Quorrin Health",
+   "funding_total": 27500000,
+   "headcount_current": 514,
+   "headcount_growth_90d": 35.9,
+   "web_traffic_growth_90d": 62.2,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2025-09-15",
+     "amount": 1750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Ilvvane Ventures",
+      "Dornowen Growth"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2022-08-15",
+     "amount": 8000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Wexorne Partners",
+      "Cindollow Ventures",
+      "Quoendel Growth",
+      "Bexrik Ventures"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "lomrikenergy.example",
+   "name": "Lomrik Energy",
+   "funding_total": null,
+   "headcount_current": 485,
+   "headcount_growth_90d": 9.1,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2024-06-15",
+     "amount": 6750000,
+     "currency": "USD",
+     "lead": "Sabowen Growth",
+     "investors": [
+      "Sabowen Growth",
+      "Elstowen Ventures",
+      "Yarluvia Growth",
+      "Fenluvia Growth"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 182000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "elsthallow.example",
+   "name": "Elsthallow",
+   "funding_total": 35000000,
+   "headcount_current": null,
+   "headcount_growth_90d": 65.6,
+   "web_traffic_growth_90d": -1.6,
+   "funding_rounds": [
+    {
+     "round": "Series C",
+     "announced": "2022-05-15",
+     "amount": 11750000,
+     "currency": "USD",
+     "lead": "Yarerlon Partners",
+     "investors": [
+      "Yarerlon Partners",
+      "Elstvara Ventures",
+      "Tesralux Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2026-05-15",
+     "amount": 2500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Sabwold Partners",
+      "Wexorne Partners",
+      "Ravanto Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 49000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "cindvirfreight.example",
+   "name": "Cindvir Freight",
+   "funding_total": 1750000,
+   "headcount_current": 389,
+   "headcount_growth_90d": 67.9,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2026-03-15",
+     "amount": 14750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Dornowen Growth",
+      "Kelralux Fund",
+      "Ravworth Growth"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2026-04-15",
+     "amount": 8500000,
+     "currency": "USD",
+     "lead": "Marvir Ventures",
+     "investors": [
+      "Marvir Ventures",
+      "Ilvrrin Partners",
+      "Sabwold Partners"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2026-02-15",
+     "amount": 9000000,
+     "currency": "USD",
+     "lead": "Embowen Partners",
+     "investors": [
+      "Embowen Partners"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "sabvelnfreight.example",
+   "name": "Sabveln Freight",
+   "funding_total": 25750000,
+   "headcount_current": 288,
+   "headcount_growth_90d": 3.5,
+   "web_traffic_growth_90d": -26.4,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2025-03-15",
+     "amount": 9000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Cindvane Growth",
+      "Tesluvia Capital",
+      "Umbaselle Fund",
+      "Dornvane Ventures"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "lomlonhealth.example",
+   "name": "Lomlon Health",
+   "funding_total": 13750000,
+   "headcount_current": 740,
+   "headcount_growth_90d": -8.5,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "kelvelnsystems.example",
+   "name": "Kelveln Systems",
+   "funding_total": 13500000,
+   "headcount_current": 263,
+   "headcount_growth_90d": -10.2,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Seed",
+     "announced": "2026-06-15",
+     "amount": 1000000,
+     "currency": "USD",
+     "lead": "Tesowen Growth",
+     "investors": [
+      "Tesowen Growth",
+      "Wexorne Partners",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2023-09-15",
+     "amount": 2750000,
+     "currency": "USD",
+     "lead": "Fensorra Capital",
+     "investors": [
+      "Fensorra Capital",
+      "Maranto Capital",
+      "Haranth Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 335000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "jorworth.example",
+   "name": "Jorworth",
+   "funding_total": 44750000,
+   "headcount_current": 135,
+   "headcount_growth_90d": 17.2,
+   "web_traffic_growth_90d": 66.8,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "glaexadiagnostics.example",
+   "name": "Glaexa Diagnostics",
+   "funding_total": 21500000,
+   "headcount_current": 29,
+   "headcount_growth_90d": 2.1,
+   "web_traffic_growth_90d": 3,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2023-04-15",
+     "amount": 1000000,
+     "currency": "USD",
+     "lead": "Joranth Fund",
+     "investors": [
+      "Joranth Fund",
+      "Cindollow Ventures",
+      "Draowen Growth",
+      "Fyrluvia Ventures",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2022-01-15",
+     "amount": 750000,
+     "currency": "USD",
+     "lead": "Quoendel Growth",
+     "investors": [
+      "Quoendel Growth",
+      "Avanth Ventures",
+      "Dornowen Growth",
+      "Elstrik Ventures",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2024-03-15",
+     "amount": 10500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Lomorne Capital",
+      "Calowen Partners",
+      "Palvir Capital",
+      "Tesluvia Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 197000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "harworthbio.example",
+   "name": "Harworth Bio",
+   "funding_total": 56500000,
+   "headcount_current": 407,
+   "headcount_growth_90d": 64,
+   "web_traffic_growth_90d": 53.5,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2022-03-15",
+     "amount": 14500000,
+     "currency": "USD",
+     "lead": "Joranth Fund",
+     "investors": [
+      "Joranth Fund",
+      "Sabvara Partners",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2025-04-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": "Cindvane Growth",
+     "investors": [
+      "Cindvane Growth"
+     ]
+    },
+    {
+     "round": "Series A",
+     "announced": "2026-04-15",
+     "amount": 7500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Wexanto Ventures",
+      "Wexvara Fund",
+      "Tesralux Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "glavelngrid.example",
+   "name": "Glaveln Grid",
+   "funding_total": 54500000,
+   "headcount_current": 466,
+   "headcount_growth_90d": 53.2,
+   "web_traffic_growth_90d": 70.6,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2026-04-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Palexa Capital",
+      "Nysrin Partners",
+      "Yarrrin Ventures"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2022-03-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Harveln Partners",
+      "Avendel Fund",
+      "Fyraselle Ventures"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2022-01-15",
+     "amount": 10500000,
+     "currency": "USD",
+     "lead": "Ravowen Fund",
+     "investors": [
+      "Ravowen Fund",
+      "Quosorra Fund",
+      "Yarveln Growth",
+      "Quoendel Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "fyrowanfoundry.example",
+   "name": "Fyrowan Foundry",
+   "funding_total": null,
+   "headcount_current": 607,
+   "headcount_growth_90d": 10.9,
+   "web_traffic_growth_90d": -16.9,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2022-07-15",
+     "amount": 9750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Glaaselle Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 137000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "fyrluviafoundry.example",
+   "name": "Fyrluvia Foundry",
+   "funding_total": 43500000,
+   "headcount_current": 688,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "avtraldiagnostics.example",
+   "name": "Avtral Diagnostics",
+   "funding_total": 33750000,
+   "headcount_current": 29,
+   "headcount_growth_90d": -0.1,
+   "web_traffic_growth_90d": 12.6,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "orverik.example",
+   "name": "Orverik",
+   "funding_total": 8750000,
+   "headcount_current": 257,
+   "headcount_growth_90d": 60.6,
+   "web_traffic_growth_90d": 72.1,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2026-07-15",
+     "amount": 9750000,
+     "currency": "USD",
+     "lead": "Quovane Growth",
+     "investors": [
+      "Quovane Growth"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2025-03-15",
+     "amount": 5250000,
+     "currency": "USD",
+     "lead": "Dornorne Growth",
+     "investors": [
+      "Dornorne Growth",
+      "Kelralux Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2023-04-15",
+     "amount": 5250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Avanth Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "sabvara.example",
+   "name": "Sabvara",
+   "funding_total": 32500000,
+   "headcount_current": 462,
+   "headcount_growth_90d": 58.4,
+   "web_traffic_growth_90d": 68.3,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2022-07-15",
+     "amount": 9750000,
+     "currency": "USD",
+     "lead": "Palexa Fund",
+     "investors": [
+      "Palexa Fund",
+      "Palrik Ventures"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 268000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "draluviadiagnostics.example",
+   "name": "Draluvia Diagnostics",
+   "funding_total": 28000000,
+   "headcount_current": 662,
+   "headcount_growth_90d": 21.8,
+   "web_traffic_growth_90d": 76.8,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2023-03-15",
+     "amount": 13250000,
+     "currency": "USD",
+     "lead": "Avanth Ventures",
+     "investors": [
+      "Avanth Ventures",
+      "Jorwold Partners"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "ravvane.example",
+   "name": "Ravvane",
+   "funding_total": 46000000,
+   "headcount_current": 389,
+   "headcount_growth_90d": 38.4,
+   "web_traffic_growth_90d": 74,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2025-01-15",
+     "amount": 6000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Palvir Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2024-03-15",
+     "amount": 2000000,
+     "currency": "USD",
+     "lead": "Quoendel Growth",
+     "investors": [
+      "Quoendel Growth",
+      "Jorwold Partners",
+      "Dornrin Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "glaerik.example",
+   "name": "Glaerik",
+   "funding_total": null,
+   "headcount_current": 503,
+   "headcount_growth_90d": 41.4,
+   "web_traffic_growth_90d": 41.5,
+   "funding_rounds": [
+    {
+     "round": "Seed",
+     "announced": "2023-06-15",
+     "amount": 8500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Ravexa Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 66000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "zephvelncare.example",
+   "name": "Zephveln Care",
+   "funding_total": 26500000,
+   "headcount_current": 195,
+   "headcount_growth_90d": 27.3,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2024-03-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": "Umbowen Growth",
+     "investors": [
+      "Umbowen Growth",
+      "Ilvvane Ventures"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 153000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "fyrvarahealth.example",
+   "name": "Fyrvara Health",
+   "funding_total": 39500000,
+   "headcount_current": 398,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 57.1,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2025-07-15",
+     "amount": 6250000,
+     "currency": "USD",
+     "lead": "Elstvara Ventures",
+     "investors": [
+      "Elstvara Ventures",
+      "Fenrik Growth",
+      "Umbaselle Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2026-09-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Velrrin Fund",
+      "Ilvvane Ventures",
+      "Nysrin Partners",
+      "Yarveln Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 281000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "bexanthfreight.example",
+   "name": "Bexanth Freight",
+   "funding_total": 34250000,
+   "headcount_current": 733,
+   "headcount_growth_90d": 18.3,
+   "web_traffic_growth_90d": 47.9,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "fyrthir.example",
+   "name": "Fyrthir",
+   "funding_total": 64250000,
+   "headcount_current": 624,
+   "headcount_growth_90d": 43.9,
+   "web_traffic_growth_90d": 50.2,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2024-03-15",
+     "amount": 8250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Elstvara Ventures",
+      "Ilvvane Ventures",
+      "Tesowen Growth",
+      "Zephvane Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2024-04-15",
+     "amount": 14750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Quosorra Fund",
+      "Lomworth Capital",
+      "Kelrin Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 273000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "lomasellesystems.example",
+   "name": "Lomaselle Systems",
+   "funding_total": 55750000,
+   "headcount_current": 570,
+   "headcount_growth_90d": 55,
+   "web_traffic_growth_90d": -9.6,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2025-07-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": "Wexorne Partners",
+     "investors": [
+      "Wexorne Partners",
+      "Ilvrin Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 295000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "bexralux.example",
+   "name": "Bexralux",
+   "funding_total": null,
+   "headcount_current": 46,
+   "headcount_growth_90d": -6.9,
+   "web_traffic_growth_90d": -11.5,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "elstexahealth.example",
+   "name": "Elstexa Health",
+   "funding_total": 25500000,
+   "headcount_current": 37,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": -8.4,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 237000000,
+    "source": "Reported round",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "jorvelnlabs.example",
+   "name": "Jorveln Labs",
+   "funding_total": 2750000,
+   "headcount_current": 697,
+   "headcount_growth_90d": 55,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 337000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "sabanthhealth.example",
+   "name": "Sabanth Health",
+   "funding_total": 58750000,
+   "headcount_current": 335,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": -24.1,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2024-04-15",
+     "amount": 12000000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Dornvane Ventures",
+      "Cindvane Growth"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2026-02-15",
+     "amount": 4250000,
+     "currency": "USD",
+     "lead": "Cindollow Ventures",
+     "investors": [
+      "Cindollow Ventures",
+      "Ilvrrin Partners",
+      "Wexanto Ventures"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2025-04-15",
+     "amount": 4250000,
+     "currency": "USD",
+     "lead": "Dravane Fund",
+     "investors": [
+      "Dravane Fund",
+      "Wexanto Ventures",
+      "Yarveln Growth",
+      "Harralux Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 30000000,
+    "source": "Reported round",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "ilvowangrid.example",
+   "name": "Ilvowan Grid",
+   "funding_total": 60500000,
+   "headcount_current": 241,
+   "headcount_growth_90d": 62.1,
+   "web_traffic_growth_90d": 12.6,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "cindworthgrid.example",
+   "name": "Cindworth Grid",
+   "funding_total": 23500000,
+   "headcount_current": 775,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2026-09-15",
+     "amount": 1750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Harralux Partners",
+      "Zephvane Capital",
+      "Bexrik Ventures",
+      "Kelralux Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2026-08-15",
+     "amount": 9500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Teslon Capital",
+      "Fyrluvia Ventures",
+      "Glaaselle Ventures",
+      "Palexa Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 73000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "elstollow.example",
+   "name": "Elstollow",
+   "funding_total": null,
+   "headcount_current": null,
+   "headcount_growth_90d": -1.2,
+   "web_traffic_growth_90d": 82.8,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 23000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "palantolabs.example",
+   "name": "Palanto Labs",
+   "funding_total": 58250000,
+   "headcount_current": 281,
+   "headcount_growth_90d": 7.2,
+   "web_traffic_growth_90d": -25.9,
+   "funding_rounds": [
+    {
+     "round": "Series A",
+     "announced": "2025-05-15",
+     "amount": 6750000,
+     "currency": "USD",
+     "lead": "Yarrrin Ventures",
+     "investors": [
+      "Yarrrin Ventures",
+      "Dornorne Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 187000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "calowenlearning.example",
+   "name": "Calowen Learning",
+   "funding_total": 34500000,
+   "headcount_current": 103,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "cindaselleworks.example",
+   "name": "Cindaselle Works",
+   "funding_total": 38000000,
+   "headcount_current": 617,
+   "headcount_growth_90d": 18.1,
+   "web_traffic_growth_90d": -14.3,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2024-08-15",
+     "amount": 9750000,
+     "currency": "USD",
+     "lead": "Avvir Growth",
+     "investors": [
+      "Avvir Growth"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 44000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "quolonfreight.example",
+   "name": "Quolon Freight",
+   "funding_total": null,
+   "headcount_current": 9,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2026-03-15",
+     "amount": 7750000,
+     "currency": "USD",
+     "lead": "Cindvane Capital",
+     "investors": [
+      "Cindvane Capital",
+      "Cindvane Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "calvelnbio.example",
+   "name": "Calveln Bio",
+   "funding_total": 15500000,
+   "headcount_current": 311,
+   "headcount_growth_90d": -13.4,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2025-04-15",
+     "amount": 6250000,
+     "currency": "USD",
+     "lead": "Cindsorra Partners",
+     "investors": [
+      "Cindsorra Partners",
+      "Palrik Ventures"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2023-09-15",
+     "amount": 14250000,
+     "currency": "USD",
+     "lead": "Dornrin Growth",
+     "investors": [
+      "Dornrin Growth",
+      "Ravanto Capital",
+      "Sabvara Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 373000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "sabrrincare.example",
+   "name": "Sabrrin Care",
+   "funding_total": 40000000,
+   "headcount_current": 331,
+   "headcount_growth_90d": 44.5,
+   "web_traffic_growth_90d": -8,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 198000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "tessorradiagnostics.example",
+   "name": "Tessorra Diagnostics",
+   "funding_total": 17250000,
+   "headcount_current": 152,
+   "headcount_growth_90d": 58.9,
+   "web_traffic_growth_90d": -19.9,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2025-09-15",
+     "amount": 11750000,
+     "currency": "USD",
+     "lead": "Palexa Fund",
+     "investors": [
+      "Palexa Fund",
+      "Tesowen Growth",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2025-08-15",
+     "amount": 7750000,
+     "currency": "USD",
+     "lead": "Dravane Fund",
+     "investors": [
+      "Dravane Fund",
+      "Bexendel Capital"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2022-06-15",
+     "amount": 2500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Harveln Partners",
+      "Embexa Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "quorinworks.example",
+   "name": "Quorin Works",
+   "funding_total": 11250000,
+   "headcount_current": null,
+   "headcount_growth_90d": 29.8,
+   "web_traffic_growth_90d": -14.5,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 215000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "hartralhealth.example",
+   "name": "Hartral Health",
+   "funding_total": 28500000,
+   "headcount_current": 272,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 13.3,
+   "funding_rounds": [
+    {
+     "round": "Seed",
+     "announced": "2025-09-15",
+     "amount": 6750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Tesowen Growth",
+      "Ravwold Fund"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2026-09-15",
+     "amount": 6000000,
+     "currency": "USD",
+     "lead": "Jorwold Partners",
+     "investors": [
+      "Jorwold Partners",
+      "Avvir Growth",
+      "Tesluvia Capital",
+      "Elstrik Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 215000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "kelrrindiagnostics.example",
+   "name": "Kelrrin Diagnostics",
+   "funding_total": null,
+   "headcount_current": 790,
+   "headcount_growth_90d": -17.1,
+   "web_traffic_growth_90d": -16,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2026-02-15",
+     "amount": 9250000,
+     "currency": "USD",
+     "lead": "Cindvane Growth",
+     "investors": [
+      "Cindvane Growth"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "nysornefreight.example",
+   "name": "Nysorne Freight",
+   "funding_total": 63000000,
+   "headcount_current": 190,
+   "headcount_growth_90d": 19.3,
+   "web_traffic_growth_90d": 10.8,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2024-01-15",
+     "amount": 12750000,
+     "currency": "USD",
+     "lead": "Dornvane Ventures",
+     "investors": [
+      "Dornvane Ventures",
+      "Glaaselle Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "palexabio.example",
+   "name": "Palexa Bio",
+   "funding_total": 41500000,
+   "headcount_current": 605,
+   "headcount_growth_90d": 59,
+   "web_traffic_growth_90d": 41.9,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2026-05-15",
+     "amount": 13250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Ravowen Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "ravexabio.example",
+   "name": "Ravexa Bio",
+   "funding_total": 23500000,
+   "headcount_current": 311,
+   "headcount_growth_90d": -14.8,
+   "web_traffic_growth_90d": 26.7,
+   "funding_rounds": [
+    {
+     "round": "Series A",
+     "announced": "2023-03-15",
+     "amount": 500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Kelrin Growth"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2022-04-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": "Zephvane Capital",
+     "investors": [
+      "Zephvane Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "tesworthenergy.example",
+   "name": "Tesworth Energy",
+   "funding_total": 40750000,
+   "headcount_current": 685,
+   "headcount_growth_90d": 61.9,
+   "web_traffic_growth_90d": -0.7,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2023-03-15",
+     "amount": 7500000,
+     "currency": "USD",
+     "lead": "Ravwold Fund",
+     "investors": [
+      "Ravwold Fund",
+      "Glaaselle Ventures",
+      "Fenluvia Fund"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2026-06-15",
+     "amount": 14500000,
+     "currency": "USD",
+     "lead": "Yarerlon Partners",
+     "investors": [
+      "Yarerlon Partners",
+      "Cindvane Growth"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2026-02-15",
+     "amount": 2750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Sabowen Partners",
+      "Avanth Ventures",
+      "Umbowen Growth"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 280000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "dornraluxlearning.example",
+   "name": "Dornralux Learning",
+   "funding_total": 17000000,
+   "headcount_current": 249,
+   "headcount_growth_90d": 39.9,
+   "web_traffic_growth_90d": 47.6,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2023-08-15",
+     "amount": 7750000,
+     "currency": "USD",
+     "lead": "Quovane Growth",
+     "investors": [
+      "Quovane Growth",
+      "Nyssorra Ventures",
+      "Kelrin Growth",
+      "Lomworth Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "xanexalearning.example",
+   "name": "Xanexa Learning",
+   "funding_total": 26500000,
+   "headcount_current": 251,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 78.5,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2022-08-15",
+     "amount": 5250000,
+     "currency": "USD",
+     "lead": "Velrrin Fund",
+     "investors": [
+      "Velrrin Fund",
+      "Cindollow Ventures",
+      "Joranth Fund"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2023-01-15",
+     "amount": 4500000,
+     "currency": "USD",
+     "lead": "Fenluvia Fund",
+     "investors": [
+      "Fenluvia Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "yaranth.example",
+   "name": "Yaranth",
+   "funding_total": 51500000,
+   "headcount_current": 262,
+   "headcount_growth_90d": 3.8,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series C",
+     "announced": "2023-09-15",
+     "amount": 7250000,
+     "currency": "USD",
+     "lead": "Lomowan Capital",
+     "investors": [
+      "Lomowan Capital",
+      "Cindvane Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2022-04-15",
+     "amount": 11750000,
+     "currency": "USD",
+     "lead": "Lomexa Partners",
+     "investors": [
+      "Lomexa Partners",
+      "Embowen Partners",
+      "Velrrin Fund",
+      "Ilvvane Ventures"
+     ]
+    },
+    {
+     "round": "Series C",
+     "announced": "2026-02-15",
+     "amount": 11500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Yarveln Growth",
+      "Avendel Fund",
+      "Palvir Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 130000000,
+    "source": "Reported round",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "embrinsystems.example",
+   "name": "Embrin Systems",
+   "funding_total": 46250000,
+   "headcount_current": 518,
+   "headcount_growth_90d": 1.4,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "quoerlonworks.example",
+   "name": "Quoerlon Works",
+   "funding_total": 17500000,
+   "headcount_current": 577,
+   "headcount_growth_90d": 38.3,
+   "web_traffic_growth_90d": -16,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2023-08-15",
+     "amount": 5750000,
+     "currency": "USD",
+     "lead": "Nysrin Partners",
+     "investors": [
+      "Nysrin Partners",
+      "Ravexa Capital",
+      "Ilvvane Ventures",
+      "Dravane Fund"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "zephluviahealth.example",
+   "name": "Zephluvia Health",
+   "funding_total": 51250000,
+   "headcount_current": 689,
+   "headcount_growth_90d": 50.5,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2026-05-15",
+     "amount": 4500000,
+     "currency": "USD",
+     "lead": "Tesowen Growth",
+     "investors": [
+      "Tesowen Growth",
+      "Wexvara Fund",
+      "Tesluvia Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2022-09-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": "Ilvveln Growth",
+     "investors": [
+      "Ilvveln Growth",
+      "Avvir Growth",
+      "Embowen Partners",
+      "Lomorne Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "yarendel.example",
+   "name": "Yarendel",
+   "funding_total": 12250000,
+   "headcount_current": 100,
+   "headcount_growth_90d": -17.1,
+   "web_traffic_growth_90d": -7.5,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2024-04-15",
+     "amount": 4000000,
+     "currency": "USD",
+     "lead": "Avendel Fund",
+     "investors": [
+      "Avendel Fund",
+      "Embowen Partners",
+      "Tesowen Growth",
+      "Tesralux Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2022-06-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": "Cindollow Ventures",
+     "investors": [
+      "Cindollow Ventures"
+     ]
+    },
+    {
+     "round": "Bridge",
+     "announced": "2025-07-15",
+     "amount": 7000000,
+     "currency": "USD",
+     "lead": "Yarrrin Ventures",
+     "investors": [
+      "Yarrrin Ventures",
+      "Sabvara Partners",
+      "Ilvrrin Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 236000000,
+    "source": "Reported round",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "dornanth.example",
+   "name": "Dornanth",
+   "funding_total": null,
+   "headcount_current": null,
+   "headcount_growth_90d": 52.2,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2025-04-15",
+     "amount": 14250000,
+     "currency": "USD",
+     "lead": "Dravane Fund",
+     "investors": [
+      "Dravane Fund",
+      "Sabowen Growth",
+      "Jorvir Partners"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2023-08-15",
+     "amount": 750000,
+     "currency": "USD",
+     "lead": "Quovane Growth",
+     "investors": [
+      "Quovane Growth",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2024-09-15",
+     "amount": 10250000,
+     "currency": "USD",
+     "lead": "Dornrin Growth",
+     "investors": [
+      "Dornrin Growth",
+      "Harveln Partners",
+      "Glahallow Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "umberikgrid.example",
+   "name": "Umberik Grid",
+   "funding_total": null,
+   "headcount_current": 242,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 86.8,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2023-08-15",
+     "amount": 6250000,
+     "currency": "USD",
+     "lead": "Cindvane Capital",
+     "investors": [
+      "Cindvane Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "ilvrikgrid.example",
+   "name": "Ilvrik Grid",
+   "funding_total": 45750000,
+   "headcount_current": 466,
+   "headcount_growth_90d": 61.3,
+   "web_traffic_growth_90d": -0.4,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2025-08-15",
+     "amount": 13750000,
+     "currency": "USD",
+     "lead": "Lomowan Capital",
+     "investors": [
+      "Lomowan Capital",
+      "Elstowen Ventures"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "sabvir.example",
+   "name": "Sabvir",
+   "funding_total": 32750000,
+   "headcount_current": 527,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 1.8,
+   "funding_rounds": [
+    {
+     "round": "Series A",
+     "announced": "2022-05-15",
+     "amount": 14750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Lomowan Fund"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "palexafreight.example",
+   "name": "Palexa Freight",
+   "funding_total": 61750000,
+   "headcount_current": 752,
+   "headcount_growth_90d": 34.3,
+   "web_traffic_growth_90d": 25.9,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 23000000,
+    "source": "Estimated",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "dravelnfoundry.example",
+   "name": "Draveln Foundry",
+   "funding_total": 50250000,
+   "headcount_current": 679,
+   "headcount_growth_90d": 57.8,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Series D",
+     "announced": "2024-03-15",
+     "amount": 4250000,
+     "currency": "USD",
+     "lead": "Wexanto Ventures",
+     "investors": [
+      "Wexanto Ventures",
+      "Avrrin Growth",
+      "Lomworth Capital",
+      "Fyrluvia Ventures",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2025-09-15",
+     "amount": 5250000,
+     "currency": "USD",
+     "lead": "Kelralux Fund",
+     "investors": [
+      "Kelralux Fund"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2024-05-15",
+     "amount": 3000000,
+     "currency": "USD",
+     "lead": "Palexa Fund",
+     "investors": [
+      "Palexa Fund",
+      "Harralux Partners",
+      "Ilvrrin Partners",
+      "Joranth Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "harvarafreight.example",
+   "name": "Harvara Freight",
+   "funding_total": 31250000,
+   "headcount_current": 685,
+   "headcount_growth_90d": 64.9,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2022-01-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Marvane Growth",
+      "Yarluvia Growth",
+      "Ilvrin Capital",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2025-06-15",
+     "amount": 7500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Ravowen Fund"
+     ]
+    },
+    {
+     "round": "Series B",
+     "announced": "2024-03-15",
+     "amount": 6000000,
+     "currency": "USD",
+     "lead": "Lomorne Capital",
+     "investors": [
+      "Lomorne Capital",
+      "Zephvane Capital",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "dornhallowfreight.example",
+   "name": "Dornhallow Freight",
+   "funding_total": 50500000,
+   "headcount_current": 634,
+   "headcount_growth_90d": -8.8,
+   "web_traffic_growth_90d": -6.2,
+   "funding_rounds": [
+    {
+     "round": "Bridge",
+     "announced": "2022-04-15",
+     "amount": 10000000,
+     "currency": "USD",
+     "lead": "Palvir Capital",
+     "investors": [
+      "Palvir Capital",
+      "Ilvowen Ventures"
+     ]
+    },
+    {
+     "round": "Seed Extension",
+     "announced": "2023-09-15",
+     "amount": 7500000,
+     "currency": "USD",
+     "lead": "Zephvane Capital",
+     "investors": [
+      "Zephvane Capital",
+      "Glaerlon Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "palaselle.example",
+   "name": "Palaselle",
+   "funding_total": 50000000,
+   "headcount_current": 427,
+   "headcount_growth_90d": 56.8,
+   "web_traffic_growth_90d": -7.7,
+   "funding_rounds": [
+    {
+     "round": "Series A",
+     "announced": "2023-06-15",
+     "amount": 9250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Yarerlon Partners",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Seed",
+     "announced": "2025-04-15",
+     "amount": 12750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Teslon Capital",
+      "Palexa Fund",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series D",
+     "announced": "2023-02-15",
+     "amount": 3500000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Marvane Growth"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 24000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "orvvircare.example",
+   "name": "Orvvir Care",
+   "funding_total": 20500000,
+   "headcount_current": 540,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [],
+   "valuation": null
+  },
+  {
+   "domain": "bexantogrid.example",
+   "name": "Bexanto Grid",
+   "funding_total": 62000000,
+   "headcount_current": 571,
+   "headcount_growth_90d": -7.8,
+   "web_traffic_growth_90d": 17,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2026-03-15",
+     "amount": 5000000,
+     "currency": "USD",
+     "lead": "Glaaselle Ventures",
+     "investors": [
+      "Glaaselle Ventures",
+      "Lomowan Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "quotralenergy.example",
+   "name": "Quotral Energy",
+   "funding_total": 29000000,
+   "headcount_current": 405,
+   "headcount_growth_90d": 62.1,
+   "web_traffic_growth_90d": 30.4,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2026-01-15",
+     "amount": 9000000,
+     "currency": "USD",
+     "lead": "Ilvrin Capital",
+     "investors": [
+      "Ilvrin Capital",
+      "Embowen Partners",
+      "Avanth Ventures",
+      "Quosorra Fund",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "umblonlabs.example",
+   "name": "Umblon Labs",
+   "funding_total": null,
+   "headcount_current": 116,
+   "headcount_growth_90d": -10.3,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2025-03-15",
+     "amount": 5750000,
+     "currency": "USD",
+     "lead": "Cindvane Growth",
+     "investors": [
+      "Cindvane Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "quoluviagrid.example",
+   "name": "Quoluvia Grid",
+   "funding_total": 19250000,
+   "headcount_current": 598,
+   "headcount_growth_90d": 9.3,
+   "web_traffic_growth_90d": 55.4,
+   "funding_rounds": [],
+   "valuation": {
+    "value": 37000000,
+    "source": "Filing",
+    "is_potentially_stale": false
+   }
+  },
+  {
+   "domain": "elstworthcare.example",
+   "name": "Elstworth Care",
+   "funding_total": 27500000,
+   "headcount_current": 373,
+   "headcount_growth_90d": 34.1,
+   "web_traffic_growth_90d": 66.4,
+   "funding_rounds": [
+    {
+     "round": "Series B",
+     "announced": "2025-06-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Wexanto Ventures",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 251000000,
+    "source": "Filing",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "umbvarasystems.example",
+   "name": "Umbvara Systems",
+   "funding_total": 62750000,
+   "headcount_current": 303,
+   "headcount_growth_90d": 53,
+   "web_traffic_growth_90d": 79.8,
+   "funding_rounds": [
+    {
+     "round": "Seed Extension",
+     "announced": "2023-03-15",
+     "amount": 10750000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Wexvara Fund"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "jorantodiagnostics.example",
+   "name": "Joranto Diagnostics",
+   "funding_total": 14750000,
+   "headcount_current": 797,
+   "headcount_growth_90d": null,
+   "web_traffic_growth_90d": 19.4,
+   "funding_rounds": [
+    {
+     "round": "Growth",
+     "announced": "2023-04-15",
+     "amount": 5500000,
+     "currency": "USD",
+     "lead": "Yarveln Growth",
+     "investors": [
+      "Yarveln Growth",
+      "Avveln Ventures",
+      "Bellhaven Capital"
+     ]
+    },
+    {
+     "round": "Series A",
+     "announced": "2025-05-15",
+     "amount": 14000000,
+     "currency": "USD",
+     "lead": "Jorwold Partners",
+     "investors": [
+      "Jorwold Partners",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": null
+  },
+  {
+   "domain": "tesollowdiagnostics.example",
+   "name": "Tesollow Diagnostics",
+   "funding_total": 43000000,
+   "headcount_current": 437,
+   "headcount_growth_90d": 60,
+   "web_traffic_growth_90d": null,
+   "funding_rounds": [
+    {
+     "round": "Pre-Seed",
+     "announced": "2026-01-15",
+     "amount": 11250000,
+     "currency": "USD",
+     "lead": "Wexvara Fund",
+     "investors": [
+      "Wexvara Fund",
+      "Sabvara Partners",
+      "Cindsorra Partners",
+      "Avanth Ventures"
+     ]
+    },
+    {
+     "round": "Growth",
+     "announced": "2025-08-15",
+     "amount": 4250000,
+     "currency": "USD",
+     "lead": null,
+     "investors": [
+      "Fenluvia Fund",
+      "Ravwold Fund",
+      "Dornowen Growth"
+     ]
+    },
+    {
+     "round": "Pre-Seed",
+     "announced": "2024-06-15",
+     "amount": 7250000,
+     "currency": "USD",
+     "lead": "Umbowen Growth",
+     "investors": [
+      "Umbowen Growth",
+      "Bellhaven Capital"
+     ]
+    }
+   ],
+   "valuation": {
+    "value": 28000000,
+    "source": "Estimated",
+    "is_potentially_stale": true
+   }
+  },
+  {
+   "domain": "lomrikgrid.example",
+   "name": "Lomrik Grid",
+   "funding_total": 50000000,
+   "headcount_current": 459,
+   "headcount_growth_90d": 37.5,
+   "web_traffic_growth_90d": 78.5,
+   "funding_rounds": [],
+   "valuation": null
+  }
+ ],
+ "founders": [
+  {
+   "linkedin_url": "https://social.example/in/elenaumbstrom",
+   "name": "Elena Umbstrom",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Published Researcher",
+    "Prior Exit"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Ravralux"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tomaselstkova",
+   "name": "Tomas Elstkova",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Seasoned Executive"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Velanth",
+    "Xanerik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/meiilvholt",
+   "name": "Mei Ilvholt",
+   "highlights": [
+    "Published Researcher",
+    "Notable Followers",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Lomendel",
+    "Calluvia",
+    "Fyraselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/martadornvale",
+   "name": "Marta Dornvale",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Glaowen",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Cindendel",
+    "Nyserlon",
+    "Yarvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hanafyrbeck",
+   "name": "Hana Fyrbeck",
+   "highlights": [
+    "$5M Club",
+    "Deep Technical Background",
+    "$50M+ Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Orvworth",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Kelanto",
+    "Ravanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/yusufglaari",
+   "name": "Yusuf Glaari",
+   "highlights": [
+    "Published Researcher",
+    "Seasoned Founder"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Fyrvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/luciaumbsen",
+   "name": "Lucia Umbsen",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Quolon Learning",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Ravtral"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/adaezetesmere",
+   "name": "Adaeze Tesmere",
+   "highlights": [
+    "$50M+ Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Xanrrin Labs",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Dornendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridaquoova",
+   "name": "Farida Quoova",
+   "highlights": [
+    "Prior Exit",
+    "Seasoned Founder"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Embwold",
+    "Drasorra"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/elenajorvale",
+   "name": "Elena Jorvale",
+   "highlights": [
+    "Seasoned Executive"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Fenollow",
+    "Ravendel",
+    "Sabrrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tseringwexeli",
+   "name": "Tsering Wexeli",
+   "highlights": [
+    "Founder Turned Operator",
+    "Prior Exit",
+    "$10M Club"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Calowen",
+    "Yarexa",
+    "Embowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/calebharronn",
+   "name": "Caleb Harronn",
+   "highlights": [
+    "$10M Club",
+    "Deep Technical Background",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Yarwold",
+    "Harluvia",
+    "Velluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/inesjorronn",
+   "name": "Ines Jorronn",
+   "highlights": [
+    "$25M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Glasorra Energy",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Quothir",
+    "Ilverik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kianumbwyn",
+   "name": "Kian Umbwyn",
+   "highlights": [
+    "Published Researcher"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Marworth",
+    "Velorne",
+    "Quoorne"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegoglaaker",
+   "name": "Diego Glaaker",
+   "highlights": [
+    "$50M+ Club",
+    "$25M Club",
+    "Founder Turned Operator"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Dornowen",
+    "Palowen",
+    "Nysanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/freyaelstsen",
+   "name": "Freya Elstsen",
+   "highlights": [
+    "Notable Followers",
+    "Deep Technical Background"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Sabendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/andresnysari",
+   "name": "Andres Nysari",
+   "highlights": [
+    "Deep Technical Background"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Wexerik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/priyaembford",
+   "name": "Priya Embford",
+   "highlights": [
+    "Top University",
+    "$5M Club"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Fyrworth",
+    "Fyrveln"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/elenaorvford",
+   "name": "Elena Orvford",
+   "highlights": [
+    "Notable Followers",
+    "Seasoned Executive",
+    "Prior Exit"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Velvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/ravielstwyn",
+   "name": "Ravi Elstwyn",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Fenwold",
+    "Elstworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikocindsund",
+   "name": "Keiko Cindsund",
+   "highlights": [
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Zephrin",
+    "Ravrik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikomarquist",
+   "name": "Keiko Marquist",
+   "highlights": [
+    "Founder Turned Operator"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Dornaselle",
+    "Yartral"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/adaezeyardahl",
+   "name": "Adaeze Yardahl",
+   "highlights": [
+    "Published Researcher",
+    "$5M Club",
+    "Seasoned Executive"
+   ],
+   "current_role": "Head of Product",
+   "current_company": null,
+   "prior_companies": [
+    "Dornaselle",
+    "Bexollow",
+    "Fenerlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/noorwexvale",
+   "name": "Noor Wexvale",
+   "highlights": [
+    "Top University",
+    "$10M Club",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Embworth",
+    "Zephowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/mateosabain",
+   "name": "Mateo Sabain",
+   "highlights": [
+    "Prior VC Backed Founder",
+    "$5M Club",
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Quoorne Foundry",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Ilvvane",
+    "Orvexa",
+    "Glaollow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegocindkova",
+   "name": "Diego Cindkova",
+   "highlights": [
+    "$25M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Velhallow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/zarafeneli",
+   "name": "Zara Feneli",
+   "highlights": [
+    "Major Tech Company Experience",
+    "$25M Club"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Ilvluvia",
+    "Lomsorra"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikowexmoor",
+   "name": "Keiko Wexmoor",
+   "highlights": [
+    "Deep Technical Background",
+    "Seasoned Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Jorowan Care",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Drasorra"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nadiaharain",
+   "name": "Nadia Harain",
+   "highlights": [
+    "Deep Technical Background",
+    "$25M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Ravowen Diagnostics",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Tesowen",
+    "Umbrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/paveljorain",
+   "name": "Pavel Jorain",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Notable Followers",
+    "$50M+ Club"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Haranth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tseringcalstrom",
+   "name": "Tsering Calstrom",
+   "highlights": [
+    "$50M+ Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Fensorra",
+    "Ravanto"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/brunocindova",
+   "name": "Bruno Cindova",
+   "highlights": [
+    "Notable Followers"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Draluvia",
+    "Jorsorra"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegoelstmoor",
+   "name": "Diego Elstmoor",
+   "highlights": [
+    "Prior Exit"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Ilvanto Labs",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Quoralux",
+    "Sabhallow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/pavelilvvale",
+   "name": "Pavel Ilvvale",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Deep Technical Background",
+    "Notable Followers"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Wexowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/meifyrvale",
+   "name": "Mei Fyrvale",
+   "highlights": [
+    "$25M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Zephsorra",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Wexhallow",
+    "Dornendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikofyrmere",
+   "name": "Keiko Fyrmere",
+   "highlights": [
+    "Deep Technical Background"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Fyrowan Freight",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Nysaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claramarmere",
+   "name": "Clara Marmere",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Quosorra Labs",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Nysollow",
+    "Calwold",
+    "Lomerlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/amarajorquist",
+   "name": "Amara Jorquist",
+   "highlights": [
+    "Notable Followers",
+    "Prior Exit",
+    "$10M Club"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Fenrik",
+    "Cindvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tseringzephvale",
+   "name": "Tsering Zephvale",
+   "highlights": [
+    "Seasoned Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Sabthir Health",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Maraselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridazephsen",
+   "name": "Farida Zephsen",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Dornluvia Learning",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Umbowen",
+    "Quothir",
+    "Dornvir"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kianelstain",
+   "name": "Kian Elstain",
+   "highlights": [
+    "Prior Exit"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Velendel",
+    "Sabrik",
+    "Elstvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rosakelley",
+   "name": "Rosa Kelley",
+   "highlights": [
+    "Seasoned Executive",
+    "$50M+ Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Lomorne",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Embendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/luciaharsund",
+   "name": "Lucia Harsund",
+   "highlights": [
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Orvrik",
+    "Caltral"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/idrisyardahl",
+   "name": "Idris Yardahl",
+   "highlights": [
+    "Founder Turned Operator",
+    "Seasoned Founder",
+    "Published Researcher"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Embworth",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Ilvveln"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/mateofyrwyn",
+   "name": "Mateo Fyrwyn",
+   "highlights": [
+    "Notable Followers",
+    "$5M Club"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Orvexa",
+    "Fyrerlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/levielstford",
+   "name": "Levi Elstford",
+   "highlights": [
+    "Founder Turned Operator"
+   ],
+   "current_role": "Head of Product",
+   "current_company": null,
+   "prior_companies": [
+    "Wexexa",
+    "Ilvowen",
+    "Zephanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leviyarstrom",
+   "name": "Levi Yarstrom",
+   "highlights": [
+    "Prior VC Backed Founder",
+    "$5M Club",
+    "Deep Technical Background"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Bexrik Learning",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Teserlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/mateosabkova",
+   "name": "Mateo Sabkova",
+   "highlights": [
+    "Major Tech Company Experience",
+    "Seasoned Executive",
+    "$5M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Orvanto",
+    "Ilvowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/zaraorveli",
+   "name": "Zara Orveli",
+   "highlights": [
+    "$10M Club",
+    "Major Tech Company Experience",
+    "Seasoned Executive"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Embowan",
+    "Lomowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kianbexquist",
+   "name": "Kian Bexquist",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Yarerlon",
+    "Kelhallow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tseringnysain",
+   "name": "Tsering Nysain",
+   "highlights": [
+    "Seasoned Executive",
+    "Notable Followers"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Velrik",
+    "Jorwold",
+    "Emberik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/amaraglaaker",
+   "name": "Amara Glaaker",
+   "highlights": [
+    "$5M Club",
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Calrrin",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Yarvara",
+    "Velvir"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/inesfyrari",
+   "name": "Ines Fyrari",
+   "highlights": [
+    "Major Tech Company Experience",
+    "Published Researcher",
+    "Notable Followers"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Marvara Freight",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Orvendel",
+    "Zephaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegovelley",
+   "name": "Diego Velley",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Quoexa",
+    "Elstrrin",
+    "Ilvowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/bettinacindari",
+   "name": "Bettina Cindari",
+   "highlights": [
+    "Notable Followers",
+    "Founder Turned Operator"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Lomexa"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hanabexley",
+   "name": "Hana Bexley",
+   "highlights": [
+    "$25M Club"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Embollow",
+    "Lomhallow",
+    "Wexowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/lianquovale",
+   "name": "Lian Quovale",
+   "highlights": [
+    "Seasoned Founder",
+    "Prior Exit"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Bexollow Energy",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Yarvane",
+    "Umbrik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/idrissabbeck",
+   "name": "Idris Sabbeck",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Glarik",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Kelveln",
+    "Yarwold",
+    "Palanto"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/signebexholt",
+   "name": "Signe Bexholt",
+   "highlights": [
+    "$25M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Quorin",
+    "Orvlon",
+    "Palrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rahulvelholt",
+   "name": "Rahul Velholt",
+   "highlights": [
+    "$5M Club",
+    "$50M+ Club"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Ilvaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nadiaxanstrom",
+   "name": "Nadia Xanstrom",
+   "highlights": [
+    "$25M Club",
+    "Prior Exit"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Kelworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/meicindain",
+   "name": "Mei Cindain",
+   "highlights": [
+    "Published Researcher"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Dornrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kwamequomere",
+   "name": "Kwame Quomere",
+   "highlights": [
+    "$50M+ Club",
+    "$10M Club"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Dornworth",
+    "Tesowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/pavelkelholt",
+   "name": "Pavel Kelholt",
+   "highlights": [
+    "$50M+ Club"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Nysollow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/levitesford",
+   "name": "Levi Tesford",
+   "highlights": [
+    "Seasoned Executive",
+    "$10M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Nysanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/anoukembari",
+   "name": "Anouk Embari",
+   "highlights": [
+    "Prior VC Backed Executive",
+    "Seasoned Founder",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Avrin Health",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Dornworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nadianysari",
+   "name": "Nadia Nysari",
+   "highlights": [
+    "$10M Club",
+    "$5M Club",
+    "Published Researcher"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Umbralux",
+    "Quoveln",
+    "Orvendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/priyailvain",
+   "name": "Priya Ilvain",
+   "highlights": [
+    "$25M Club",
+    "Founder Turned Operator",
+    "Deep Technical Background"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Ravaselle",
+    "Harowen",
+    "Xanexa"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/sanjaywexronn",
+   "name": "Sanjay Wexronn",
+   "highlights": [
+    "Deep Technical Background"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Yarowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/levisabeli",
+   "name": "Levi Sabeli",
+   "highlights": [
+    "Seasoned Founder",
+    "$25M Club",
+    "$10M Club"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Nyshallow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/arjuncalquist",
+   "name": "Arjun Calquist",
+   "highlights": [
+    "Published Researcher"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Jorrik Grid",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Yarveln",
+    "Ilvowen",
+    "Glarrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nikhildornvale",
+   "name": "Nikhil Dornvale",
+   "highlights": [
+    "Seasoned Executive",
+    "$50M+ Club"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Velexa"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/pavelmarvale",
+   "name": "Pavel Marvale",
+   "highlights": [
+    "Seasoned Founder",
+    "Top University",
+    "Seasoned Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Marthir Grid",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Ravaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegoorvsund",
+   "name": "Diego Orvsund",
+   "highlights": [
+    "$5M Club",
+    "Prior VC Backed Founder",
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Sabvane Care",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Zephrik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/brunoxanronn",
+   "name": "Bruno Xanronn",
+   "highlights": [
+    "$5M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Jorerik Energy",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Sabwold",
+    "Fenaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hanavelbeck",
+   "name": "Hana Velbeck",
+   "highlights": [
+    "Founder Turned Operator",
+    "Notable Followers",
+    "Seasoned Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Ilvvane Grid",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Cindowen",
+    "Zephwold",
+    "Calerlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/jonasmarstrom",
+   "name": "Jonas Marstrom",
+   "highlights": [
+    "Published Researcher"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Sabanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/amaraavsen",
+   "name": "Amara Avsen",
+   "highlights": [
+    "Notable Followers",
+    "Prior Exit"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Fenrrin",
+    "Bexowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/arjunpalstrom",
+   "name": "Arjun Palstrom",
+   "highlights": [
+    "Notable Followers"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Tesollow",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Calworth",
+    "Joraselle",
+    "Teserlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leviquomoor",
+   "name": "Levi Quomoor",
+   "highlights": [
+    "$50M+ Club",
+    "Founder Turned Operator",
+    "Top University"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Bexrrin Learning",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Palendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/omarsabmere",
+   "name": "Omar Sabmere",
+   "highlights": [
+    "Founder Turned Operator"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Fenowen",
+    "Orverik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hanapalstrom",
+   "name": "Hana Palstrom",
+   "highlights": [
+    "Published Researcher",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Quovane"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nikhilembmere",
+   "name": "Nikhil Embmere",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Tesowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/aleksavwyn",
+   "name": "Aleks Avwyn",
+   "highlights": [
+    "Published Researcher",
+    "Founder Turned Operator",
+    "Seasoned Founder"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Kelluvia",
+    "Calanto",
+    "Kelveln"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hanaavsund",
+   "name": "Hana Avsund",
+   "highlights": [
+    "$10M Club",
+    "Deep Technical Background"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Avthir",
+    "Embsorra",
+    "Umbluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kwameharvale",
+   "name": "Kwame Harvale",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Avowen Works",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Zephowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tseringembdahl",
+   "name": "Tsering Embdahl",
+   "highlights": [
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Cindorne",
+    "Fyrthir"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claraelstwyn",
+   "name": "Clara Elstwyn",
+   "highlights": [
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Orvvane Learning",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Elstluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/adaezepalaker",
+   "name": "Adaeze Palaker",
+   "highlights": [
+    "$50M+ Club",
+    "Deep Technical Background"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Dornowen",
+    "Dravir",
+    "Zephanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nadiaxanquist",
+   "name": "Nadia Xanquist",
+   "highlights": [
+    "$25M Club",
+    "Seasoned Executive",
+    "Deep Technical Background"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Lomowen",
+    "Palluvia",
+    "Zephowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/sanjaycalley",
+   "name": "Sanjay Calley",
+   "highlights": [
+    "Top University",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Tesollow",
+    "Calowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leilaharronn",
+   "name": "Leila Harronn",
+   "highlights": [
+    "$50M+ Club",
+    "Founder Turned Operator",
+    "Prior Exit"
+   ],
+   "current_role": "Head of Clinical",
+   "current_company": null,
+   "prior_companies": [
+    "Wexaselle",
+    "Sabollow",
+    "Cindowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/mateocalvale",
+   "name": "Mateo Calvale",
+   "highlights": [
+    "$50M+ Club",
+    "Seasoned Founder"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Zephendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hugomarronn",
+   "name": "Hugo Marronn",
+   "highlights": [
+    "Founder Turned Operator"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Harrik",
+    "Cindrrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tomasdornova",
+   "name": "Tomas Dornova",
+   "highlights": [
+    "Published Researcher",
+    "$10M Club"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Ravollow",
+    "Xanvir"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/jonascindmoor",
+   "name": "Jonas Cindmoor",
+   "highlights": [
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Harralux",
+    "Bexexa",
+    "Palvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/adaezequodahl",
+   "name": "Adaeze Quodahl",
+   "highlights": [
+    "$50M+ Club",
+    "Prior VC Backed Executive",
+    "Top University"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Marvane",
+    "Ravhallow",
+    "Ilvluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rosawexronn",
+   "name": "Rosa Wexronn",
+   "highlights": [
+    "Major Tech Company Experience",
+    "Notable Followers",
+    "Seasoned Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Orverlon Freight",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Marthir",
+    "Tesanto"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/tomasjorbeck",
+   "name": "Tomas Jorbeck",
+   "highlights": [
+    "$50M+ Club",
+    "Prior VC Backed Executive",
+    "Prior Exit"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Wextral",
+    "Ravlon",
+    "Kelworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rosazephvale",
+   "name": "Rosa Zephvale",
+   "highlights": [
+    "Prior VC Backed Founder",
+    "Top University",
+    "Deep Technical Background"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Dornluvia Labs",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Jorvara",
+    "Elstlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/luciaavsund",
+   "name": "Lucia Avsund",
+   "highlights": [
+    "$50M+ Club",
+    "Deep Technical Background",
+    "Founder Turned Operator"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Nysworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridabexley",
+   "name": "Farida Bexley",
+   "highlights": [
+    "Seasoned Executive",
+    "Major Tech Company Experience",
+    "$25M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Zephsorra Freight",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Jorendel",
+    "Embsorra",
+    "Fenerlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/anoukavain",
+   "name": "Anouk Avain",
+   "highlights": [
+    "Deep Technical Background",
+    "Seasoned Founder",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Fenerik",
+    "Sabowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/idrisnysain",
+   "name": "Idris Nysain",
+   "highlights": [
+    "Notable Followers"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Orverlon",
+    "Avrrin",
+    "Ravluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikosabmoor",
+   "name": "Keiko Sabmoor",
+   "highlights": [
+    "Published Researcher",
+    "Founder Turned Operator"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Elstralux"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hugowexsen",
+   "name": "Hugo Wexsen",
+   "highlights": [
+    "$50M+ Club",
+    "$25M Club"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Cindrrin",
+    "Embaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/jonasdornronn",
+   "name": "Jonas Dornronn",
+   "highlights": [
+    "Published Researcher",
+    "Notable Followers",
+    "Seasoned Founder"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Marrik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridasabaker",
+   "name": "Farida Sabaker",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Jorvir Bio",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Pallon",
+    "Kelanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rahulxandahl",
+   "name": "Rahul Xandahl",
+   "highlights": [
+    "$10M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Umberlon",
+    "Tesollow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/meinysmoor",
+   "name": "Mei Nysmoor",
+   "highlights": [
+    "Seasoned Executive"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Ilvanth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/bettinamarsund",
+   "name": "Bettina Marsund",
+   "highlights": [
+    "Published Researcher"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Yarrrin",
+    "Orvexa"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claracindova",
+   "name": "Clara Cindova",
+   "highlights": [
+    "Seasoned Executive",
+    "Seasoned Founder",
+    "$25M Club"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Draerlon",
+    "Umbluvia"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leilaravova",
+   "name": "Leila Ravova",
+   "highlights": [
+    "$5M Club",
+    "$50M+ Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Bexendel Energy",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Dornrik",
+    "Umbowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/lianorvmere",
+   "name": "Lian Orvmere",
+   "highlights": [
+    "Top University",
+    "Published Researcher",
+    "Founder Turned Operator"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Wexlon",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Elstworth",
+    "Embowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/meikelmoor",
+   "name": "Mei Kelmoor",
+   "highlights": [
+    "Prior Exit",
+    "$50M+ Club",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Quoanto Health",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Jorendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/omarxanholt",
+   "name": "Omar Xanholt",
+   "highlights": [
+    "$25M Club",
+    "Seasoned Founder"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Velexa",
+    "Dralon",
+    "Cindralux"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/freyafyrova",
+   "name": "Freya Fyrova",
+   "highlights": [
+    "Deep Technical Background",
+    "$50M+ Club",
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Cindvara Freight",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Marrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/yaraelstmere",
+   "name": "Yara Elstmere",
+   "highlights": [
+    "Founder Turned Operator",
+    "Notable Followers",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Kelworth Care",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Tesollow",
+    "Fyrwold"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claraavley",
+   "name": "Clara Avley",
+   "highlights": [
+    "Notable Followers",
+    "$5M Club"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Quoworth",
+    "Xanveln"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leviquoari",
+   "name": "Levi Quoari",
+   "highlights": [
+    "Deep Technical Background",
+    "$25M Club",
+    "Published Researcher"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Drahallow Grid",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Avowen",
+    "Umbowen"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/omarcindley",
+   "name": "Omar Cindley",
+   "highlights": [
+    "Major Tech Company Experience",
+    "$10M Club"
+   ],
+   "current_role": "Chief of Staff",
+   "current_company": null,
+   "prior_companies": [
+    "Emblon",
+    "Dornveln",
+    "Jorowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/inesharwyn",
+   "name": "Ines Harwyn",
+   "highlights": [
+    "Founder Turned Operator"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Dravane",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Avexa"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/solveigfenholt",
+   "name": "Solveig Fenholt",
+   "highlights": [
+    "$25M Club",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Velvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/diegovelwyn",
+   "name": "Diego Velwyn",
+   "highlights": [
+    "Prior Exit",
+    "Deep Technical Background",
+    "$5M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Avveln",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Lomthir",
+    "Keltral",
+    "Avorne"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/arjunsabmoor",
+   "name": "Arjun Sabmoor",
+   "highlights": [
+    "Prior Exit"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Teserlon Bio",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Emberlon",
+    "Orvrrin",
+    "Kelorne"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/keikopalholt",
+   "name": "Keiko Palholt",
+   "highlights": [
+    "Deep Technical Background"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Marluvia Grid",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Yarrik",
+    "Ilvanth",
+    "Ilvendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/noornysova",
+   "name": "Noor Nysova",
+   "highlights": [
+    "Seasoned Executive",
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Calerik",
+    "Jorwold"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/mateoharquist",
+   "name": "Mateo Harquist",
+   "highlights": [
+    "Published Researcher",
+    "Major Tech Company Experience",
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Haraselle Foundry",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Ravsorra",
+    "Calsorra"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/teodorxaneli",
+   "name": "Teodor Xaneli",
+   "highlights": [
+    "Notable Followers",
+    "Prior VC Backed Executive",
+    "Seasoned Executive"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Xanaselle",
+    "Calanth",
+    "Jorthir"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/priyapalley",
+   "name": "Priya Palley",
+   "highlights": [
+    "Seasoned Executive",
+    "$50M+ Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Fenthir Care",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Velveln",
+    "Tesvane"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/idrisvelholt",
+   "name": "Idris Velholt",
+   "highlights": [
+    "$5M Club"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Tesluvia",
+    "Elstlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridatesmoor",
+   "name": "Farida Tesmoor",
+   "highlights": [
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Ravsorra Learning",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Fenralux",
+    "Jorendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claralommere",
+   "name": "Clara Lommere",
+   "highlights": [
+    "$50M+ Club",
+    "Seasoned Founder"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Sabowen",
+    "Umbvara"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/sofiasabari",
+   "name": "Sofia Sabari",
+   "highlights": [
+    "$5M Club",
+    "$50M+ Club",
+    "Prior Exit"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Harowan",
+    "Harthir",
+    "Velaselle"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/rahulyarholt",
+   "name": "Rahul Yarholt",
+   "highlights": [
+    "Seasoned Executive"
+   ],
+   "current_role": "Commercial Director",
+   "current_company": null,
+   "prior_companies": [
+    "Glaowan"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/yaramarwyn",
+   "name": "Yara Marwyn",
+   "highlights": [
+    "$25M Club",
+    "Top University",
+    "Seasoned Founder"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Tesrrin",
+    "Fyrralux",
+    "Quoworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridacalova",
+   "name": "Farida Calova",
+   "highlights": [
+    "Published Researcher",
+    "Deep Technical Background",
+    "Seasoned Executive"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Cindluvia Energy",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Cindrik",
+    "Harrrin",
+    "Teserlon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/faridasabsen",
+   "name": "Farida Sabsen",
+   "highlights": [
+    "$5M Club",
+    "Notable Followers"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Nysworth",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Avluvia",
+    "Kelwold"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/pavelilvley",
+   "name": "Pavel Ilvley",
+   "highlights": [
+    "Seasoned Founder",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "GM, Growth",
+   "current_company": null,
+   "prior_companies": [
+    "Nyswold"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/leviquosund",
+   "name": "Levi Quosund",
+   "highlights": [
+    "Seasoned Founder"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Tesowan",
+    "Ravwold"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/claralomronn",
+   "name": "Clara Lomronn",
+   "highlights": [
+    "Seasoned Executive",
+    "$25M Club"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Avanth",
+    "Dornollow",
+    "Zephralux"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/kianravronn",
+   "name": "Kian Ravronn",
+   "highlights": [
+    "$25M Club",
+    "$10M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Glaaselle Grid",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Yarorne"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/teodorglasund",
+   "name": "Teodor Glasund",
+   "highlights": [
+    "Seasoned Executive",
+    "Notable Followers",
+    "Top University"
+   ],
+   "current_role": "Principal Scientist",
+   "current_company": null,
+   "prior_companies": [
+    "Umbrik"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/arjunkelmere",
+   "name": "Arjun Kelmere",
+   "highlights": [
+    "Deep Technical Background",
+    "Major Tech Company Experience"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Calollow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/nikhildrastrom",
+   "name": "Nikhil Drastrom",
+   "highlights": [
+    "Notable Followers",
+    "Founder Turned Operator"
+   ],
+   "current_role": "Director of Operations",
+   "current_company": null,
+   "prior_companies": [
+    "Nysrik",
+    "Maranth",
+    "Umblon"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hugofensund",
+   "name": "Hugo Fensund",
+   "highlights": [
+    "Published Researcher",
+    "Prior VC Backed Founder",
+    "$5M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Umbralux Labs",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Fyrendel"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/omarlomain",
+   "name": "Omar Lomain",
+   "highlights": [
+    "$50M+ Club",
+    "Deep Technical Background",
+    "Prior Exit"
+   ],
+   "current_role": "VP Engineering",
+   "current_company": null,
+   "prior_companies": [
+    "Xananth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/andreslommoor",
+   "name": "Andres Lommoor",
+   "highlights": [
+    "Top University",
+    "$10M Club",
+    "$5M Club"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Fenorne Foundry",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Fyrrrin",
+    "Draworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/andresumbholt",
+   "name": "Andres Umbholt",
+   "highlights": [
+    "Published Researcher",
+    "Founder Turned Operator"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Bexwold",
+    "domain": null,
+    "founded": 2025
+   },
+   "prior_companies": [
+    "Sabowen",
+    "Umbrrin"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/bettinaravvale",
+   "name": "Bettina Ravvale",
+   "highlights": [
+    "Prior Exit",
+    "Prior VC Backed Founder"
+   ],
+   "current_role": "Founder",
+   "current_company": {
+    "name": "Ilverlon Labs",
+    "domain": null,
+    "founded": 2026
+   },
+   "prior_companies": [
+    "Lomworth"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/hugonysari",
+   "name": "Hugo Nysari",
+   "highlights": [
+    "Prior VC Backed Executive"
+   ],
+   "current_role": "Staff Engineer",
+   "current_company": null,
+   "prior_companies": [
+    "Lomhallow"
+   ]
+  },
+  {
+   "linkedin_url": "https://social.example/in/inesumbford",
+   "name": "Ines Umbford",
+   "highlights": [
+    "Prior VC Backed Founder",
+    "Top University"
+   ],
+   "current_role": "Head of Data",
+   "current_company": null,
+   "prior_companies": [
+    "Tesendel"
+   ]
+  }
+ ]
+}

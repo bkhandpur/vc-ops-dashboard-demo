@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+
+# There are no secrets in this repo, and there must never be any.
+.env
+.env.local
+.env*.local
+*.pem
+*.key
+
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Regenerable chart preview artifacts (npm run preview:sunburst)
+preview-sunburst-*.svg
+
+# Local mutation log written by the demo write actions at runtime
+.demo-writes/

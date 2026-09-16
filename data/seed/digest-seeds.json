@@ -1,0 +1,62 @@
+[
+ {
+  "id": "dg_2026-06-01",
+  "generatedAt": "2026-06-01T00:00:00.000Z",
+  "weekIndex": 0,
+  "withMetrics": false
+ },
+ {
+  "id": "dg_2026-06-08",
+  "generatedAt": "2026-06-08T00:00:00.000Z",
+  "weekIndex": 1,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-06-15",
+  "generatedAt": "2026-06-15T00:00:00.000Z",
+  "weekIndex": 2,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-06-22",
+  "generatedAt": "2026-06-22T00:00:00.000Z",
+  "weekIndex": 3,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-06-29",
+  "generatedAt": "2026-06-29T00:00:00.000Z",
+  "weekIndex": 4,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-07-06",
+  "generatedAt": "2026-07-06T00:00:00.000Z",
+  "weekIndex": 5,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-07-13",
+  "generatedAt": "2026-07-13T00:00:00.000Z",
+  "weekIndex": 6,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-07-20",
+  "generatedAt": "2026-07-20T00:00:00.000Z",
+  "weekIndex": 7,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-07-27",
+  "generatedAt": "2026-07-27T00:00:00.000Z",
+  "weekIndex": 8,
+  "withMetrics": true
+ },
+ {
+  "id": "dg_2026-08-03",
+  "generatedAt": "2026-08-03T00:00:00.000Z",
+  "weekIndex": 9,
+  "withMetrics": true
+ }
+]
