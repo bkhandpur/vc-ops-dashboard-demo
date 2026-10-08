@@ -56,7 +56,7 @@ export function LogNoteOnCompany({ onBack, onClose }: PaletteActionProps) {
     return (
       <ActionShell
         title="Log a note on a company"
-        subtitle="Step 1 of 2 — pick the company"
+        subtitle="Step 1 of 2: pick the company"
         onBack={onBack}
       >
         <CompanyTypeahead

@@ -24,8 +24,7 @@ import { ROUND_ORDER, UNCLASSIFIED, type StageKey } from "./constants";
  * the project rule is that page loads never call an external service. So a field any of
  * those views wants has to be here, or that view would need its own round trip.
  *
- * Changing this shape invalidates cached snapshots — bump CACHE_KEYS.stats so a stale
- * payload is ignored rather than deserialising with missing properties.
+ * All views share this shape; keep its readers and independent fixtures synchronized.
  */
 export interface StagedCompany {
   recordId: string;
@@ -48,8 +47,7 @@ export interface StagedCompany {
   domains: string[];
   /**
    * Best available location. Comes from the LIST ENTRY `hq_city` field (93% on
-   * Pipeline, 84% on Archive), NOT the company object's `hq_location` (8/7/3). The app
-   * shipped on the wrong one; that is the correction the engineering log calls Phase 2b.
+   * Pipeline, 84% on Archive), NOT the company object's `hq_location` (8/7/3). Prefer the populated list-entry field.
    */
   location: string | null;
   /** Best available headcount — `headcount_exact` before the `headcount_band` bucket. */

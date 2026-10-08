@@ -118,7 +118,7 @@ function DigestCard({
           <span className="block text-[13px] font-medium text-ink">{digest.periodLabel}</span>
           <span className="block text-[11px] text-ink-subtle">
             {digest.comparedTo === null
-              ? "Baseline snapshot — nothing to compare against yet"
+              ? "Baseline snapshot. No previous sample to compare."
               : `${changeCount} change${changeCount === 1 ? "" : "s"}`}
             {" · "}
             {Object.entries(digest.totals)

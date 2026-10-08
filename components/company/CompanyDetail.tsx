@@ -458,7 +458,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
     <div className="flex items-baseline gap-4 px-4 py-2.5">
       <dt className="w-36 shrink-0 text-[12px] text-ink-subtle">{label}</dt>
       <dd className={cx("min-w-0 flex-1 text-[13px]", empty ? "text-ink-subtle" : "text-ink")}>
-        {empty ? "—" : children}
+        {empty ? "Not recorded" : children}
       </dd>
     </div>
   );

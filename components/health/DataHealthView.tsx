@@ -123,7 +123,7 @@ export function DataHealthView({
         />
         <StatTile
           label="Biggest gap"
-          value={worst ? `${worst.missingTotal.toLocaleString("en-US")}` : "—"}
+          value={worst ? `${worst.missingTotal.toLocaleString("en-US")}` : "Unavailable"}
           hint={worst ? `missing ${worst.check.label.toLowerCase()}` : undefined}
           tone="warning"
         />
@@ -154,10 +154,10 @@ export function DataHealthView({
         <div className="px-4 pb-4">
           <Footnote>
             <strong>&ldquo;Most valuable&rdquo;</strong> weights each missing value by the list it
-            is on — Portfolio ×{STAGE_WEIGHT.portfolio}, Pipeline ×{STAGE_WEIGHT.pipeline}, Archive
-            ×{STAGE_WEIGHT.archive} — and by how much the product depends on the field. Without that
-            weighting the ranking would simply follow the Archive, which is 340 records we have
-            already passed on. The number has no meaning on its own; only the ordering does.
+            belongs to (Portfolio ×{STAGE_WEIGHT.portfolio}, Pipeline ×{STAGE_WEIGHT.pipeline},
+            Archive ×{STAGE_WEIGHT.archive}) and by how much the product depends on the field.
+            Without that weighting the ranking would simply follow the Archive, which is 340 records
+            we have already passed on. The number has no meaning on its own; only the ordering does.
             Snapshot taken {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
           </Footnote>
         </div>

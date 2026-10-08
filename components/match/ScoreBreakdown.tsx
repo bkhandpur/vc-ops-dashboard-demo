@@ -63,7 +63,7 @@ export function ScoreBreakdown({
             </span>
 
             <span className="ws-nums w-8 shrink-0 text-right text-[11px] tabular-nums text-ink-subtle">
-              {component.points > 0 ? `+${component.points.toFixed(0)}` : "—"}
+              {component.points > 0 ? `+${component.points.toFixed(0)}` : "0"}
             </span>
 
             {component.detail && (

@@ -26,6 +26,8 @@ import {
  * follow the viewport and ignore that stored preference.
  */
 
+import { useHydrated } from "./useHydrated";
+
 export type SidebarLayout = "full" | "rail" | "overlay";
 
 interface SidebarState {
@@ -42,9 +44,10 @@ interface SidebarState {
 const SidebarContext = createContext<SidebarState | null>(null);
 
 export function useSidebar(): SidebarState {
+  const hydrated = useHydrated();
   const ctx = useContext(SidebarContext);
   if (!ctx) throw new Error("useSidebar must be used inside <SidebarProvider>");
-  return ctx;
+  return hydrated ? ctx : { ...ctx, layout: "full", collapsed: false, overlayOpen: false };
 }
 
 const STORAGE_KEY = "vc-ops:sidebar-collapsed";

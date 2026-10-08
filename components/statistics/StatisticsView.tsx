@@ -91,7 +91,7 @@ export function StatisticsView({
         <StatTile label="Sub-sectors" value={subSectorCount} />
         <StatTile
           label="Largest theme"
-          value={leader ? leader.name : "—"}
+          value={leader ? leader.name : "None in scope"}
           detail={
             leader && result.total > 0
               ? `${leader.value} companies · ${Math.round((leader.value / result.total) * 100)}%`

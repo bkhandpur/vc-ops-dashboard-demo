@@ -172,8 +172,8 @@ export function FounderTracker({
           <div className="px-4 pb-3">
             <Footnote>
               <code className="text-[10px]">sourced_by</code> is a multiselect, so a founder
-              credited to two teammates is counted in both — these are tag counts and can sum above{" "}
-              {people.length}.
+              credited to two teammates is counted in both. Tag counts can sum above {people.length}
+              .
             </Footnote>
           </div>
         </Panel>

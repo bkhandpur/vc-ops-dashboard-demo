@@ -41,7 +41,7 @@ export const HEALTH_CHECKS: HealthCheck[] = [
   {
     key: "subSector",
     label: "Sub-sector",
-    why: "Level 3 of the taxonomy — the level the drill-down and the table bottom out at.",
+    why: "Level 3 of the taxonomy, used by the drill-down and detailed table.",
     slug: "sub_sector",
     weight: 4,
     isPresent: (c) => c.subSectors.length > 0,
@@ -87,7 +87,7 @@ export const HEALTH_CHECKS: HealthCheck[] = [
     weight: 3,
     isPresent: (c) => nonEmpty(c.pipelineStage) || !c.stages.includes("pipeline"),
     note:
-      "This is a LIST attribute, not a company attribute — it lives on the Pipeline list " +
+      "This attribute belongs to the Pipeline list " +
       "entry. Companies not on Pipeline count as present rather than as gaps, since the " +
       "field does not apply to them.",
   },

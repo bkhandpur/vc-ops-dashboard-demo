@@ -109,7 +109,7 @@ export function SyndicatePanel({
           <Callout tone="warn">
             <span className="block font-medium">
               The enrichment provider puts the valuation at{" "}
-              {formatMoney(fact.valuation.value, "USD")} — attributed to{" "}
+              {formatMoney(fact.valuation.value, "USD")}, attributed to{" "}
               {fact.valuation.source.toLowerCase()}, not to us.
             </span>
             The provider&rsquo;s figure, carried through with its own attribution rather than
@@ -124,8 +124,8 @@ export function SyndicatePanel({
         <Footnote>
           Round amounts are the <strong>total raised in that round from all investors</strong>.
           Neither the CRM nor the enrichment provider records how much of it was ours, so nothing
-          here is our own cheque size. Underlined investors are on our own Co-Investors list — click
-          through to the directory.
+          here represents the workspace’s investment size. Underlined investors appear in the sample
+          Co-Investors list. Click through to the directory.
         </Footnote>
       </div>
     </Panel>

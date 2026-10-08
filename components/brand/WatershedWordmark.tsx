@@ -90,7 +90,7 @@ export function WatershedWordmark({
       width={(width / boxHeight) * height}
       className={className}
       role="img"
-      aria-label={`${text} — deal intelligence`}
+      aria-label={`${text} deal intelligence`}
     >
       <defs>
         <mask id={maskId}>

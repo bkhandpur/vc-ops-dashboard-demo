@@ -1,15 +1,4 @@
-/**
- * One place that knows what "refresh the caches" means.
- *
- * There are three triggers — the top-bar Refresh button, the manual "Run diff now"
- * button, and the cron entry point — and every one of them must end with every cached
- * view in sync. When each call site listed the snapshots itself, adding a new one meant
- * remembering three edits, and the Statistics cache was left stale exactly that way.
- * Adding a snapshot now means adding it here, once.
- *
- * Still a plain deterministic data pipeline: read, aggregate, store. No decisions, no
- * model, no writes to any record.
- */
+/** Rebuild all request-local views for the Refresh and manual diff actions. */
 
 import "server-only";
 

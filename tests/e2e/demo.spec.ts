@@ -166,12 +166,17 @@ test("keyboard palette edit, filtering and manual diff reach the visible result"
   await page.goto("/statistics");
   await page.getByRole("button", { name: "Bars", exact: true }).click();
   await page.getByRole("button", { name: "By stage", exact: true }).click();
+  await expect(page.getByRole("cell", { name: "0", exact: true }).first()).toBeVisible();
   await page.getByRole("button", { name: "Reset demo", exact: true }).click();
 });
 
 // Slow hydration exposes responsive shell changes before nested page boundaries settle.
 test("mobile hydration tolerates a slower client", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
+  await page.route("**/_next/static/chunks/app/**/page-*.js", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    await route.continue();
+  });
   const session = await page.context().newCDPSession(page);
   await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
   const errors: string[] = [];
@@ -186,4 +191,23 @@ test("mobile hydration tolerates a slower client", async ({ page }) => {
   await expect(page.locator("main")).toBeVisible();
   expect(errors).toEqual([]);
   await session.detach();
+});
+
+test("mobile navigation traps focus, closes on Escape and follows routes", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto("/statistics");
+  const opener = page.getByRole("button", { name: "Open navigation", exact: true });
+  await opener.click();
+  const menu = page.getByRole("dialog", { name: "Main navigation", exact: true });
+  await expect(menu).toBeVisible();
+  await expect(menu.getByRole("button", { name: "Close navigation", exact: true })).toBeFocused();
+  await page.keyboard.press("Shift+Tab");
+  await expect(menu.locator(":focus")).toHaveCount(1);
+  await page.keyboard.press("Escape");
+  await expect(menu).not.toBeVisible();
+  await expect(opener).toBeFocused();
+  await opener.click();
+  await menu.getByRole("link", { name: "Momentum", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Momentum", exact: true })).toBeVisible();
+  await expect(menu).not.toBeVisible();
 });

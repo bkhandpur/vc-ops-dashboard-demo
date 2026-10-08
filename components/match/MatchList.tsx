@@ -108,7 +108,7 @@ export function MatchList({
 
       <div className="px-4 pb-3">
         <Footnote>
-          Score is 0–100 from four weighted components — sector thesis (45), stage focus (25),
+          Score is 0–100 from four weighted components: sector thesis (45), stage focus (25),
           syndicate history (20) and keyword overlap (10). Only the ordering is meaningful. Scores
           at or below {report.noiseFloor} are hidden.
         </Footnote>

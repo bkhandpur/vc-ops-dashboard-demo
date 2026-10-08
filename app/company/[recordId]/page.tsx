@@ -10,7 +10,7 @@ export const metadata = { title: "Company" };
 
 /**
  * Company detail, built from the CACHED snapshot — no external call on page load.
- * "Refresh from the CRM" on the page fetches this one record live, on an explicit click.
+ * The explicit refresh action re-reads this browser’s sample record.
  */
 async function CompanyPage({ params }: { params: Promise<{ recordId: string }> }) {
   const { recordId } = await params;

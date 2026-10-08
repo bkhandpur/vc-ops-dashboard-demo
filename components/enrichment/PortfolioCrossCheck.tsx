@@ -184,7 +184,7 @@ function Row({ row, index }: { row: CrossCheckRow; index: number }) {
         {status === "unresolved" && (
           <p className="mt-0.5 text-[11px] text-ink-subtle">
             No enrichment record matched this company&rsquo;s domain
-            {company.domains[0] ? ` (${company.domains[0]})` : " — it has no domain in the CRM"}.
+            {company.domains[0] ? ` (${company.domains[0]})` : " (no sample domain recorded)"}.
           </p>
         )}
       </div>

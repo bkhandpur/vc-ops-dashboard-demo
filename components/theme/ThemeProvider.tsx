@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { useHydrated } from "../useHydrated";
 import type { ColorMode } from "../statistics/colors";
 
 /** What the user chose. "system" follows the OS and is the default. */
@@ -41,9 +42,10 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function useTheme(): ThemeContextValue {
+  const hydrated = useHydrated();
   const ctx = useContext(ThemeContext);
   if (!ctx) throw new Error("useTheme must be used inside <ThemeProvider>");
-  return ctx;
+  return hydrated ? ctx : { ...ctx, preference: "system", mode: "light" };
 }
 
 /** Charts only ever need the resolved mode. */

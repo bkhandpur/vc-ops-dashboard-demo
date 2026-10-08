@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, ExternalLink, Mail } from "lucide-react";
+import { Check, Copy, ExternalLink } from "lucide-react";
 import { useDeferredValue, useMemo, useState } from "react";
 
 import { CompanyAvatar } from "@/components/CompanyAvatar";
@@ -38,7 +38,7 @@ export function QuickSummary({ onBack }: PaletteActionProps) {
   return (
     <ActionShell
       title="Quick summary"
-      subtitle="Call prep from the cached snapshot — read-only, nothing is written"
+      subtitle="Call prep from the current sample snapshot"
       onBack={onBack}
     >
       {!selected ? (
@@ -223,8 +223,8 @@ function SummaryBody({
           <Row label="Raised">
             {formatUsd(funding)}
             <span className="block text-[11px] text-ink-subtle">
-              Total from all investors ({fundingSource}) — the CRM records nothing about our own
-              cheque.
+              Total from all investors ({fundingSource}). The sample records nothing about the
+              workspace’s own cheque.
             </span>
           </Row>
         )}
@@ -253,29 +253,18 @@ function SummaryBody({
           {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
           {copied ? "Copied" : "Copy as text"}
         </Button>
-        <Button
-          variant="ghost"
-          onClick={() => {
-            // Opens the user's own mail client with a draft. It never sends.
-            const subject = encodeURIComponent(`${company.name ?? "Company"} — call prep`);
-            window.location.href = `mailto:?subject=${subject}&body=${encodeURIComponent(text)}`;
-          }}
-        >
-          <Mail className="size-3.5" /> Draft an email
-        </Button>
         <a
           href={crmRecordUrl("companies", company.recordId)}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 rounded-[var(--radius-control)] px-3 py-1.5 text-[13px] font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
         >
-          <ExternalLink className="size-3.5" /> Open in the CRM
+          <ExternalLink className="size-3.5" /> Open sample record
         </a>
       </div>
 
       <Footnote>
-        Built from the current snapshot. &ldquo;Draft an email&rdquo; opens a prefilled message in
-        your mail client.
+        Assembled from the current sample snapshot. Copy the text or open the sample record.
       </Footnote>
     </div>
   );

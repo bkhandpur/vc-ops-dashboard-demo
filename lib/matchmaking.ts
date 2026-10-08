@@ -232,7 +232,7 @@ function stageComponent(company: StagedCompany, person: TrackedPerson): ScoreCom
     points: raw * WEIGHTS.stage,
     detail:
       distance === 0
-        ? `${person.stageFocus} — exact match`
+        ? `${person.stageFocus}: exact match`
         : `${person.stageFocus} · ${distance} rung${distance === 1 ? "" : "s"} away`,
   };
 }

@@ -3,7 +3,7 @@
 import { PanelLeftClose, PanelLeftOpen, Plus, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { WatershedWordmark } from "./brand/WatershedWordmark";
 import { useCommandPalette } from "./command-palette/CommandPaletteProvider";
@@ -23,30 +23,53 @@ const ROW =
 export function Sidebar() {
   const { layout, overlayOpen, closeOverlay } = useSidebar();
 
+  const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (layout === "overlay" && overlayOpen && !element.open) element.showModal();
+    else if (!overlayOpen && element.open) element.close();
+  }, [layout, overlayOpen]);
+
   if (layout === "overlay") {
     return (
-      <>
-        {overlayOpen && (
-          <div
-            className="fixed inset-0 z-40 bg-black/40 sm:hidden"
-            onClick={closeOverlay}
-            aria-hidden
-          />
-        )}
-        <div
-          className={cx(
-            "fixed inset-y-0 left-0 z-50 w-[15rem] border-r border-white/10 bg-[var(--brand-navy)] transition-transform duration-[var(--dur-base)] ease-[var(--ease-out)] sm:hidden",
-            overlayOpen ? "translate-x-0" : "-translate-x-full",
-          )}
-        >
+      <dialog
+        ref={dialog}
+        aria-label="Main navigation"
+        className="fixed inset-y-0 left-0 right-auto m-0 h-dvh max-h-none w-[15rem] max-w-none border-0 border-r border-white/10 bg-[var(--brand-navy)] p-0 text-white backdrop:bg-black/40 sm:hidden"
+        onCancel={(event) => {
+          event.preventDefault();
+          closeOverlay();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") closeOverlay();
+          if (event.key !== "Tab" || event.ctrlKey || event.metaKey || event.altKey) return;
+          const controls = [
+            ...event.currentTarget.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), input:not([disabled]), [tabindex="0"]',
+            ),
+          ].filter((element) => element.getClientRects().length > 0);
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
+      >
+        <nav aria-label="Main navigation" className="h-full">
           <SidebarBody mode="full" showClose />
-        </div>
-      </>
+        </nav>
+      </dialog>
     );
   }
 
   return (
     <nav
+      aria-label="Main navigation"
       className={cx(
         "flex h-full shrink-0 flex-col border-r border-white/10 bg-[var(--brand-navy)] transition-[width] duration-[var(--dur-base)] ease-[var(--ease-out)]",
         layout === "rail" ? "w-[3.25rem]" : "w-[10.5rem]",

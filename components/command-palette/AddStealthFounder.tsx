@@ -83,7 +83,7 @@ export function AddStealthFounder({ onBack, onClose }: PaletteActionProps) {
               { label: "Email", value: email },
               { label: "Context notes", value: notes },
             ]}
-            note="Upsert matches on email address — an existing person with this email is updated, not duplicated."
+            note="An existing sample person with this email is updated. Otherwise, a new sample record is created."
           />
           {error && <Callout tone="error">{error}</Callout>}
         </div>

@@ -108,7 +108,7 @@ export function StageMatrix({
                         }
                         title={`${row.name} · ${STAGE_LABELS[stage]}: ${value}`}
                       >
-                        {value === 0 ? "—" : value}
+                        {value}
                       </span>
                     </td>
                   );

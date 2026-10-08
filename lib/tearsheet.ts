@@ -190,7 +190,7 @@ export function buildTearSheets(
  * user in control of where it goes.
  */
 export function tearSheetToText(group: TearSheetGroup): string {
-  const lines: string[] = [`${group.name} — ${group.entries.length} companies`, ""];
+  const lines: string[] = [`${group.name}: ${group.entries.length} companies`, ""];
 
   for (const entry of group.entries) {
     lines.push(`## ${entry.company.name ?? "Unnamed company"}`);

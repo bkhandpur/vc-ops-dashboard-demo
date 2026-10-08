@@ -205,9 +205,9 @@ export function MomentumView({
           <EmptyState title="Coverage too thin to draw" icon={<TrendingUp className="size-6" />}>
             Only {momentum.covered} of {momentum.inScope} {stage} companies (
             {momentum.coveragePct.toFixed(0)}%) carry {momentum.metric.label.toLowerCase()} from{" "}
-            {momentum.source === "enrichment" ? "the enrichment provider" : "the CRM"}, below the
-            40% bar this project holds. A chart from that is a ranking of whoever happens to be
-            enriched.
+            {momentum.source === "enrichment" ? "the generated enrichment sample" : "the CRM"},
+            below the 40% bar this project holds. A chart from that is a ranking of whoever happens
+            to be enriched.
           </EmptyState>
         ) : (
           <>
@@ -228,31 +228,20 @@ export function MomentumView({
                 {momentum.coveragePct.toFixed(0)}%) have a figure, sourced from{" "}
                 <strong>
                   {momentum.source === "enrichment"
-                    ? "the enrichment provider"
-                    : "the CRM's own synced fields"}
+                    ? "the generated enrichment sample"
+                    : "the generated CRM fields"}
                 </strong>
-                . The rest are absent rather than shown as zero, and negative values are real and
-                kept.
+                . The rest are absent rather than shown as zero, and negative sample values are
+                preserved.
                 {momentum.source === "enrichment" && momentum.withoutDomain > 0 && (
                   <>
                     {" "}
                     {momentum.withoutDomain} of them have no domain in the CRM and therefore cannot
-                    be looked up at all — that is a{" "}
+                    be matched to the enrichment sample. This is a{" "}
                     <Link href="/data-health" className="text-accent hover:underline">
                       Data Health
                     </Link>{" "}
                     gap, not an enrichment one.
-                  </>
-                )}
-                {momentum.source === "enrichment" && stage === "pipeline" && (
-                  <>
-                    {" "}
-                    <strong>
-                      An earlier phase deliberately refused to build this view on the CRM&rsquo;s
-                      own fields, which sit at 13% on Pipeline.
-                    </strong>{" "}
-                    the enrichment provider reaches 63% on the same list, which is what makes it
-                    honest to draw.
                   </>
                 )}
               </Footnote>

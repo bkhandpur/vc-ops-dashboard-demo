@@ -199,10 +199,7 @@ export function AddCompanyToPipeline({ onBack, onClose }: PaletteActionProps) {
 
         {options && (
           <>
-            <Field
-              label="Theme"
-              hint="Normally assigned upstream by the rules-based classifier — set only to override."
-            >
+            <Field label="Theme" hint="Select a sample classification or leave it unassigned.">
               <Select value={form.theme} onChange={(e) => set("theme", e.target.value)}>
                 <option value="">(leave unset)</option>
                 {options.themes.map((o) => (

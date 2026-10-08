@@ -202,7 +202,7 @@ export function StatsTable({ result }: { result: AggregateResult }) {
                   </td>
                   {visibleRounds.map((round) => (
                     <td key={round} className="px-2 py-1.5 text-right tabular-nums text-ink-muted">
-                      {row.rounds[round] ?? "—"}
+                      {row.rounds[round] ?? 0}
                     </td>
                   ))}
                 </tr>

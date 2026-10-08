@@ -3,9 +3,8 @@
  * the UI. The aggregation maths lives in lib/aggregate.ts so the client can re-run it
  * instantly when filters change and the chart and the table cannot disagree.
  *
- * Page loads read the cache. It is rebuilt by
- * the top-bar Refresh button, the manual digest run, and the cron entry point, all of
- * which go through `refreshAllSnapshots()`.
+ * Each request computes its own snapshot. Explicit refresh and manual diff actions
+ * rebuild all related views through `refreshAllSnapshots()`.
  */
 
 import "server-only";
@@ -81,7 +80,7 @@ export async function buildStatsSnapshot(): Promise<StatsSnapshot> {
             ? [company.domainsBackup]
             : [],
         // Prefer the list-entry `hq_city` (94% Pipeline) over `hq_location` (7%). This
-        // one line is the whole Phase 2b correction.
+        // the populated list location is preferred.
         location: company.city ?? company.location,
         // Prefer the exact headcount (39/94/73) over the bucket (26/53/44), and render
         // it as a string so one field can carry either an exact count or a band. The

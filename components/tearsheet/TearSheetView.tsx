@@ -65,8 +65,8 @@ export function TearSheetView({
           description={
             <>
               Everything written about each company, grouped for reading before a partner meeting.
-              Assembled from the four free-text fields the team actually maintains —{" "}
-              {report.coveragePct.toFixed(0)}% of blocks are filled across {report.total} companies.
+              The four sample text fields are {report.coveragePct.toFixed(0)}% complete across{" "}
+              {report.total} companies.
             </>
           }
           actions={
@@ -117,10 +117,10 @@ export function TearSheetView({
 
       <div className="ws-no-print">
         <Footnote>
-          Cards show only the blocks that have text — a card with no &ldquo;Founders &amp;
-          team&rdquo; is missing it in the CRM, not hidden by a filter. Each block names the field
-          it came from, because the written fields are maintained on <strong>Pipeline</strong> and
-          thin on Portfolio (team notes 97% vs 41%, relationships 91% vs 35%), the opposite of most
+          Cards show only populated blocks. A card with no &ldquo;Founders &amp; team&rdquo; is
+          missing it in the CRM, not hidden by a filter. Each block names the field it came from,
+          because the written fields are maintained on <strong>Pipeline</strong> and thin on
+          Portfolio (team notes 97% vs 41%, relationships 91% vs 35%), the opposite of most
           enrichment fields. Snapshot taken{" "}
           {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
         </Footnote>

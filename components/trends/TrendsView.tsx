@@ -76,7 +76,7 @@ export function TrendsView({
                 </>
               ) : series.points.length === 1 ? (
                 <>
-                  One snapshot is stored. The first chart appears after the second run — using{" "}
+                  One snapshot is stored. The first chart appears after a second dated sample, using{" "}
                   <strong>Weekly Digest → Run diff now</strong>.
                 </>
               ) : (
@@ -114,7 +114,7 @@ export function TrendsView({
       <div className="ws-enter ws-delay-1 mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatTile
           label="Pipeline now"
-          value={pipelineDelta?.to.toLocaleString("en-US") ?? "—"}
+          value={pipelineDelta?.to.toLocaleString("en-US") ?? "Unavailable"}
           hint={
             pipelineDelta ? changeLabel(pipelineDelta.change, "since first snapshot") : undefined
           }
@@ -122,7 +122,7 @@ export function TrendsView({
         />
         <StatTile
           label="Portfolio now"
-          value={portfolioDelta?.to.toLocaleString("en-US") ?? "—"}
+          value={portfolioDelta?.to.toLocaleString("en-US") ?? "Unavailable"}
           hint={
             portfolioDelta ? changeLabel(portfolioDelta.change, "since first snapshot") : undefined
           }
@@ -130,7 +130,7 @@ export function TrendsView({
         />
         <StatTile
           label="Sector coverage"
-          value={coverageDelta ? `${coverageDelta.to.toFixed(0)}%` : "—"}
+          value={coverageDelta ? `${coverageDelta.to.toFixed(0)}%` : "Unavailable"}
           hint={
             coverageDelta
               ? `Pipeline · ${
@@ -163,7 +163,7 @@ export function TrendsView({
         <Panel className="ws-enter ws-delay-3 overflow-hidden">
           <PanelHeader
             title="Canonical sector coverage"
-            description="Share of companies with a level-2 classification — is data quality improving?"
+            description="Sample share of companies with a canonical sector recorded."
           />
           <div className="px-4 py-4">
             <LineChart series={coverage} percentage format={(v) => `${v.toFixed(0)}%`} />
@@ -191,9 +191,9 @@ export function TrendsView({
         <div className="px-4 py-4">
           <ThemeMixChart points={mix} themes={series.themes} />
           <Footnote>
-            Shares, not counts — the question is whether the mix is drifting, which a stacked count
-            chart would hide behind overall growth. Theme is a single-select in the CRM, so these
-            are exact distinct-company shares and always sum to 100%.
+            Shares show changes in sample composition independently of the total company count.
+            Theme is a single-select in the CRM, so these are exact distinct-company shares and
+            always sum to 100%.
           </Footnote>
         </div>
       </Panel>
@@ -216,7 +216,7 @@ export function TrendsView({
               <span className="block font-medium">History is still accruing.</span>
               All {series.points.length} stored snapshots were written on the same day (
               {new Date(series.points[0]!.at).toLocaleDateString("en-US", { timeZone: "UTC" })}), so
-              there is no elapsed time to plot yet — a rolling chart drawn from them would show
+              there is no elapsed time to plot yet. A rolling chart drawn from them would show
               unobserved movement. The public demo uses illustrative points rather than scheduled
               collection.
             </Callout>
@@ -233,7 +233,7 @@ export function TrendsView({
                 value={
                   health.values.length
                     ? `${health.values[health.values.length - 1]!.value.toFixed(0)}%`
-                    : "—"
+                    : "Unavailable"
                 }
                 hint={
                   health.values.length
@@ -275,10 +275,10 @@ export function TrendsView({
         <div className="px-4 pb-4">
           <Footnote>
             Conversion here is portfolio ÷ (portfolio + pipeline) across the whole book, and carries
-            the same caveat as the per-theme table below — it is the share of what we currently
-            carry that has reached Portfolio, not a funnel rate. Completeness is the same figure the
-            Data Health page shows, over Pipeline and Portfolio only, recorded automatically on
-            every digest run rather than transcribed by hand.
+            the same denominator as the per-theme table below. It is the share of the sample
+            currently carry that has reached Portfolio, not a funnel rate. Completeness is the same
+            figure the Data Health page shows, over Pipeline and Portfolio only, recorded
+            automatically on every digest run rather than transcribed by hand.
           </Footnote>
         </div>
       </Panel>

@@ -54,8 +54,7 @@ export const QUALITY_SIGNALS: QualitySignalDef[] = [
     key: "founder turned operator",
     label: "Founder turned operator",
     weight: 2,
-    meaning:
-      "They founded before, then took an operating role — often a repeat founder in waiting.",
+    meaning: "The sample tag indicates prior founding experience followed by an operating role.",
   },
 ];
 

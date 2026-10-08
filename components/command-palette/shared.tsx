@@ -73,7 +73,7 @@ export function ConfirmSummary({
         {rows.map((row) => (
           <div key={row.label} className="flex gap-3 px-3 py-2 text-[13px]">
             <span className="w-32 shrink-0 text-ink-subtle">{row.label}</span>
-            <span className="min-w-0 break-words text-ink">{row.value || "—"}</span>
+            <span className="min-w-0 break-words text-ink">{row.value || "Not provided"}</span>
           </div>
         ))}
       </Panel>

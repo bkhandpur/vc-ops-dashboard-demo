@@ -49,7 +49,7 @@ export const PALETTE_ACTIONS: PaletteAction[] = [
      */
     id: "quick-summary",
     label: "Quick summary",
-    description: "Call prep for a company — classification, prose, funding, who to bring in",
+    description: "Company classification, notes, funding and matching co-investors",
     keywords: ["summary", "brief", "prep", "call", "meeting", "overview", "tear"],
     icon: FileText,
     writes: false,
