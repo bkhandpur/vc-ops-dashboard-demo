@@ -1,15 +1,7 @@
-/**
- * Weekly Digest — DETERMINISTIC DATA ASSEMBLY ONLY.
- *
- * ⚠️  Project rule: this is not an agent and must never become one. The cron job below
- *     does exactly one thing: read the current CRM state, diff it against the previous
- *     stored snapshot and write a structured digest row.
- *
- *     Prose summarisation lives in app/api/digest/[id]/summarize/route.ts and only ever
- *     runs from a human clicking "Generate summary" on /digest.
- */
+/** Deterministic sample diffs. Summaries run only on an explicit browser action. */
 
 import "server-only";
+import { demoSession } from "./demo-session";
 
 import { getCompaniesInList, getPeopleInList, listNotes } from "./crm";
 import { cacheGet, cacheSet, type Cached } from "./cache";
@@ -209,10 +201,7 @@ function stageOf(snapshot: DigestSnapshot, recordId: string): StageKey | null {
   return null;
 }
 
-function diffMix(
-  previous: Record<string, number>,
-  current: Record<string, number>,
-): MixShift[] {
+function diffMix(previous: Record<string, number>, current: Record<string, number>): MixShift[] {
   const labels = new Set([...Object.keys(previous), ...Object.keys(current)]);
   return [...labels]
     .map((label) => {
@@ -226,7 +215,12 @@ function diffMix(
 
 function periodLabel(from: string | null, to: string): string {
   const fmt = (iso: string) =>
-    new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    new Date(iso).toLocaleDateString("en-US", {
+      timeZone: "UTC",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
   return from ? `${fmt(from)} → ${fmt(to)}` : `Baseline as of ${fmt(to)}`;
 }
 
@@ -261,9 +255,7 @@ export function buildDigest(
       // A brand-new pipeline entry is reported under newInPipeline, not as a move.
       if (from === null && to === "pipeline") continue;
       const stub =
-        (to && current.stages[to][recordId]) ||
-        (from && previous.stages[from][recordId]) ||
-        null;
+        (to && current.stages[to][recordId]) || (from && previous.stages[from][recordId]) || null;
       stageMoves.push({ recordId, name: stub?.name ?? null, from, to });
     }
   }
@@ -284,9 +276,7 @@ export function buildDigest(
     newStealthFounders,
     newNotes,
     themeShifts: previous ? diffMix(previous.portfolioThemeMix, current.portfolioThemeMix) : [],
-    sectorShifts: previous
-      ? diffMix(previous.portfolioSectorMix, current.portfolioSectorMix)
-      : [],
+    sectorShifts: previous ? diffMix(previous.portfolioSectorMix, current.portfolioSectorMix) : [],
     totals: {
       pipeline: Object.keys(current.stages.pipeline).length,
       portfolio: Object.keys(current.stages.portfolio).length,
@@ -312,10 +302,20 @@ export async function listDigests(): Promise<Digest[]> {
 }
 
 export async function getDigest(id: string): Promise<Digest | null> {
+  const { ensureDigestHistory } = await import("./digest-history");
+  await ensureDigestHistory();
   return cacheGet<Digest>(CACHE_KEYS.digest(id));
 }
 
-export async function saveDigest(digest: Digest): Promise<void> {
+export async function saveDigest(digest: Digest, persist = true): Promise<void> {
+  if (persist) {
+    const session = demoSession();
+    // Keep only recent manual results, without an unbounded shared write index.
+    session.digests[CACHE_KEYS.digest(digest.id)] = digest;
+    const keys = Object.keys(session.digests);
+    for (const key of keys.slice(0, Math.max(0, keys.length - 3))) delete session.digests[key];
+    session.dirty = true;
+  }
   await cacheSet(CACHE_KEYS.digest(digest.id), digest);
   const ids = (await cacheGet<string[]>(CACHE_KEYS.digestIndex)) ?? [];
   const next = [digest.id, ...ids.filter((i) => i !== digest.id)].slice(0, MAX_DIGESTS);
@@ -329,7 +329,15 @@ export async function saveDigest(digest: Digest): Promise<void> {
  * Callers run `refreshAllSnapshots()` first so the digest records current cached stats.
  */
 export async function runDigestJob(): Promise<Digest> {
-  const previous = await cacheGet<DigestSnapshot>(CACHE_KEYS.snapshot);
+  // Compare visitor edits with the immutable seed, rather than claiming an observed history.
+  const session = demoSession();
+  const savedOverlay = session.overlay;
+  session.overlay = null;
+  session.cache.clear();
+  const previous = await takeSnapshot();
+  session.overlay = savedOverlay;
+  session.cache.clear();
+  await import("./refresh").then((m) => m.refreshAllSnapshots());
   const current = await takeSnapshot();
 
   const rawNotes = await listNotes(500);

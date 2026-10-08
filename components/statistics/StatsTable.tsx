@@ -1,4 +1,5 @@
 "use client";
+import { escapeCsv } from "@/lib/csv";
 
 import { ArrowDown, ArrowUp, Download } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -39,9 +40,7 @@ export function StatsTable({ result }: { result: AggregateResult }) {
    */
   const visibleRounds = useMemo(() => {
     if (density === "full") return result.roundColumns;
-    return result.roundColumns.filter((round) =>
-      rows.some((row) => (row.rounds[round] ?? 0) > 0),
-    );
+    return result.roundColumns.filter((round) => rows.some((row) => (row.rounds[round] ?? 0) > 0));
   }, [density, result.roundColumns, rows]);
 
   const hiddenRoundCount = result.roundColumns.length - visibleRounds.length;
@@ -90,8 +89,8 @@ export function StatsTable({ result }: { result: AggregateResult }) {
       <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
         {hiddenRoundCount > 0 && (
           <span className="mr-auto text-[11px] text-ink-subtle">
-            {hiddenRoundCount} round {hiddenRoundCount === 1 ? "column is" : "columns are"}{" "}
-            empty under these filters and hidden.
+            {hiddenRoundCount} round {hiddenRoundCount === 1 ? "column is" : "columns are"} empty
+            under these filters and hidden.
           </span>
         )}
         <Segmented<Density>
@@ -99,8 +98,16 @@ export function StatsTable({ result }: { result: AggregateResult }) {
           value={density}
           onChange={setDensity}
           options={[
-            { value: "compact", label: "Compact", title: "Hide round columns that are empty for every row in scope" },
-            { value: "full", label: "All rounds", title: "Show every round column, including empty ones" },
+            {
+              value: "compact",
+              label: "Compact",
+              title: "Hide round columns that are empty for every row in scope",
+            },
+            {
+              value: "full",
+              label: "All rounds",
+              title: "Show every round column, including empty ones",
+            },
           ]}
         />
         <Button variant="secondary" onClick={() => downloadCsv(rows, result, visibleRounds)}>
@@ -121,98 +128,94 @@ export function StatsTable({ result }: { result: AggregateResult }) {
           )}
         />
         <div ref={scroller} className="overflow-x-auto">
-        <table className="w-full min-w-[900px] border-collapse text-[13px]">
-          <thead>
-            <tr className="border-b border-line text-left">
-              {COLUMNS.map((column, columnIndex) => (
-                <th
-                  key={column.key}
-                  className={cx(
-                    "px-3 py-2 font-medium text-ink-muted",
-                    column.numeric && "text-right",
-                    // The label column stays put so a horizontally scrolled row never
-                    // loses the thing that identifies it.
-                    columnIndex === 0 &&
-                      "sticky left-0 z-30 bg-surface after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-line-strong",
-                  )}
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggle(column.key)}
-                    className={`inline-flex items-center gap-1 hover:text-ink ${
-                      column.numeric ? "flex-row-reverse" : ""
-                    }`}
+          <table className="w-full min-w-[900px] border-collapse text-[13px]">
+            <thead>
+              <tr className="border-b border-line text-left">
+                {COLUMNS.map((column, columnIndex) => (
+                  <th
+                    key={column.key}
+                    className={cx(
+                      "px-3 py-2 font-medium text-ink-muted",
+                      column.numeric && "text-right",
+                      // The label column stays put so a horizontally scrolled row never
+                      // loses the thing that identifies it.
+                      columnIndex === 0 &&
+                        "sticky left-0 z-30 bg-surface after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-line-strong",
+                    )}
                   >
-                    {column.label}
-                    {sortKey === column.key &&
-                      (ascending ? (
-                        <ArrowUp className="size-3" />
-                      ) : (
-                        <ArrowDown className="size-3" />
-                      ))}
-                  </button>
-                </th>
-              ))}
-              {visibleRounds.map((round) => (
-                <th
-                  key={round}
-                  className="px-2 py-2 text-right font-medium whitespace-nowrap text-ink-subtle"
-                >
-                  {round}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.length === 0 && (
-              <tr>
-                <td
-                  colSpan={COLUMNS.length + visibleRounds.length}
-                  className="px-3 py-8 text-center text-ink-subtle"
-                >
-                  No companies match the current filters.
-                </td>
+                    <button
+                      type="button"
+                      onClick={() => toggle(column.key)}
+                      className={`inline-flex items-center gap-1 hover:text-ink ${
+                        column.numeric ? "flex-row-reverse" : ""
+                      }`}
+                    >
+                      {column.label}
+                      {sortKey === column.key &&
+                        (ascending ? (
+                          <ArrowUp className="size-3" />
+                        ) : (
+                          <ArrowDown className="size-3" />
+                        ))}
+                    </button>
+                  </th>
+                ))}
+                {visibleRounds.map((round) => (
+                  <th
+                    key={round}
+                    className="px-2 py-2 text-right font-medium whitespace-nowrap text-ink-subtle"
+                  >
+                    {round}
+                  </th>
+                ))}
               </tr>
-            )}
-            {rows.map((row) => (
-              <tr
-                key={`${row.theme}|${row.canonicalSector}|${row.subSector}`}
-                className="group border-b border-line/60 hover:bg-surface-sunken"
-              >
-                {/* Solid background is load-bearing: a transparent sticky cell lets the
+            </thead>
+            <tbody>
+              {rows.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={COLUMNS.length + visibleRounds.length}
+                    className="px-3 py-8 text-center text-ink-subtle"
+                  >
+                    No companies match the current filters.
+                  </td>
+                </tr>
+              )}
+              {rows.map((row) => (
+                <tr
+                  key={`${row.theme}|${row.canonicalSector}|${row.subSector}`}
+                  className="group border-b border-line/60 hover:bg-surface-sunken"
+                >
+                  {/* Solid background is load-bearing: a transparent sticky cell lets the
                     scrolled columns slide visibly underneath the label. It has to track
                     the row hover too, or the frozen cell stays pale while its row
                     highlights. Both surface tokens are mode-aware, so this is correct in
                     dark mode without a second rule. */}
-                <td className="sticky left-0 z-10 bg-surface px-3 py-1.5 after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-line-strong group-hover:bg-surface-sunken">
-                  {row.theme}
-                </td>
-                <td className="px-3 py-1.5">{row.canonicalSector}</td>
-                <td className="px-3 py-1.5">{row.subSector}</td>
-                <td className="px-3 py-1.5 text-right tabular-nums">{row.companies}</td>
-                <td className="px-3 py-1.5 text-right tabular-nums text-ink-muted">
-                  {row.pctOfTotal.toFixed(1)}%
-                </td>
-                {visibleRounds.map((round) => (
-                  <td
-                    key={round}
-                    className="px-2 py-1.5 text-right tabular-nums text-ink-muted"
-                  >
-                    {row.rounds[round] ?? "—"}
+                  <td className="sticky left-0 z-10 bg-surface px-3 py-1.5 after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-line-strong group-hover:bg-surface-sunken">
+                    {row.theme}
                   </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  <td className="px-3 py-1.5">{row.canonicalSector}</td>
+                  <td className="px-3 py-1.5">{row.subSector}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{row.companies}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums text-ink-muted">
+                    {row.pctOfTotal.toFixed(1)}%
+                  </td>
+                  {visibleRounds.map((round) => (
+                    <td key={round} className="px-2 py-1.5 text-right tabular-nums text-ink-muted">
+                      {row.rounds[round] ?? "—"}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       <p className="mt-3 text-[11px] text-ink-subtle">
-        Sub-Sector is a multiselect, so a company with several sub-sectors appears
-        in one row per sub-sector. The “# Companies” column can therefore sum above the{" "}
-        {result.total} distinct companies in scope. “% of total” is measured against that
-        distinct count. Companies with no value fall into “Unclassified”; rounds with no
-        value fall into “Unknown”.
+        Sub-Sector is a multiselect, so a company with several sub-sectors appears in one row per
+        sub-sector. The “# Companies” column can therefore sum above the {result.total} distinct
+        companies in scope. “% of total” is measured against that distinct count. Companies with no
+        value fall into “Unclassified”; rounds with no value fall into “Unknown”.
       </p>
     </div>
   );
@@ -246,9 +249,7 @@ function downloadCsv(
     ...roundColumns.map((round) => String(row.rounds[round] ?? 0)),
   ]);
 
-  const csv = [header, ...body]
-    .map((cells) => cells.map(escapeCsv).join(","))
-    .join("\r\n");
+  const csv = [header, ...body].map((cells) => cells.map(escapeCsv).join(",")).join("\r\n");
 
   const stamp = new Date().toISOString().slice(0, 10);
   const stages = result.stagesIncluded.join("-") || "none";
@@ -256,11 +257,6 @@ function downloadCsv(
     new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" }),
     `vc-ops-taxonomy-${stages}-${stamp}.csv`,
   );
-}
-
-/** Quote anything containing a delimiter, quote or newline; double embedded quotes. */
-function escapeCsv(value: string): string {
-  return /[",\r\n]/.test(value) ? `"${value.replace(/"/g, '""')}"` : value;
 }
 
 function triggerDownload(blob: Blob, filename: string): void {

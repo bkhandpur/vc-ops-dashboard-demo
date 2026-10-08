@@ -2,7 +2,10 @@
 
 /** Normalise `PRIOR_EXIT`, `Prior Exit` and `prior exit` to one key. */
 export function normaliseHighlight(category: string): string {
-  return category.toLowerCase().replace(/[_\s]+/g, " ").trim();
+  return category
+    .toLowerCase()
+    .replace(/[_\s]+/g, " ")
+    .trim();
 }
 
 export interface QualitySignalDef {
@@ -51,7 +54,8 @@ export const QUALITY_SIGNALS: QualitySignalDef[] = [
     key: "founder turned operator",
     label: "Founder turned operator",
     weight: 2,
-    meaning: "They founded before, then took an operating role — often a repeat founder in waiting.",
+    meaning:
+      "They founded before, then took an operating role — often a repeat founder in waiting.",
   },
 ];
 
@@ -111,9 +115,7 @@ export function scoreFounderQuality(highlights: readonly string[]): QualityScore
   }
 
   // Highest club tier only — see the note above CLUB_PATTERN.
-  const tiers = highlights
-    .map(clubTierMillions)
-    .filter((t): t is number => t !== null);
+  const tiers = highlights.map(clubTierMillions).filter((t): t is number => t !== null);
   if (tiers.length > 0) {
     const best = Math.max(...tiers);
     hits.push({

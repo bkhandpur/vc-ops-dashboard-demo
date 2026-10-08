@@ -57,13 +57,7 @@ export function Sidebar() {
   );
 }
 
-function SidebarBody({
-  mode,
-  showClose = false,
-}: {
-  mode: "full" | "rail";
-  showClose?: boolean;
-}) {
+function SidebarBody({ mode, showClose = false }: { mode: "full" | "rail"; showClose?: boolean }) {
   const pathname = usePathname();
   const { openPalette } = useCommandPalette();
   const { closeOverlay, collapsed, toggleCollapsed, layout } = useSidebar();
@@ -78,7 +72,12 @@ function SidebarBody({
 
   return (
     <div className="flex h-full flex-col">
-      <div className={cx("flex min-h-14 items-center gap-2.5 border-b border-white/10 py-3", rail ? "justify-center px-2" : "px-3")}>
+      <div
+        className={cx(
+          "flex min-h-14 items-center gap-2.5 border-b border-white/10 py-3",
+          rail ? "justify-center px-2" : "px-3",
+        )}
+      >
         {rail ? (
           <span aria-hidden className="grid size-7 shrink-0 place-items-center overflow-hidden">
             <WatershedWordmark text="W" height={19} detail={false} />
@@ -105,7 +104,7 @@ function SidebarBody({
               (rail ? (
                 // The group survives as a labelled rule rather than vanishing.
                 <p
-                  className="mb-1 border-t border-white/10 pt-2 text-center text-[9px] font-semibold tracking-[0.06em] text-white/45 uppercase"
+                  className="mb-1 border-t border-white/10 pt-2 text-center text-[9px] font-semibold tracking-[0.06em] text-white/65 uppercase"
                   title={group.label}
                 >
                   {group.label.slice(0, 3)}
@@ -151,7 +150,7 @@ function SidebarBody({
                         <>
                           <span className="flex-1 truncate text-left">{item.label}</span>
                           {item.shortcut && (
-                            <kbd className="shrink-0 rounded border border-white/15 px-1 py-0.5 text-[10px] text-white/45">
+                            <kbd className="shrink-0 rounded border border-white/15 px-1 py-0.5 text-[10px] text-white/65">
                               {item.shortcut}
                             </kbd>
                           )}
@@ -178,7 +177,7 @@ function SidebarBody({
             className={cx(
               ROW,
               rail && "justify-center px-0",
-              "text-white/45 hover:bg-white/8 hover:text-white",
+              "text-white/65 hover:bg-white/8 hover:text-white",
             )}
           >
             {collapsed ? (

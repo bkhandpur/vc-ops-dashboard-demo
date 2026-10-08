@@ -94,9 +94,7 @@ export function momentumView(
     if (source === "crm") return company[metric.key];
     const fact = enrichedById.get(company.recordId);
     if (!fact) return null;
-    return metric.key === "headcountGrowth"
-      ? fact.headcountGrowth90d
-      : fact.webTrafficGrowth90d;
+    return metric.key === "headcountGrowth" ? fact.headcountGrowth90d : fact.webTrafficGrowth90d;
   };
 
   const rows: MomentumRow[] = inScopeCompanies
@@ -161,13 +159,7 @@ export interface TenureView {
 }
 
 /** Canonical funnel order. status options arrive unordered. */
-const STAGE_ORDER = [
-  "Sourcing",
-  "Due Diligence",
-  "Term Sheet",
-  "Closed",
-  "Passed",
-] as const;
+const STAGE_ORDER = ["Sourcing", "Due Diligence", "Term Sheet", "Closed", "Passed"] as const;
 
 const UNSET_STAGE = "Unset";
 

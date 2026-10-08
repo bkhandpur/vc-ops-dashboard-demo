@@ -10,8 +10,8 @@ export default async function HelpIndexPage() {
     <div className="space-y-3">
       {articles.length === 0 && (
         <Panel className="p-6 text-[13px] text-ink-muted">
-          No articles yet. Add a markdown file to <code>/content/help/</code> and it will
-          appear here.
+          No articles yet. Add a markdown file to <code>/content/help/</code> and it will appear
+          here.
         </Panel>
       )}
       {articles.map((article) => (

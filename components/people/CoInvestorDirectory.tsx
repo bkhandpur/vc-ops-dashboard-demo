@@ -1,12 +1,12 @@
 "use client";
 
+import { safeSampleLink } from "@/lib/sample-links";
 import { ArrowUpRight, Linkedin } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { CompanyAvatar } from "@/components/CompanyAvatar";
 import {
   Badge,
-  Callout,
   cx,
   EmptyState,
   Footnote,
@@ -62,7 +62,12 @@ export function CoInvestorDirectory({
 }: {
   people: TrackedPerson[];
   /** Snapshot companies, so deal names can resolve to real records. */
-  companies: { recordId: string; name: string | null; logoUrl: string | null; theme: string | null }[];
+  companies: {
+    recordId: string;
+    name: string | null;
+    logoUrl: string | null;
+    theme: string | null;
+  }[];
   generatedAt: string;
 }) {
   const [query, setQuery] = useState("");
@@ -119,7 +124,7 @@ export function CoInvestorDirectory({
       />
 
       <div className="ws-enter ws-delay-1 mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatTile label="Co-investors" value={people.length.toLocaleString()} />
+        <StatTile label="Co-investors" value={people.length.toLocaleString("en-US")} />
         <StatTile
           label="Shared deals"
           value={byDeal.length.toString()}
@@ -188,10 +193,7 @@ export function CoInvestorDirectory({
           />
           <ul className="divide-y divide-line">
             {byInvestor.slice(0, showAllInvestors ? undefined : PREVIEW_ROWS).map((row) => (
-              <li
-                key={row.person.recordId}
-                className="flex items-center gap-3 px-4 py-2"
-              >
+              <li key={row.person.recordId} className="flex items-center gap-3 px-4 py-2">
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-[13px] text-ink">{row.label}</span>
                   <span className="block truncate text-[11px] text-ink-subtle">
@@ -206,17 +208,15 @@ export function CoInvestorDirectory({
           </ul>
           <ShowMore
             total={byInvestor.length}
-            shown={
-              showAllInvestors ? byInvestor.length : Math.min(PREVIEW_ROWS, byInvestor.length)
-            }
+            shown={showAllInvestors ? byInvestor.length : Math.min(PREVIEW_ROWS, byInvestor.length)}
             expanded={showAllInvestors}
             onToggle={() => setShowAllInvestors((v) => !v)}
             noun="co-investors"
           />
           <div className="px-4 pb-3">
             <Footnote>
-              {withDeals} of {people.length} co-investors have at least one recorded deal.
-              Most appear on exactly one, so this ranks depth of relationship, not volume.
+              {withDeals} of {people.length} co-investors have at least one recorded deal. Most
+              appear on exactly one, so this ranks depth of relationship, not volume.
             </Footnote>
           </div>
         </Panel>
@@ -367,10 +367,16 @@ export function CoInvestorDirectory({
                     <span className="mt-0.5 flex shrink-0 items-center gap-1.5">
                       {person.sourceDocumentUrl && (
                         <a
-                          href={person.sourceDocumentUrl}
+                          href={safeSampleLink(person.sourceDocumentUrl)}
+                          aria-disabled={!safeSampleLink(person.sourceDocumentUrl)}
+                          title={
+                            !safeSampleLink(person.sourceDocumentUrl)
+                              ? "Fictional sample contact"
+                              : undefined
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
-                          title="the enrichment provider profile"
+
                           className="text-[10px] text-ink-subtle transition-colors hover:text-accent"
                         >
                           H
@@ -378,10 +384,15 @@ export function CoInvestorDirectory({
                       )}
                       {person.linkedin && (
                         <a
-                          href={person.linkedin}
+                          href={safeSampleLink(person.linkedin)}
+                          aria-disabled={!safeSampleLink(person.linkedin)}
+                          title={
+                            !safeSampleLink(person.linkedin)
+                              ? "Fictional sample contact"
+                              : undefined
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
-                          title="LinkedIn profile"
                           className="text-ink-subtle transition-colors hover:text-accent"
                         >
                           <Linkedin className="size-3.5" />
@@ -406,10 +417,10 @@ export function CoInvestorDirectory({
       </div>
 
       <Footnote>
-        Sector focus is parsed from a free-text field that reads either &ldquo;Invests
-        primarily in X, Y&rdquo; or the literal string &ldquo;unavailable&rdquo;; the
-        latter is treated as no data rather than as a focus area called
-        &ldquo;unavailable&rdquo;. Snapshot taken {new Date(generatedAt).toLocaleString()}.
+        Sector focus is parsed from a free-text field that reads either &ldquo;Invests primarily in
+        X, Y&rdquo; or the literal string &ldquo;unavailable&rdquo;; the latter is treated as no
+        data rather than as a focus area called &ldquo;unavailable&rdquo;. Snapshot taken{" "}
+        {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
       </Footnote>
     </>
   );

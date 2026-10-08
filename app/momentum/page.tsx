@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { MomentumView } from "@/components/momentum/MomentumView";
 import { BuildSnapshotButton } from "@/components/statistics/BuildSnapshotButton";
 import { EmptyState, Panel } from "@/components/ui";
@@ -7,7 +8,7 @@ import { readOrBuildSnapshot } from "@/lib/stats";
 export const metadata = { title: "Momentum" };
 
 /** Reads cached CRM and enrichment snapshots. */
-export default async function MomentumPage() {
+async function MomentumPage() {
   const [cached, enrichment] = await Promise.all([readOrBuildSnapshot(), readOrBuildEnrichment()]);
 
   if (!cached) {
@@ -29,3 +30,5 @@ export default async function MomentumPage() {
     />
   );
 }
+
+export default withDemoPage(MomentumPage);

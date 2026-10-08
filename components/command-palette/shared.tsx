@@ -1,4 +1,5 @@
 "use client";
+import { mutateDemo } from "@/lib/demo-mutation";
 
 import { ArrowLeft, Check } from "lucide-react";
 import type { ReactNode } from "react";
@@ -82,8 +83,8 @@ export function ConfirmSummary({
         action can be added later that quietly omits it.
       */}
       <p className="text-[11px] leading-relaxed text-ink-subtle">
-        This action updates local demo data only.
-        Nothing leaves this machine, and the change will not survive a restart.
+        This action updates local demo data only. This sample edit is saved in this browser for
+        seven days. Reset restores the original sample.
       </p>
     </div>
   );
@@ -136,12 +137,14 @@ export function errorMessage(err: unknown): string {
 
 /** POST JSON to one of our own API routes. Never talks to the CRM directly. */
 export async function postJson<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+  return mutateDemo(async () => {
+    const res = await fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const payload = (await res.json().catch(() => null)) as { error?: string } | null;
+    if (!res.ok) throw new Error(payload?.error || `Request failed (${res.status})`);
+    return payload as T;
   });
-  const payload = (await res.json().catch(() => null)) as { error?: string } | null;
-  if (!res.ok) throw new Error(payload?.error || `Request failed (${res.status})`);
-  return payload as T;
 }

@@ -1,90 +1,80 @@
-# VC Operations Dashboard
+# VC Operations Dashboard Demo
 
-A public version of an internal operations tool I built for Watershed Ventures. It
-brings pipeline, portfolio, founder and co-investor workflows into one interface.
+Explore pipeline concentration, founder follow-up, co-investor matching and incomplete
+records in a fictional venture workspace.
 
-This repository is separate from the internal product. It uses generated records and
-does not connect to Watershed systems.
+**[Open the demo](https://vc-ops-dashboard-demo.vercel.app)** · [What the demo represents](content/help/what-this-demo-is.md)
 
-## Why I built it
+![Statistics view over generated company records](docs/screenshots/statistics-1440.png)
 
-The CRM held the underlying records, but recurring questions still required manual
-filtering and cross-referencing: where the pipeline was concentrated, which founders
-needed follow-up, which co-investors fit a round and where records were incomplete. I
-built the dashboard around those decisions rather than around the CRM schema.
+The sample includes company and portfolio views, founder outreach, launch suggestions,
+co-investor relationships, score breakdowns, tear sheets, activity diffs and data health.
+Global search and the command palette connect these workflows. No account is required.
 
-## What it includes
+## Try a workflow
 
-- Pipeline and portfolio views
-- Theme, sector and sub-sector analysis
-- Company momentum and data-quality checks
-- Founder sourcing and outreach queues
-- Co-investor history and matching
-- Company tear sheets and a weekly activity digest
-- Global search and a command palette
-- Confirmation screens for simulated write actions
+1. Open Statistics and change the list filters. Theme and sector counts use unique
+   companies; sub-sector and round memberships can overlap.
+2. Open Momentum. Its stage coverage comes from the same records as the funnel chart.
+3. Inspect a company or founder. Confirm a sample edit through the command palette.
+4. Refresh to see the edit, then use **Reset demo** to restore the original sample.
 
-## Data safety
+Company names, people, contact domains and financial values are generated. Fictional
+`.example` contacts have disabled links. This public build connects to no real CRM,
+email service or enrichment provider. See [NOTICE](NOTICE).
 
-The app runs on a fixed synthetic dataset in [`data/seed`](data/seed). Company names are
-assembled from invented syllables. Links use reserved `.example` domains. The project
-contains no production credentials, account IDs, contact details or portfolio figures.
+## Run locally
 
-All data access goes through local adapters. Page loads do not call an external service.
-Actions that look like CRM writes are stored locally during development and do not leave
-the application.
-
-See [`NOTICE`](NOTICE) for the repository disclaimer.
-
-## Run it locally
-
-You need Node.js 22 or newer and npm.
+Requires Node.js 22.13 or newer and npm.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). No account or API key is required.
+Open [localhost:3000](http://localhost:3000). No credentials or environment variables
+are required. For a production build, run `npm run build` then `npm start`.
 
-## Project checks
+## State and history
+
+The dataset reference date is October 8, 2026; computation timestamps are displayed in
+UTC. Each request gets its own read cache. Sample edits are held in a bounded,
+HTTP-only browser cookie for seven days and follow that browser across refreshes and
+server instances. Another visitor receives the untouched seed. Reset clears this demo's
+cookie. Limits prevent unlimited notes, records or history; an error asks for reset when
+an edit would exceed them. Concurrent UI writes are serialized where browser locks are
+available; separate browsers have independent state.
+
+Ten history snapshots, nine with metrics, are illustrative. Deterministic scale factors
+and prefixes of the fixed sample create them; they are not measured weekly observations.
+Manual diffs compare current visitor edits with the seed. No scheduled collection is
+configured. The retired cron endpoint responds with HTTP 410.
+
+Match scores are deterministic heuristics with visible component weights, missing-data
+flags and sector-mapping limitations. They are not investment predictions. Funding
+raised from all investors is kept separate from undisclosed investment amounts.
+
+## Validate
 
 ```bash
+npm run format:check
 npm run typecheck
-npm run build
-npm run coverage
+npm run lint
+npm test
 npm run check:docs
+npm run build
+npx playwright install chromium
+npm run test:e2e
 ```
 
-`npm run coverage` measures field coverage in the committed seed and updates
-[`COVERAGE.md`](COVERAGE.md). `npm run check:docs` confirms that documented figures
-still match the generated records.
+CI checks the production build and browser flows. Tests cover independent metric
+fixtures, hydration across locales/timezones/themes, operating views at four widths,
+accessibility, persisted edits, duplicate detection, reset and visitor isolation.
+`npm run coverage` measures **field completeness**, not test coverage. The result is
+recorded in [COVERAGE.md](COVERAGE.md).
 
-## Structure
+The main paths are `app/` for pages and API routes, `components/` for UI, `lib/` for typed
+adapters and domain calculations, `data/seed/` for generated fixtures, and `content/help/`
+for workflow explanations. SVG charts and logos are local assets.
 
-```text
-app/          Next.js pages and local API routes
-components/   Interface, charts and workflow views
-lib/          Data adapters, aggregation and scoring
-data/seed/    Generated demo records
-scripts/      Seed, coverage and preview tools
-content/      In-app help articles
-```
-
-The app uses Next.js, React, TypeScript and Tailwind CSS. Charts are rendered with local
-SVG components.
-
-## Implementation choices
-
-The application reads through typed local adapters, so the interface is independent of
-the backing data source. Rankings are deterministic and expose their component scores.
-Write actions show the proposed change before confirmation. Coverage thresholds prevent
-thin data from being presented as a meaningful chart.
-
-The interface uses Watershed Ventures' navy and green brand colors, compact typography
-and bordered data panels. The public version has its own information architecture,
-generated records and labels.
-
-## License
-
-MIT. See [`LICENSE`](LICENSE).
+MIT. See [LICENSE](LICENSE).

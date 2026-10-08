@@ -41,6 +41,7 @@ export function useAsyncAction<TArgs extends unknown[]>(
   // Guards against setting state on an unmounted component when a slow refresh
   // resolves after the user has navigated away.
   const mounted = useRef(true);
+  const running = useRef(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -55,6 +56,8 @@ export function useAsyncAction<TArgs extends unknown[]>(
 
   const run = useCallback(
     async (...args: TArgs) => {
+      if (running.current) return;
+      running.current = true;
       // A second click while running is ignored rather than queued — these actions are
       // refreshes and writes, and queueing them is never what someone meant.
       setStatus((current) => (current === "running" ? current : "running"));
@@ -73,6 +76,8 @@ export function useAsyncAction<TArgs extends unknown[]>(
         if (!mounted.current) return;
         setError(err instanceof Error ? err.message : "Something went wrong");
         setStatus("error");
+      } finally {
+        running.current = false;
       }
     },
     [fn, onSuccess],

@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { PortfolioCrossCheck } from "@/components/enrichment/PortfolioCrossCheck";
 import { BuildSnapshotButton } from "@/components/statistics/BuildSnapshotButton";
 import { EmptyState, Panel } from "@/components/ui";
@@ -7,7 +8,7 @@ import { readOrBuildSnapshot } from "@/lib/stats";
 export const metadata = { title: "Portfolio cross-check" };
 
 /** Reads cached CRM and enrichment snapshots. */
-export default async function CrossCheckPage() {
+async function CrossCheckPage() {
   const [stats, enrichment] = await Promise.all([readOrBuildSnapshot(), readOrBuildEnrichment()]);
 
   if (!stats) {
@@ -31,3 +32,5 @@ export default async function CrossCheckPage() {
     />
   );
 }
+
+export default withDemoPage(CrossCheckPage);

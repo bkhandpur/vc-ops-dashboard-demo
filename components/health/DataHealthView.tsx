@@ -73,8 +73,8 @@ export function DataHealthView({
         title="Data Health"
         description={
           <>
-            Where the CRM is incomplete, ranked by what is most worth fixing. Every row
-            opens into the records themselves, so a gap is one click from being closed.
+            Where the CRM is incomplete, ranked by what is most worth fixing. Every row opens into
+            the records themselves, so a gap is one click from being closed.
           </>
         }
       />
@@ -96,7 +96,11 @@ export function DataHealthView({
             value={sort}
             onChange={setSort}
             options={[
-              { value: "priority", label: "Most valuable", title: "Weighted by list and field importance" },
+              {
+                value: "priority",
+                label: "Most valuable",
+                title: "Weighted by list and field importance",
+              },
               { value: "coverage", label: "Least complete" },
               { value: "missing", label: "Most missing" },
               { value: "label", label: "A–Z" },
@@ -114,12 +118,12 @@ export function DataHealthView({
         />
         <StatTile
           label="Companies in scope"
-          value={result.total.toLocaleString()}
+          value={result.total.toLocaleString("en-US")}
           hint={stages.map((s) => STAGE_LABELS[s]).join(" + ")}
         />
         <StatTile
           label="Biggest gap"
-          value={worst ? `${worst.missingTotal.toLocaleString()}` : "—"}
+          value={worst ? `${worst.missingTotal.toLocaleString("en-US")}` : "—"}
           hint={worst ? `missing ${worst.check.label.toLowerCase()}` : undefined}
           tone="warning"
         />
@@ -143,21 +147,18 @@ export function DataHealthView({
               result={check}
               stages={stages}
               open={openKey === check.check.key}
-              onToggle={() =>
-                setOpenKey((k) => (k === check.check.key ? null : check.check.key))
-              }
+              onToggle={() => setOpenKey((k) => (k === check.check.key ? null : check.check.key))}
             />
           ))}
         </ul>
         <div className="px-4 pb-4">
           <Footnote>
-            <strong>&ldquo;Most valuable&rdquo;</strong> weights each missing value by the
-            list it is on — Portfolio ×{STAGE_WEIGHT.portfolio}, Pipeline ×
-            {STAGE_WEIGHT.pipeline}, Archive ×{STAGE_WEIGHT.archive} — and by how much the
-            product depends on the field. Without that weighting the ranking would simply
-            follow the Archive, which is 340 records we have already passed on. The number
-            has no meaning on its own; only the ordering does. Snapshot taken{" "}
-            {new Date(generatedAt).toLocaleString()}.
+            <strong>&ldquo;Most valuable&rdquo;</strong> weights each missing value by the list it
+            is on — Portfolio ×{STAGE_WEIGHT.portfolio}, Pipeline ×{STAGE_WEIGHT.pipeline}, Archive
+            ×{STAGE_WEIGHT.archive} — and by how much the product depends on the field. Without that
+            weighting the ranking would simply follow the Archive, which is 340 records we have
+            already passed on. The number has no meaning on its own; only the ordering does.
+            Snapshot taken {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
           </Footnote>
         </div>
       </Panel>
@@ -221,7 +222,8 @@ function CheckRow({
             <Badge tone="positive">complete</Badge>
           ) : (
             <>
-              <span className="font-medium text-ink">{missingTotal.toLocaleString()}</span> missing
+              <span className="font-medium text-ink">{missingTotal.toLocaleString("en-US")}</span>{" "}
+              missing
             </>
           )}
         </span>
@@ -242,8 +244,8 @@ function CheckRow({
               return (
                 <span key={stage} className="ws-nums">
                   {STAGE_LABELS[stage]}:{" "}
-                  <strong className="text-ink">{missing.toLocaleString()}</strong> of{" "}
-                  {total.toLocaleString()} missing
+                  <strong className="text-ink">{missing.toLocaleString("en-US")}</strong> of{" "}
+                  {total.toLocaleString("en-US")} missing
                 </span>
               );
             })}
@@ -310,7 +312,7 @@ function MissingList({ companies }: { companies: StagedCompany[] }) {
           onClick={() => setShowAll((s) => !s)}
           className="mt-2 text-[12px] font-medium text-accent hover:underline"
         >
-          {showAll ? "Show fewer" : `Show all ${companies.length.toLocaleString()}`}
+          {showAll ? "Show fewer" : `Show all ${companies.length.toLocaleString("en-US")}`}
         </button>
       )}
     </>
@@ -332,10 +334,7 @@ function RelationshipsPanel({
     [companies, stages],
   );
 
-  const withNotes = useMemo(
-    () => inScope.filter((c) => c.primaryRelationships),
-    [inScope],
-  );
+  const withNotes = useMemo(() => inScope.filter((c) => c.primaryRelationships), [inScope]);
 
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -397,9 +396,9 @@ function RelationshipsPanel({
 
       <div className="border-t border-line px-4 py-3">
         <Footnote>
-          This panel uses generated <code className="text-[10px]">relationship_notes</code>.
-          Sparse structured fields remain visible in Data Health so the demo includes
-          realistic incomplete-data states.
+          This panel uses generated <code className="text-[10px]">relationship_notes</code>. Sparse
+          structured fields remain visible in Data Health so the demo includes realistic
+          incomplete-data states.
           {shown.length > 60 && ` Showing the first 60 of ${shown.length}.`}
         </Footnote>
       </div>
@@ -448,13 +447,12 @@ function CorruptedTextPanel({ founders }: { founders: TrackedPerson[] }) {
       </ul>
       <div className="px-4 pb-3">
         <Footnote>
-          These show as <code>&#xFFFD;</code> where an apostrophe or accented letter
-          should be &mdash; &ldquo;hasn&#xFFFD;t&rdquo;, &ldquo;Ren&#xFFFD; Kelvara&rdquo;.
-          The character was destroyed before the CRM stored it (verified by inspecting the
-          raw API bytes), so it cannot be recovered here and this app deliberately does
-          not guess at it &mdash; guessing would invent a person&rsquo;s name. Fix the
-          value in the CRM and it clears on the next refresh. Most originate in the
-          LinkedIn export that seeded these records.
+          These show as <code>&#xFFFD;</code> where an apostrophe or accented letter should be
+          &mdash; &ldquo;hasn&#xFFFD;t&rdquo;, &ldquo;Ren&#xFFFD; Kelvara&rdquo;. The character was
+          destroyed before the CRM stored it (verified by inspecting the raw API bytes), so it
+          cannot be recovered here and this app deliberately does not guess at it &mdash; guessing
+          would invent a person&rsquo;s name. Fix the value in the CRM and it clears on the next
+          refresh. Most originate in the LinkedIn export that seeded these records.
         </Footnote>
       </div>
     </Panel>

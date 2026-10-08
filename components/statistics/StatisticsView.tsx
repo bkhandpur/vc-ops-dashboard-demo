@@ -33,7 +33,6 @@ type ChartView = "sunburst" | "bars" | "matrix";
 export function StatisticsView({
   companies,
   counts,
-  generatedAt,
 }: {
   companies: StagedCompany[];
   counts: Record<StageKey, number>;
@@ -45,7 +44,7 @@ export function StatisticsView({
   const [path, setPath] = useState<string[]>([]);
 
   const result = useMemo(() => aggregate(companies, stages), [companies, stages]);
-  const { level, themeOfLevel, walked } = useMemo(
+  const { themeOfLevel, walked } = useMemo(
     () => resolveLevel(result.tree, path),
     [result.tree, path],
   );
@@ -80,7 +79,7 @@ export function StatisticsView({
             onClick={() => toggleStage(stage)}
           >
             {STAGE_LABELS[stage]}
-            <span className="ws-nums ml-1.5 opacity-60">{counts[stage]}</span>
+            <span className="ws-nums ml-1.5">{counts[stage]}</span>
           </TogglePill>
         ))}
       </div>
@@ -127,15 +126,11 @@ export function StatisticsView({
           </div>
         </div>
 
-        {view === "sunburst" && (
-          <Sunburst tree={result.tree} path={walked} onDrill={setPath} />
-        )}
+        {view === "sunburst" && <Sunburst tree={result.tree} path={walked} onDrill={setPath} />}
         {view === "bars" && (
           <ConcentrationBars tree={result.tree} path={walked} onDrill={setPath} />
         )}
-        {view === "matrix" && (
-          <StageMatrix companies={companies} stages={stages} path={walked} />
-        )}
+        {view === "matrix" && <StageMatrix companies={companies} stages={stages} path={walked} />}
 
         {/* The matrix carries its own sequential legend, so the theme key would clash. */}
         {view !== "matrix" && (
@@ -154,17 +149,17 @@ export function StatisticsView({
           distinct-company counts.{" "}
           {view === "matrix" ? (
             <>
-              The stage toggles above pick both the scope and the columns here, so
-              unchecking a list removes its column rather than quietly rescoping the rows.
+              The stage toggles above pick both the scope and the columns here, so unchecking a list
+              removes its column rather than quietly rescoping the rows.
             </>
           ) : (
             <>
-              Sub-Sector is a multiselect, so at that level the numbers count tags. A
-              company with three sub-sectors is counted in each.
+              Sub-Sector is a multiselect, so at that level the numbers count tags. A company with
+              three sub-sectors is counted in each.
             </>
           )}{" "}
-          Charts are sized by company count. Funding values are generated company totals,
-          not investment positions.{" "}
+          Charts are sized by company count. Funding values are generated company totals, not
+          investment positions.{" "}
           {view !== "matrix" &&
             (walked.length === 0
               ? "Click a theme to drill into its sectors and sub-sectors."
@@ -196,9 +191,7 @@ function Breadcrumb({
       <button
         type="button"
         onClick={() => onNavigate([])}
-        className={cx(
-          walked.length > 0 ? "text-accent hover:underline" : "font-medium text-ink",
-        )}
+        className={cx(walked.length > 0 ? "text-accent hover:underline" : "font-medium text-ink")}
       >
         All themes
       </button>
@@ -209,9 +202,7 @@ function Breadcrumb({
             type="button"
             onClick={() => onNavigate(walked.slice(0, index + 1))}
             className={cx(
-              index === walked.length - 1
-                ? "font-medium text-ink"
-                : "text-accent hover:underline",
+              index === walked.length - 1 ? "font-medium text-ink" : "text-accent hover:underline",
             )}
           >
             {name}
@@ -240,9 +231,7 @@ function ViewTab({
       aria-pressed={active}
       className={cx(
         "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] transition-colors",
-        active
-          ? "bg-surface text-ink shadow-sm"
-          : "text-ink-muted hover:text-ink",
+        active ? "bg-surface text-ink shadow-sm" : "text-ink-muted hover:text-ink",
       )}
     >
       {icon}
@@ -311,15 +300,7 @@ function Legend({
   );
 }
 
-function LegendItem({
-  swatch,
-  label,
-  detail,
-}: {
-  swatch: string;
-  label: string;
-  detail?: string;
-}) {
+function LegendItem({ swatch, label, detail }: { swatch: string; label: string; detail?: string }) {
   return (
     <li className="flex items-center gap-2">
       <span

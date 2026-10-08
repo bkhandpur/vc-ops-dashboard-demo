@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { notFound, redirect } from "next/navigation";
 
 import { CompanyAvatar } from "@/components/CompanyAvatar";
@@ -8,11 +9,7 @@ import { outreachState, OUTREACH_LABELS } from "@/lib/people-derive";
 export const metadata = { title: "Record" };
 
 /** Resolve demo record links to local company or people views. */
-export default async function RecordPage({
-  params,
-}: {
-  params: Promise<{ object: string; recordId: string }>;
-}) {
+async function RecordPage({ params }: { params: Promise<{ object: string; recordId: string }> }) {
   const { object, recordId } = await params;
 
   if (object === "companies") redirect(`/company/${recordId}`);
@@ -63,9 +60,7 @@ export default async function RecordPage({
               {person.name ?? "Unnamed"}
             </span>
           }
-          description={
-            isCoInvestor ? undefined : OUTREACH_LABELS[outreachState(person)]
-          }
+          description={isCoInvestor ? undefined : OUTREACH_LABELS[outreachState(person)]}
           actions={
             person.highlights.length > 0 ? (
               <span className="flex flex-wrap gap-1">
@@ -92,3 +87,5 @@ export default async function RecordPage({
     </div>
   );
 }
+
+export default withDemoPage(RecordPage);

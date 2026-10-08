@@ -28,7 +28,8 @@ export function LogNoteOnCompany({ onBack, onClose }: PaletteActionProps) {
     try {
       await postJson("/api/crm/notes/create", {
         recordId: company.recordId,
-        title: title.trim() || `Note — ${new Date().toLocaleDateString()}`,
+        title:
+          title.trim() || `Note · ${new Date().toLocaleDateString("en-US", { timeZone: "UTC" })}`,
         content: content.trim(),
       });
       setStep("done");
@@ -90,7 +91,11 @@ export function LogNoteOnCompany({ onBack, onClose }: PaletteActionProps) {
             heading="This will create a note attached to the company record."
             rows={[
               { label: "Company", value: company.name ?? company.recordId },
-              { label: "Title", value: title || `Note — ${new Date().toLocaleDateString()}` },
+              {
+                label: "Title",
+                value:
+                  title || `Note · ${new Date().toLocaleDateString("en-US", { timeZone: "UTC" })}`,
+              },
               {
                 label: "Body",
                 value: <span className="whitespace-pre-wrap">{content}</span>,
@@ -106,7 +111,7 @@ export function LogNoteOnCompany({ onBack, onClose }: PaletteActionProps) {
   return (
     <ActionShell
       title={`Note on ${company?.name ?? "company"}`}
-      subtitle="Step 2 of 2 — write the note"
+      subtitle="Step 2 of 2: write the note"
       onBack={() => setStep("pick")}
       footer={
         <Button
@@ -120,11 +125,12 @@ export function LogNoteOnCompany({ onBack, onClose }: PaletteActionProps) {
     >
       <div className="space-y-3">
         <Field label="Title" hint="Defaults to today's date if left blank.">
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input maxLength={200} value={title} onChange={(e) => setTitle(e.target.value)} />
         </Field>
         <Field label="Note" required>
           <TextArea
             autoFocus
+            maxLength={1200}
             className="min-h-40"
             value={content}
             onChange={(e) => setContent(e.target.value)}

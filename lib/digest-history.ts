@@ -4,6 +4,7 @@
  */
 
 import "server-only";
+import { SAMPLE_REFERENCE_DATE } from "./demo-clock";
 
 import type { StagedCompany } from "./aggregate";
 import { cacheGet } from "./cache";
@@ -78,11 +79,17 @@ function formatDay(iso: string): string {
  */
 export async function ensureDigestHistory(): Promise<Digest[]> {
   const existing = await listDigests();
-  if (existing.length > 0) return existing;
+  if (existing.some((d) => d.id.startsWith("seeded-"))) return existing;
 
+  const session = (await import("./demo-session")).demoSession();
+  const saved = session.overlay;
+  session.overlay = null;
+  session.cache.clear();
   const snapshot = await readOrBuildSnapshot();
+  session.overlay = saved;
+  session.cache.clear();
   const companies = snapshot.data.companies;
-  const now = Date.now();
+  const now = Date.parse(SAMPLE_REFERENCE_DATE);
 
   const written: Digest[] = [];
 
@@ -92,8 +99,7 @@ export async function ensureDigestHistory(): Promise<Digest[]> {
       weeksAgo === WEEKS - 1 ? null : new Date(now - (weeksAgo + 1) * WEEK_MS).toISOString();
 
     const metrics = metricsFor(companies, weeksAgo);
-    const previousMetrics =
-      weeksAgo === WEEKS - 1 ? null : metricsFor(companies, weeksAgo + 1);
+    const previousMetrics = weeksAgo === WEEKS - 1 ? null : metricsFor(companies, weeksAgo + 1);
 
     // What changed this week, derived from the two metric blocks rather than invented.
     const pipelineAdded = previousMetrics
@@ -101,10 +107,7 @@ export async function ensureDigestHistory(): Promise<Digest[]> {
       : 0;
     const newInPipeline = companies
       .filter((c) => c.stages.includes("pipeline"))
-      .slice(
-        Math.max(0, metrics.totals.pipeline - pipelineAdded),
-        metrics.totals.pipeline,
-      )
+      .slice(Math.max(0, metrics.totals.pipeline - pipelineAdded), metrics.totals.pipeline)
       .map((c) => ({
         recordId: c.recordId,
         name: c.name,
@@ -144,11 +147,14 @@ export async function ensureDigestHistory(): Promise<Digest[]> {
       summaryGeneratedBy: null,
     };
 
-    await saveDigest(digest);
+    await saveDigest(digest, false);
     written.push(digest);
   }
 
-  return (await listDigests()) satisfies Digest[];
+  const manual = Object.values((await import("./demo-session")).demoSession().digests) as Digest[];
+  return [...manual, ...(await listDigests())].filter(
+    (d, i, all) => all.findIndex((x) => x.id === d.id) === i,
+  );
 }
 
 /** Whether anything is in the store at all, without writing. */

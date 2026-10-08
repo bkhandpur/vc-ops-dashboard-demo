@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { notFound } from "next/navigation";
 
 import { CompanyDetail } from "@/components/company/CompanyDetail";
@@ -11,11 +12,7 @@ export const metadata = { title: "Company" };
  * Company detail, built from the CACHED snapshot — no external call on page load.
  * "Refresh from the CRM" on the page fetches this one record live, on an explicit click.
  */
-export default async function CompanyPage({
-  params,
-}: {
-  params: Promise<{ recordId: string }>;
-}) {
+async function CompanyPage({ params }: { params: Promise<{ recordId: string }> }) {
   const { recordId } = await params;
   const [cached, people, enrichment] = await Promise.all([
     readOrBuildSnapshot(),
@@ -32,7 +29,10 @@ export default async function CompanyPage({
    * in practice is almost none of them — so the detail view shows a count and links to
    * the CRM rather than pretending to a roster it does not have.
    */
-  const knownPeople = [...(people?.data.stealthFounders ?? []), ...(people?.data.coInvestors ?? [])];
+  const knownPeople = [
+    ...(people?.data.stealthFounders ?? []),
+    ...(people?.data.coInvestors ?? []),
+  ];
   const team = company.teamRecordIds
     .map((id) => knownPeople.find((p) => p.recordId === id) ?? null)
     .filter((p): p is NonNullable<typeof p> => p !== null);
@@ -43,10 +43,10 @@ export default async function CompanyPage({
       team={team}
       companies={cached!.data.companies}
       coInvestors={people?.data.coInvestors ?? []}
-      enrichedFact={
-        enrichment?.data.companies.find((f) => f.recordId === recordId) ?? null
-      }
+      enrichedFact={enrichment?.data.companies.find((f) => f.recordId === recordId) ?? null}
       generatedAt={cached!.generatedAt}
     />
   );
 }
+
+export default withDemoPage(CompanyPage);

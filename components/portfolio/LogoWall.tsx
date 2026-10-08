@@ -102,7 +102,7 @@ export function LogoWall({ companies }: { companies: StagedCompany[] }) {
       </div>
 
       <div className="ws-enter ws-delay-2 mb-5 grid grid-cols-2 gap-3 lg:grid-cols-3">
-        <StatTile label="Companies" value={inScope.length.toLocaleString()} />
+        <StatTile label="Companies" value={inScope.length.toLocaleString("en-US")} />
         <StatTile
           label="With a logo"
           value={`${inScope.length === 0 ? 0 : Math.round((withLogo / inScope.length) * 100)}%`}
@@ -116,9 +116,7 @@ export function LogoWall({ companies }: { companies: StagedCompany[] }) {
 
       {inScope.length === 0 ? (
         <Panel>
-          <EmptyState title="Nothing on this list">
-            Select another stage above.
-          </EmptyState>
+          <EmptyState title="Nothing on this list">Select another stage above.</EmptyState>
         </Panel>
       ) : (
         groups.map((group, groupIndex) => (
@@ -176,11 +174,11 @@ export function LogoWall({ companies }: { companies: StagedCompany[] }) {
 
       <Footnote>
         Logos come from the CRM&rsquo;s own enrichment and are rendered with
-        <code className="mx-1 text-[10px]">referrerPolicy=&quot;no-referrer&quot;</code>;
-        we never construct a logo URL from a company&rsquo;s domain ourselves. Companies
-        without one show a monogram. Set
-        <code className="mx-1 text-[10px]">NEXT_PUBLIC_DISABLE_REMOTE_LOGOS=1</code> to
-        force monograms everywhere.
+        <code className="mx-1 text-[10px]">referrerPolicy=&quot;no-referrer&quot;</code>; we never
+        construct a logo URL from a company&rsquo;s domain ourselves. Companies without one show a
+        monogram. Set
+        <code className="mx-1 text-[10px]">NEXT_PUBLIC_DISABLE_REMOTE_LOGOS=1</code> to force
+        monograms everywhere.
       </Footnote>
     </>
   );

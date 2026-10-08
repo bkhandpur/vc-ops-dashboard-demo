@@ -69,12 +69,7 @@ export function SearchProvider({
   return (
     <SearchContext.Provider value={value}>
       {children}
-      <GlobalSearch
-        open={open}
-        onClose={closeSearch}
-        index={index}
-        generatedAt={generatedAt}
-      />
+      <GlobalSearch open={open} onClose={closeSearch} index={index} generatedAt={generatedAt} />
     </SearchContext.Provider>
   );
 }

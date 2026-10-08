@@ -20,3 +20,6 @@ preview-sunburst-*.svg
 
 # Local mutation log written by the demo write actions at runtime
 .demo-writes/
+
+playwright-report/
+test-results/

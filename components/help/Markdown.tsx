@@ -11,14 +11,30 @@ export function Markdown({ children }: { children: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: (props) => <h1 {...props} className="mt-6 mb-2 text-lg font-semibold" />,
-          h2: (props) => <h2 {...props} className="mt-6 mb-2 text-[15px] font-semibold" />,
-          h3: (props) => <h3 {...props} className="mt-5 mb-1.5 text-[14px] font-semibold" />,
+          h1: (props) => (
+            <h1 {...props} className="mt-6 mb-2 text-lg font-semibold">
+              {props.children}
+            </h1>
+          ),
+          h2: (props) => (
+            <h2 {...props} className="mt-6 mb-2 text-[15px] font-semibold">
+              {props.children}
+            </h2>
+          ),
+          h3: (props) => (
+            <h3 {...props} className="mt-5 mb-1.5 text-[14px] font-semibold">
+              {props.children}
+            </h3>
+          ),
           p: (props) => <p {...props} className="my-3" />,
           ul: (props) => <ul {...props} className="my-3 list-disc space-y-1.5 pl-5" />,
           ol: (props) => <ol {...props} className="my-3 list-decimal space-y-1.5 pl-5" />,
           li: (props) => <li {...props} className="pl-1" />,
-          a: (props) => <a {...props} className="text-accent underline" />,
+          a: (props) => (
+            <a {...props} className="text-accent underline">
+              {props.children}
+            </a>
+          ),
           code: (props) => (
             <code
               {...props}

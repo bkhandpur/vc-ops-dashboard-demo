@@ -23,35 +23,33 @@ export async function buildPeopleSnapshot(): Promise<PeopleSnapshot> {
   const [stealthFounders, coInvestors] = await Promise.all(
     PEOPLE_LISTS.map(async (list: PeopleListKey) => {
       const people = await getPeopleInList(list);
-      return people.map(
-        (p): TrackedPerson => ({
-          recordId: p.recordId,
-          createdAt: p.createdAt,
-          name: p.name,
-          email: p.emails[0] ?? null,
-          description: p.description,
-          linkedin: p.linkedin,
-          linkedinCompany: p.linkedinCompany,
-          linkedinPosition: p.linkedinPosition,
-          jobTitle: p.jobTitle,
-          highlights: p.highlights,
-          sourcedBy: p.sourcedBy,
-          reachedOut: p.reachedOut,
-          avatarUrl: p.avatarUrl,
-          // `current_location` is free text and 81% covered on founders;
-          // `home_location` is 32%. Prefer the better-covered one, as everywhere else.
-          location: p.currentLocation ?? p.location,
-          stageFocus: p.stageFocus,
-          sectorThesisFocus: p.sectorThesisFocus,
-          education: p.education,
-          twitter: p.twitter,
-          sourceDocumentUrl: p.sourceDocumentUrl,
-          connectedCompanyId: p.connectedCompanyId,
-          fundFirm: p.fundFirm,
-          checkSizeRange: p.checkSizeRange,
-          dealsCoInvested: p.dealsCoInvested,
-        }),
-      );
+      return people.map((p): TrackedPerson => ({
+        recordId: p.recordId,
+        createdAt: p.createdAt,
+        name: p.name,
+        email: p.emails[0] ?? null,
+        description: p.description,
+        linkedin: p.linkedin,
+        linkedinCompany: p.linkedinCompany,
+        linkedinPosition: p.linkedinPosition,
+        jobTitle: p.jobTitle,
+        highlights: p.highlights,
+        sourcedBy: p.sourcedBy,
+        reachedOut: p.reachedOut,
+        avatarUrl: p.avatarUrl,
+        // `current_location` is free text and 81% covered on founders;
+        // `home_location` is 32%. Prefer the better-covered one, as everywhere else.
+        location: p.currentLocation ?? p.location,
+        stageFocus: p.stageFocus,
+        sectorThesisFocus: p.sectorThesisFocus,
+        education: p.education,
+        twitter: p.twitter,
+        sourceDocumentUrl: p.sourceDocumentUrl,
+        connectedCompanyId: p.connectedCompanyId,
+        fundFirm: p.fundFirm,
+        checkSizeRange: p.checkSizeRange,
+        dealsCoInvested: p.dealsCoInvested,
+      }));
     }),
   );
 

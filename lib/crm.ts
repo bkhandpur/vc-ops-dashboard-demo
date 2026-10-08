@@ -585,10 +585,7 @@ export async function getListEntries(list: ListKey | string): Promise<CrmListEnt
   });
 }
 
-export async function getRecord(
-  object: ParentObject,
-  recordId: string,
-): Promise<CrmRecord> {
+export async function getRecord(object: ParentObject, recordId: string): Promise<CrmRecord> {
   await tick();
   const source = object === "companies" ? COMPANY_RECORDS : PEOPLE_RECORDS;
   const found = applyOverlay.records(object, source).find((r) => r.id.record_id === recordId);
@@ -667,10 +664,7 @@ export async function getPeopleInList(list: ListKey | string): Promise<Person[]>
  * product overview) are null on these results. Callers use name and domain only, and
  * must not present a typeahead hit as if it carried full data.
  */
-export async function searchCompaniesByName(
-  query: string,
-  limit = 10,
-): Promise<Company[]> {
+export async function searchCompaniesByName(query: string, limit = 10): Promise<Company[]> {
   const trimmed = query.trim().toLowerCase();
   if (!trimmed) return [];
   await tick();
@@ -746,7 +740,13 @@ export async function upsertCompany(input: UpsertCompanyInput): Promise<Company>
   // and writing one is what stops the data splitting further.
   if (input.rounds?.length) values[COMPANY_FIELDS.roundCurrent] = input.rounds;
 
-  const record = recordWrite.upsertRecord("companies", COMPANY_FIELDS.domains, input.domain, values);
+  const record = recordWrite.upsertRecord(
+    "companies",
+    COMPANY_FIELDS.domains,
+    input.domain,
+    values,
+    COMPANY_RECORDS,
+  );
   return toCompany(record);
 }
 
@@ -763,7 +763,13 @@ export async function upsertPerson(input: UpsertPersonInput): Promise<Person> {
     [PEOPLE_FIELDS.emailAddresses]: [{ value: input.email }],
   };
   if (input.description) values[PEOPLE_FIELDS.description] = input.description;
-  const record = recordWrite.upsertRecord("people", PEOPLE_FIELDS.emailAddresses, input.email, values);
+  const record = recordWrite.upsertRecord(
+    "people",
+    PEOPLE_FIELDS.emailAddresses,
+    input.email,
+    values,
+    PEOPLE_RECORDS,
+  );
   return toPerson(record);
 }
 
@@ -799,10 +805,7 @@ export async function addRecordToList(
  * Returns the updated person so the caller reflects the real stored value rather than
  * optimistically assuming the write landed as sent.
  */
-export async function setPersonReachedOut(
-  recordId: string,
-  reachedOut: boolean,
-): Promise<Person> {
+export async function setPersonReachedOut(recordId: string, reachedOut: boolean): Promise<Person> {
   // Read before writing, so the response echoes the whole record rather than just the
   // field that changed. The caller shows the person's name back to the user.
   const current = await getRecord("people", recordId);
@@ -829,6 +832,7 @@ export async function setFounderConnectedCompany(
   personRecordId: string,
   companyRecordId: string,
 ): Promise<Person> {
+  await getRecord("companies", companyRecordId);
   const current = await getRecord("people", personRecordId);
   const record = recordWrite.patchRecord(
     "people",
@@ -849,6 +853,6 @@ export async function createNote(input: {
   title: string;
   content: string;
 }): Promise<CrmNote> {
-  await tick();
+  await getRecord(input.parentObject, input.recordId);
   return recordWrite.addNote(input);
 }

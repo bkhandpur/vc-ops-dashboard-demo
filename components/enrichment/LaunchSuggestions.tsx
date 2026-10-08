@@ -1,5 +1,6 @@
 "use client";
 
+import { safeSampleLink } from "@/lib/sample-links";
 import { ArrowUpRight, Check, Link2, Rocket, Search } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -18,7 +19,6 @@ import {
   PageHeader,
   Segmented,
   StatTile,
-  cx,
 } from "@/components/ui";
 import type { StagedCompany } from "@/lib/aggregate";
 import { crmRecordUrl } from "@/lib/constants";
@@ -57,10 +57,7 @@ export function LaunchSuggestions({
   const [query, setQuery] = useState("");
   const [linked, setLinked] = useState<Set<string>>(new Set());
 
-  const founderById = useMemo(
-    () => new Map(founders.map((f) => [f.recordId, f])),
-    [founders],
-  );
+  const founderById = useMemo(() => new Map(founders.map((f) => [f.recordId, f])), [founders]);
 
   /**
    * Resolve a launched company name to a CRM company record, so the link can point
@@ -189,8 +186,7 @@ export function LaunchSuggestions({
               const founder = founderById.get(suggestion.signal.recordId);
               if (!founder) return null;
               const crmCompany = suggestion.signal.companyName
-                ? (companyByName.get(normaliseCompanyName(suggestion.signal.companyName)) ??
-                  null)
+                ? (companyByName.get(normaliseCompanyName(suggestion.signal.companyName)) ?? null)
                 : null;
               return (
                 <SuggestionRow
@@ -209,15 +205,16 @@ export function LaunchSuggestions({
 
         <div className="px-4 pb-3">
           <Footnote>
-            Matches use LinkedIn identity and current-position data. &ldquo;Possible&rdquo;
-            means the employer changed, but a founder role was not confirmed.
+            Matches use LinkedIn identity and current-position data. &ldquo;Possible&rdquo; means
+            the employer changed, but a founder role was not confirmed.
           </Footnote>
         </div>
       </Panel>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        CRM snapshot {new Date(generatedAt).toLocaleString()} · enrichment snapshot{" "}
-        {new Date(enrichmentGeneratedAt).toLocaleString()}.
+        CRM snapshot {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })} ·
+        enrichment snapshot{" "}
+        {new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
       </p>
     </div>
   );
@@ -271,10 +268,7 @@ function SuggestionRow({
   }
 
   return (
-    <li
-      className="ws-settle ws-stagger px-4 py-3"
-      style={{ "--i": index } as React.CSSProperties}
-    >
+    <li className="ws-settle ws-stagger px-4 py-3" style={{ "--i": index } as React.CSSProperties}>
       <div className="flex items-start gap-3">
         <CompanyAvatar name={founder.name} logoUrl={founder.avatarUrl} size={32} />
 
@@ -285,9 +279,7 @@ function SuggestionRow({
             </span>
             <span className="text-[13px] text-ink-subtle">→</span>
             <span className="text-[13px] font-medium text-ink">{signal.companyName}</span>
-            <Badge tone={CONFIDENCE_TONE[suggestion.confidence]}>
-              {suggestion.confidence}
-            </Badge>
+            <Badge tone={CONFIDENCE_TONE[suggestion.confidence]}>{suggestion.confidence}</Badge>
             {founder.sourcedBy.length > 0 && (
               <Badge tone="neutral">{founder.sourcedBy.join(", ")}</Badge>
             )}
@@ -304,7 +296,9 @@ function SuggestionRow({
           <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-ink-subtle">
             {founder.linkedin && (
               <a
-                href={founder.linkedin}
+                href={safeSampleLink(founder.linkedin)}
+                aria-disabled={!safeSampleLink(founder.linkedin)}
+                title={!safeSampleLink(founder.linkedin) ? "Fictional sample contact" : undefined}
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-accent"
@@ -354,8 +348,8 @@ function SuggestionRow({
       {(state === "confirming" || state === "saving") && crmCompany && (
         <div className="mt-3 ml-11 space-y-2">
           <Callout tone="warn">
-            Link <strong>{founder.name}</strong> to <strong>{crmCompany.name}</strong>?
-            This updates local demo data.
+            Link <strong>{founder.name}</strong> to <strong>{crmCompany.name}</strong>? This updates
+            local demo data.
           </Callout>
           {error && <Callout tone="error">{error}</Callout>}
           <div className="flex gap-2">

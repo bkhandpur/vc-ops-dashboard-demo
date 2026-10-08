@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { LaunchSuggestions } from "@/components/enrichment/LaunchSuggestions";
 import { BuildSnapshotButton } from "@/components/statistics/BuildSnapshotButton";
 import { EmptyState, Panel } from "@/components/ui";
@@ -8,7 +9,7 @@ import { readOrBuildSnapshot } from "@/lib/stats";
 export const metadata = { title: "Launch signals" };
 
 /** Reads cached company, people and enrichment snapshots. */
-export default async function LaunchesPage() {
+async function LaunchesPage() {
   const [stats, people, enrichment] = await Promise.all([
     readOrBuildSnapshot(),
     readOrBuildPeople(),
@@ -35,3 +36,5 @@ export default async function LaunchesPage() {
     />
   );
 }
+
+export default withDemoPage(LaunchesPage);

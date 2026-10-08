@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, Users } from "lucide-react";
 
-import { Badge, Callout, EmptyState, Footnote, cx } from "@/components/ui";
+import { Badge, Callout, EmptyState, Footnote } from "@/components/ui";
 import { crmRecordUrl } from "@/lib/constants";
 import type { MatchReport, MatchResult } from "@/lib/matchmaking";
 
@@ -26,18 +26,14 @@ export function MatchList({
 }) {
   if (matches.length === 0) {
     return (
-      <EmptyState
-        title="No strong matches"
-        icon={<Users className="size-6" />}
-      >
-        No co-investor clears the signal threshold for{" "}
-        {report.company.name ?? "this company"}.
+      <EmptyState title="No strong matches" icon={<Users className="size-6" />}>
+        No co-investor clears the signal threshold for {report.company.name ?? "this company"}.
         {report.sectorFitIsBlind && (
           <>
             {" "}
             It is also expected here: no co-investor in the workspace describes a{" "}
-            <strong>{report.company.canonicalSector}</strong> thesis, so the sector
-            component scores zero for everyone.
+            <strong>{report.company.canonicalSector}</strong> thesis, so the sector component scores
+            zero for everyone.
           </>
         )}
       </EmptyState>
@@ -50,9 +46,9 @@ export function MatchList({
         <div className="px-4 pt-3">
           <Callout tone="warn">
             No co-investor thesis maps confidently onto{" "}
-            <strong>{report.company.canonicalSector}</strong>, so the sector component
-            scores zero for every investor below and this ranking rests on stage focus
-            and syndicate history alone. Treat it as a shortlist, not a recommendation.
+            <strong>{report.company.canonicalSector}</strong>, so the sector component scores zero
+            for every investor below and this ranking rests on stage focus and syndicate history
+            alone. Treat it as a shortlist, not a recommendation.
           </Callout>
         </div>
       )}
@@ -103,10 +99,7 @@ export function MatchList({
             {!compact && (
               <div className="mt-2.5">
                 <ScoreBreakdown components={match.components} index={index} />
-                <SharedDeals
-                  deals={match.sharedThemeDeals}
-                  theme={report.company.theme}
-                />
+                <SharedDeals deals={match.sharedThemeDeals} theme={report.company.theme} />
               </div>
             )}
           </li>
@@ -115,9 +108,9 @@ export function MatchList({
 
       <div className="px-4 pb-3">
         <Footnote>
-          Score is 0–100 from four weighted components — sector thesis (45), stage focus
-          (25), syndicate history (20) and keyword overlap (10). Only the ordering is
-          meaningful. Scores at or below {report.noiseFloor} are hidden.
+          Score is 0–100 from four weighted components — sector thesis (45), stage focus (25),
+          syndicate history (20) and keyword overlap (10). Only the ordering is meaningful. Scores
+          at or below {report.noiseFloor} are hidden.
         </Footnote>
       </div>
     </div>

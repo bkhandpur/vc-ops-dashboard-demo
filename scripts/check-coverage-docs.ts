@@ -54,14 +54,20 @@ function cell(raw: string): number {
 let section = "";
 for (const line of readFileSync(COVERAGE, "utf8").split("\n")) {
   if (line.startsWith("## ")) {
-    section = line.includes("Company") ? "company"
-      : line.includes("People") ? "people"
-      : line.includes("LIST-ENTRY") ? "entry"
-      : "";
+    section = line.includes("Company")
+      ? "company"
+      : line.includes("People")
+        ? "people"
+        : line.includes("LIST-ENTRY")
+          ? "entry"
+          : "";
     continue;
   }
   if (!line.startsWith("| ")) continue;
-  const cells = line.split("|").map((c) => c.trim()).filter((c) => c !== "");
+  const cells = line
+    .split("|")
+    .map((c) => c.trim())
+    .filter((c) => c !== "");
   if (cells.length < 2) continue;
 
   if (section === "entry") {
@@ -151,7 +157,7 @@ if (fix && findings.length > 0) {
 if (findings.length === 0) {
   console.log(
     `documented coverage matches measured coverage ` +
-    `(${measured.size} slugs in COVERAGE.md, ±${TOLERANCE}%)`,
+      `(${measured.size} slugs in COVERAGE.md, ±${TOLERANCE}%)`,
   );
   process.exit(0);
 }

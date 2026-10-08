@@ -29,8 +29,8 @@
   --color-line-strong: #b8cbc2;
 
   --color-ink: #162d25;
-  --color-ink-muted: #5d7e73;
-  --color-ink-subtle: #829a91;
+  --color-ink-muted: #49685d;
+  --color-ink-subtle: #5a7268;
 
   --color-accent: #276451;
   --color-accent-hover: #1f5141;
@@ -89,7 +89,7 @@
 
     --color-ink: #eef1f5;
     --color-ink-muted: #9aa5b3;
-    --color-ink-subtle: #6d7887;
+    --color-ink-subtle: #9aa5b3;
 
     --color-accent: #8b83f0;
     --color-accent-hover: #a49df4;
@@ -118,7 +118,7 @@
 
   --color-ink: #eef1f5;
   --color-ink-muted: #9aa5b3;
-  --color-ink-subtle: #6d7887;
+  --color-ink-subtle: #9aa5b3;
 
   --color-accent: #8b83f0;
   --color-accent-hover: #a49df4;
@@ -332,7 +332,7 @@ svg path:focus-visible {
   animation: ws-tagline-in 1100ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms both;
 }
 
-/* Reveal used by the entry hero and the app shell. */
+/* Reveal used by the app shell. */
 @keyframes ws-rise {
   from {
     opacity: 0;
@@ -622,111 +622,6 @@ svg path:focus-visible {
   animation: ws-bar-grow var(--dur-slow) var(--ease-out) both;
 }
 
-/* ── ENTRY HERO ─────────────────────────────────────────────────────────────
- * The one screen in the app that is allowed to be cinematic. It is seen once per
- * browser session at most, before the dashboard, so it can afford choreography the
- * dashboard cannot. Everything below is scoped to the hero and never leaks into the
- * tool itself.
- *
- * In the internal build this was the sign-in screen, where the user is waiting on an
- * OAuth round trip anyway. This public build has no auth, so the same choreography runs
- * as a timed entry splash that then dissolves into the dashboard — see
- * components/brand/EntrySplash.tsx.
- *
- * The timeline, in order, so it can be retuned without reverse-engineering the delays:
- *   0ms     the navy plate and its light veil settle
- *   150ms   the mark fades up and the water begins to rise through the letters
- *   1150ms  a hairline waterline draws outward from the centre, under the mark
- *   1450ms  slogan one arrives
- *   2100ms  slogan two arrives
- *   2500ms  the last line fades in, so the eye lands on the brand first
- */
-
-/* Slow drifting light over the navy plate, like sun through water. Two radial pools
-   moving on different periods so the pattern never visibly repeats. */
-@keyframes ws-caustic {
-  0% {
-    transform: translate3d(-6%, -4%, 0) scale(1.05);
-    opacity: 0.55;
-  }
-  50% {
-    transform: translate3d(5%, 3%, 0) scale(1.15);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate3d(-6%, -4%, 0) scale(1.05);
-    opacity: 0.55;
-  }
-}
-
-.ws-caustic {
-  animation: ws-caustic 18s ease-in-out infinite;
-}
-
-@keyframes ws-hero-veil {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.ws-hero-veil {
-  animation: ws-hero-veil 1200ms var(--ease-out) both;
-}
-
-@keyframes ws-hero-mark {
-  from {
-    opacity: 0;
-    transform: scale(0.965);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.ws-hero-mark {
-  animation: ws-hero-mark 1400ms var(--ease-out) 150ms both;
-}
-
-/* The waterline under the mark draws outward from the centre. scaleX on a centred
-   element is a composited transform, so this costs nothing even at full width. */
-@keyframes ws-hero-line {
-  from {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-
-.ws-hero-line {
-  transform-origin: center;
-  animation: ws-hero-line 900ms var(--ease-out) 1150ms both;
-}
-
-/* Slogans rise and let their tracking settle. */
-@keyframes ws-hero-slogan {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-    letter-spacing: 0.14em;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    letter-spacing: 0.02em;
-  }
-}
-
-.ws-hero-slogan {
-  animation: ws-hero-slogan 1000ms var(--ease-out) both;
-}
-
 /*
  * ── PRINT ──────────────────────────────────────────────────────────────────
  * Added for tear sheets, which exist to be read before a meeting and therefore to be
@@ -796,12 +691,7 @@ svg path:focus-visible {
   .ws-settle,
   .ws-bar-grow,
   .ws-skeleton,
-  .ws-tide,
-  .ws-hero-mark,
-  .ws-hero-line,
-  .ws-hero-slogan,
-  .ws-hero-veil,
-  .ws-caustic {
+  .ws-tide {
     animation: none !important;
   }
 

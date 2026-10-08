@@ -1,10 +1,10 @@
 "use client";
 
+import { DemoReset } from "./DemoReset";
 import type { ReactNode } from "react";
 
 import type { SearchIndex } from "@/lib/search";
 
-import { EntrySplash } from "./brand/EntrySplash";
 import { MobileQuickAccess } from "./MobileQuickAccess";
 import { CommandPaletteProvider } from "./command-palette/CommandPaletteProvider";
 import { SearchProvider } from "./search/SearchProvider";
@@ -27,16 +27,17 @@ export function AppShell({
   children,
   searchIndex,
   snapshotGeneratedAt,
+  stateError,
 }: {
   children: ReactNode;
   searchIndex: SearchIndex;
   snapshotGeneratedAt: string | null;
+  stateError?: string;
 }) {
   return (
     <SidebarProvider>
       <CommandPaletteProvider index={searchIndex}>
         <SearchProvider index={searchIndex} generatedAt={snapshotGeneratedAt}>
-          <EntrySplash />
           <div className="flex h-screen overflow-hidden">
             <Sidebar />
             <div className="flex min-w-0 flex-1 flex-col">
@@ -45,6 +46,9 @@ export function AppShell({
                 <div className="mx-auto max-w-[1680px] px-4 py-5 sm:px-6 sm:py-6 lg:px-7">
                   {/* Narrow screens only — see the header of MobileQuickAccess. */}
                   <MobileQuickAccess />
+                  <div className="mb-4">
+                    <DemoReset stateError={stateError} />
+                  </div>
                   {children}
                 </div>
               </main>

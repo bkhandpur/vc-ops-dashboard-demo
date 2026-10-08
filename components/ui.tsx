@@ -34,7 +34,8 @@ const BUTTON_STYLES: Record<ButtonVariant, string> = {
     "bg-accent text-white hover:bg-accent-hover border border-transparent shadow-[var(--shadow-panel)]",
   secondary:
     "bg-surface text-ink border border-line hover:border-line-strong hover:bg-surface-sunken",
-  ghost: "bg-transparent text-ink-muted hover:bg-surface-sunken hover:text-ink border border-transparent",
+  ghost:
+    "bg-transparent text-ink-muted hover:bg-surface-sunken hover:text-ink border border-transparent",
   danger: "bg-negative text-white hover:opacity-90 border border-transparent",
 };
 
@@ -128,7 +129,9 @@ export function PageHeader({
         )}
         <h1 className="text-[20px] leading-tight font-bold text-ink">{title}</h1>
         {description && (
-          <div className="mt-1 max-w-3xl text-[12px] leading-relaxed text-ink-muted">{description}</div>
+          <div className="mt-1 max-w-3xl text-[12px] leading-relaxed text-ink-muted">
+            {description}
+          </div>
         )}
       </div>
       {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
@@ -166,9 +169,7 @@ export function StatTile({
 
   return (
     <Panel className={cx("px-4 py-3", className)}>
-      <p className="text-[11px] font-medium tracking-[0.04em] text-ink-subtle uppercase">
-        {label}
-      </p>
+      <p className="text-[11px] font-medium tracking-[0.04em] text-ink-subtle uppercase">{label}</p>
       <p className={cx("ws-nums mt-1.5 text-[26px] leading-none font-semibold", toneClass)}>
         {value}
       </p>
@@ -438,10 +439,7 @@ export function Callout({
   } as const;
   return (
     <div
-      className={cx(
-        "rounded-[var(--radius-control)] border px-3 py-2 text-[13px]",
-        tones[tone],
-      )}
+      className={cx("rounded-[var(--radius-control)] border px-3 py-2 text-[13px]", tones[tone])}
     >
       {children}
     </div>

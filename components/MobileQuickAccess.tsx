@@ -56,9 +56,7 @@ export function MobileQuickAccess() {
         <Link href="/digest" className={`${tile} col-span-2`}>
           <FileText className="size-4 text-accent" />
           <span className="text-[13px] font-medium text-ink">This week&rsquo;s digest</span>
-          <span className="text-[11px] text-ink-subtle">
-            What moved since the last Monday run
-          </span>
+          <span className="text-[11px] text-ink-subtle">Illustrative history and sample edits</span>
         </Link>
       )}
     </div>

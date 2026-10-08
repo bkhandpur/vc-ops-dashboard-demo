@@ -1,3 +1,4 @@
+import { demoSession, withDemoPage } from "@/lib/demo-session";
 import type { Metadata } from "next";
 
 import { AppShell } from "@/components/AppShell";
@@ -8,11 +9,11 @@ import { readOrBuildSnapshot } from "@/lib/stats";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Watershed Ventures | Operations Dashboard",
+  title: "VC Operations Dashboard | Fictional Demo",
   description: "Pipeline, portfolio, sourcing and co-investor workflows in one dashboard.",
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+async function RootLayout({ children }: { children: React.ReactNode }) {
   /**
    * The search index is read here, once, for the whole app.
    *
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               coInvestors: people.data.coInvestors,
             }}
             snapshotGeneratedAt={stats.generatedAt}
+            stateError={demoSession().stateError}
           >
             {children}
           </AppShell>
@@ -45,3 +47,5 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+
+export default withDemoPage(RootLayout);

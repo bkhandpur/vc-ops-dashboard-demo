@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { OutreachQueue } from "@/components/people/OutreachQueue";
 import { BuildSnapshotButton } from "@/components/statistics/BuildSnapshotButton";
 import { EmptyState, Panel } from "@/components/ui";
@@ -7,7 +8,7 @@ import { readOrBuildPeople } from "@/lib/people";
 export const metadata = { title: "Outreach queue" };
 
 /** Reads the CACHED people snapshot — no external call on page load. */
-export default async function OutreachQueuePage() {
+async function OutreachQueuePage() {
   const [people, enrichment] = await Promise.all([readOrBuildPeople(), readOrBuildEnrichment()]);
 
   if (!people) {
@@ -32,3 +33,5 @@ export default async function OutreachQueuePage() {
     />
   );
 }
+
+export default withDemoPage(OutreachQueuePage);

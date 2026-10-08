@@ -96,8 +96,7 @@ export function buildCrossCheck(
   };
   rows.sort(
     (a, b) =>
-      rank[a.status] - rank[b.status] ||
-      (a.company.name ?? "").localeCompare(b.company.name ?? ""),
+      rank[a.status] - rank[b.status] || (a.company.name ?? "").localeCompare(b.company.name ?? ""),
   );
 
   return {

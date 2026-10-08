@@ -1,6 +1,7 @@
 "use client";
 
-import { Clock, TrendingUp } from "lucide-react";
+import { SAMPLE_REFERENCE_DATE } from "@/lib/demo-clock";
+import { TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -15,7 +16,6 @@ import {
   PanelHeader,
   PageHeader,
   Segmented,
-  StatTile,
   cx,
 } from "@/components/ui";
 import type { StagedCompany } from "@/lib/aggregate";
@@ -50,7 +50,10 @@ export function MomentumView({
   const [stage, setStage] = useState<"portfolio" | "pipeline">("portfolio");
 
   const stages = useMemo(() => stageDistribution(companies), [companies]);
-  const tenure = useMemo(() => tenureView(companies, Date.now()), [companies]);
+  const tenure = useMemo(
+    () => tenureView(companies, Date.parse(SAMPLE_REFERENCE_DATE)),
+    [companies],
+  );
 
   // Prefer generated enrichment facts and use the local CRM shape as a fallback.
   const source = enrichmentGeneratedAt ? "enrichment" : "crm";
@@ -59,6 +62,7 @@ export function MomentumView({
     return momentumView(companies, def, stage, source, enrichedFacts);
   }, [companies, metric, stage, source, enrichedFacts]);
 
+  const unsetPct = stages.find((row) => row.stage === "Unset")?.pct ?? 0;
   const maxStage = stages.reduce((m, s) => Math.max(m, s.count), 0);
 
   return (
@@ -73,7 +77,7 @@ export function MomentumView({
       <Panel className="ws-enter overflow-hidden">
         <PanelHeader
           title="Pipeline by deal stage"
-          description="The Pipeline list's own status column — hand-maintained, 79% covered."
+          description={`Pipeline deal-stage field: ${(100 - unsetPct).toFixed(0)}% recorded.`}
         />
         <ul className="p-4">
           {stages.map((row, index) => (
@@ -103,9 +107,9 @@ export function MomentumView({
         </ul>
         <div className="px-4 pb-3">
           <Footnote>
-            Bars are monochrome because they encode magnitude within one funnel, not
-            theme identity. &ldquo;Unset&rdquo; is the 21% of Pipeline with no stage
-            recorded, kept visible rather than dropped.
+            Bars are monochrome because they encode magnitude within one funnel, not theme identity.
+            &ldquo;Unset&rdquo; is {unsetPct.toFixed(0)}% of Pipeline with no stage recorded, kept
+            visible rather than dropped.
           </Footnote>
         </div>
       </Panel>
@@ -121,8 +125,8 @@ export function MomentumView({
         {tenure.dominatedByImport && (
           <div className="px-4 pt-3">
             <Callout tone="warn">
-              Tenure measures time in the CRM, not deal age. {tenure.importCount} of{" "}
-              {tenure.total} entries share the {tenure.importDate} import date.
+              Tenure measures time in the CRM, not deal age. {tenure.importCount} of {tenure.total}{" "}
+              entries share the {tenure.importDate} import date.
             </Callout>
           </div>
         )}
@@ -144,8 +148,7 @@ export function MomentumView({
                     </span>
                   </span>
                   <span className="ws-nums">
-                    median{" "}
-                    <strong className="text-ink">{bucket.medianDays}d</strong>
+                    median <strong className="text-ink">{bucket.medianDays}d</strong>
                   </span>
                   <Badge tone={bucket.sinceImport > 0 ? "accent" : "neutral"}>
                     {bucket.sinceImport} since import
@@ -158,8 +161,8 @@ export function MomentumView({
 
         <div className="px-4 pb-3">
           <Footnote>
-            Measured from the generated list entry&rsquo;s <code>created_at</code>. This
-            shows time on the list, not relationship activity.
+            Measured from the generated list entry&rsquo;s <code>created_at</code>. This shows time
+            on the list, not relationship activity.
           </Footnote>
         </div>
       </Panel>
@@ -201,10 +204,9 @@ export function MomentumView({
         {!momentum.meetsBar ? (
           <EmptyState title="Coverage too thin to draw" icon={<TrendingUp className="size-6" />}>
             Only {momentum.covered} of {momentum.inScope} {stage} companies (
-            {momentum.coveragePct.toFixed(0)}%) carry{" "}
-            {momentum.metric.label.toLowerCase()} from{" "}
-            {momentum.source === "enrichment" ? "the enrichment provider" : "the CRM"}, below the 40% bar
-            this project holds. A chart from that is a ranking of whoever happens to be
+            {momentum.coveragePct.toFixed(0)}%) carry {momentum.metric.label.toLowerCase()} from{" "}
+            {momentum.source === "enrichment" ? "the enrichment provider" : "the CRM"}, below the
+            40% bar this project holds. A chart from that is a ranking of whoever happens to be
             enriched.
           </EmptyState>
         ) : (
@@ -225,15 +227,17 @@ export function MomentumView({
                 {momentum.covered} of {momentum.inScope} {stage} companies (
                 {momentum.coveragePct.toFixed(0)}%) have a figure, sourced from{" "}
                 <strong>
-                  {momentum.source === "enrichment" ? "the enrichment provider" : "the CRM's own synced fields"}
+                  {momentum.source === "enrichment"
+                    ? "the enrichment provider"
+                    : "the CRM's own synced fields"}
                 </strong>
-                . The rest are absent rather than shown as zero, and negative values are
-                real and kept.
+                . The rest are absent rather than shown as zero, and negative values are real and
+                kept.
                 {momentum.source === "enrichment" && momentum.withoutDomain > 0 && (
                   <>
                     {" "}
-                    {momentum.withoutDomain} of them have no domain in the CRM and therefore
-                    cannot be looked up at all — that is a{" "}
+                    {momentum.withoutDomain} of them have no domain in the CRM and therefore cannot
+                    be looked up at all — that is a{" "}
                     <Link href="/data-health" className="text-accent hover:underline">
                       Data Health
                     </Link>{" "}
@@ -244,11 +248,11 @@ export function MomentumView({
                   <>
                     {" "}
                     <strong>
-                      An earlier phase deliberately refused to build this view on the CRM&rsquo;s own
-                      fields, which sit at 13% on Pipeline.
+                      An earlier phase deliberately refused to build this view on the CRM&rsquo;s
+                      own fields, which sit at 13% on Pipeline.
                     </strong>{" "}
-                    the enrichment provider reaches 63% on the same list, which is what makes it honest
-                    to draw.
+                    the enrichment provider reaches 63% on the same list, which is what makes it
+                    honest to draw.
                   </>
                 )}
               </Footnote>
@@ -258,9 +262,9 @@ export function MomentumView({
       </Panel>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        CRM snapshot {new Date(generatedAt).toLocaleString()}
+        CRM snapshot {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}
         {enrichmentGeneratedAt
-          ? ` · enrichment snapshot ${new Date(enrichmentGeneratedAt).toLocaleString()}`
+          ? ` · enrichment snapshot ${new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}`
           : ""}
         .{" "}
         <Link href="/data-health" className="text-accent hover:underline">

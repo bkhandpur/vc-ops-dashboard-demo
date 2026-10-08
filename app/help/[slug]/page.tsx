@@ -8,21 +8,13 @@ export async function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await getHelpArticle(slug);
-  return { title: article ? `${article.title} — Help` : "Help" };
+  return { title: article ? `${article.title} | Help` : "Help" };
 }
 
-export default async function HelpArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function HelpArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await getHelpArticle(slug);
   if (!article) notFound();

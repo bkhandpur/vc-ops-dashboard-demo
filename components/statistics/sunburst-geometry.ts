@@ -35,10 +35,7 @@ export interface Arc {
 
 // ---------------------------------------------------------------------------
 
-export function buildArcs(
-  tree: StatsNode[],
-  path: string[],
-): { arcs: Arc[]; levelTotal: number } {
+export function buildArcs(tree: StatsNode[], path: string[]): { arcs: Arc[]; levelTotal: number } {
   // Resolve the level the path points at, tolerating a stale path after a filter
   // change removed the node we were inside.
   let level = tree;
@@ -96,9 +93,7 @@ export function buildArcs(
         name: child.name,
         parent: node.name,
         value: child.value,
-        valueLabel: outerCountsTags
-          ? `${child.value} tagged`
-          : companies(child.value),
+        valueLabel: outerCountsTags ? `${child.value} tagged` : companies(child.value),
         shareLabel: outerCountsTags
           ? `${percent(child.value, childTotal)} of ${node.name}`
           : `${percent(child.value, levelTotal)} of view`,
@@ -162,10 +157,7 @@ function annulusHalf(a0: number, a1: number, rInner: number, rOuter: number): st
 }
 
 function polar(r: number, angle: number): [number, number] {
-  return [
-    round(CENTER + r * Math.cos(angle)),
-    round(CENTER + r * Math.sin(angle)),
-  ];
+  return [round(CENTER + r * Math.cos(angle)), round(CENTER + r * Math.sin(angle))];
 }
 
 function round(n: number): number {
@@ -225,7 +217,8 @@ export function innerLabel(arc: Arc): InnerLabel | null {
  */
 function tangentRotation(angle: number): number {
   let deg = ((((angle * 180) / Math.PI + 90) % 360) + 360) % 360; // [0, 360)
-  if (deg > 90 && deg < 270) deg -= 180; // flip the lower half
+  if (deg > 90 && deg < 270)
+    deg -= 180; // flip the lower half
   else if (deg >= 270) deg -= 360; // express the last quadrant as negative
   return Math.round(deg * 10) / 10;
 }

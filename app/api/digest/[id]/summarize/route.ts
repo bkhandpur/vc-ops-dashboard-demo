@@ -27,7 +27,7 @@ function cannedSummary(digest: Digest): string {
     parts.push(
       `${digest.newInPipeline.length} ${digest.newInPipeline.length === 1 ? "company" : "companies"} ` +
         `joined the Pipeline this period. ${spread}. ` +
-        `The largest addition by name is ${digest.newInPipeline[0]?.name ?? "unnamed"}.`,
+        `An example addition is ${digest.newInPipeline[0]?.name ?? "unnamed"}.`,
     );
   }
 
@@ -44,12 +44,14 @@ function cannedSummary(digest: Digest): string {
     parts.push(
       `${digest.newStealthFounders.length} new stealth ` +
         `${digest.newStealthFounders.length === 1 ? "founder was" : "founders were"} added. ` +
-        `None has been contacted; the outreach queue is where that gets acted on.`,
+        `Inspect their contact status in the outreach queue.`,
     );
   }
 
   if (digest.newNotes.length > 0) {
-    parts.push(`${digest.newNotes.length} new notes were logged against company records.`);
+    parts.push(
+      `${digest.newNotes.length} ${digest.newNotes.length === 1 ? "new note was" : "new notes were"} logged against records.`,
+    );
   }
 
   const shifts = [...digest.themeShifts, ...digest.sectorShifts].filter((s) => s.delta !== 0);
@@ -63,9 +65,7 @@ function cannedSummary(digest: Digest): string {
     parts.push("Portfolio theme and sector mix are unchanged.");
   }
 
-  parts.push(
-    "This summary was composed locally from the numbers above.",
-  );
+  parts.push("This summary was composed locally from the numbers above.");
 
   return parts.join("\n\n");
 }

@@ -30,14 +30,7 @@ import {
 import { LineChart } from "./LineChart";
 import { ThemeMixChart } from "./ThemeMixChart";
 
-/**
- * Trends over the stored digest history.
- *
- * History starts when the weekly cron started; nothing is backfilled and nothing is
- * interpolated. The empty state says so as ordinary page copy rather than as a modal
- * nag — a partner should be able to read why the chart is short without dismissing
- * anything.
- */
+/** Illustrative history generated from the fixed sample dataset. */
 export function TrendsView({
   series,
   storedDigests,
@@ -64,21 +57,16 @@ export function TrendsView({
         <PageHeader
           eyebrow="Analyze"
           title="Trends"
-          description="Change over time, from the weekly digest history."
+          description="Illustrative weekly history, generated from the sample as of October 8, 2026."
         />
         <Panel>
           <EmptyState
-            title={
-              series.points.length === 1
-                ? "One data point so far"
-                : "No history to chart yet"
-            }
+            title={series.points.length === 1 ? "One data point so far" : "No history to chart yet"}
             icon={<TrendingUp className="size-8" />}
           >
             <p>
-              These charts are built from the snapshots the Monday cron stores each week.
-              History starts when the cron started — there is no backfill, and nothing here
-              will ever invent a data point that was not measured.
+              These charts use deterministic sample snapshots. They do not represent collected
+              observations or an active scheduler.
             </p>
             <p className="mt-2">
               {storedDigests === 0 ? (
@@ -88,14 +76,14 @@ export function TrendsView({
                 </>
               ) : series.points.length === 1 ? (
                 <>
-                  One snapshot is stored. The first chart appears after the second run —
-                  next Monday, or immediately via <strong>Weekly Digest → Run diff now</strong>.
+                  One snapshot is stored. The first chart appears after the second run — using{" "}
+                  <strong>Weekly Digest → Run diff now</strong>.
                 </>
               ) : (
                 <>
-                  {storedDigests} {storedDigests === 1 ? "digest is" : "digests are"} stored,
-                  but {series.skipped} of them predate the metrics block these charts need.
-                  They will start populating from the next run.
+                  {storedDigests} {storedDigests === 1 ? "digest is" : "digests are"} stored, but{" "}
+                  {series.skipped} of them predate the metrics block these charts need. They will
+                  start populating from the next run.
                 </>
               )}
             </p>
@@ -116,9 +104,9 @@ export function TrendsView({
       {series.skipped > 0 && (
         <div className="ws-enter mb-5">
           <Callout>
-            {series.skipped} older {series.skipped === 1 ? "digest" : "digests"} predate the
-            stored metrics these charts read, so {series.skipped === 1 ? "it is" : "they are"}{" "}
-            omitted rather than shown as zero.
+            {series.skipped} older {series.skipped === 1 ? "digest" : "digests"} predate the stored
+            metrics these charts read, so {series.skipped === 1 ? "it is" : "they are"} omitted
+            rather than shown as zero.
           </Callout>
         </div>
       )}
@@ -126,14 +114,18 @@ export function TrendsView({
       <div className="ws-enter ws-delay-1 mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatTile
           label="Pipeline now"
-          value={pipelineDelta?.to.toLocaleString() ?? "—"}
-          hint={pipelineDelta ? changeLabel(pipelineDelta.change, "since first snapshot") : undefined}
+          value={pipelineDelta?.to.toLocaleString("en-US") ?? "—"}
+          hint={
+            pipelineDelta ? changeLabel(pipelineDelta.change, "since first snapshot") : undefined
+          }
           tone={(pipelineDelta?.change ?? 0) >= 0 ? "positive" : "negative"}
         />
         <StatTile
           label="Portfolio now"
-          value={portfolioDelta?.to.toLocaleString() ?? "—"}
-          hint={portfolioDelta ? changeLabel(portfolioDelta.change, "since first snapshot") : undefined}
+          value={portfolioDelta?.to.toLocaleString("en-US") ?? "—"}
+          hint={
+            portfolioDelta ? changeLabel(portfolioDelta.change, "since first snapshot") : undefined
+          }
           tone={(portfolioDelta?.change ?? 0) >= 0 ? "positive" : "negative"}
         />
         <StatTile
@@ -153,7 +145,7 @@ export function TrendsView({
         <StatTile
           label="Snapshots"
           value={series.points.length.toString()}
-          hint={`since ${new Date(series.points[0]!.at).toLocaleDateString()}`}
+          hint={`since ${new Date(series.points[0]!.at).toLocaleDateString("en-US", { timeZone: "UTC" })}`}
         />
       </div>
 
@@ -174,11 +166,7 @@ export function TrendsView({
             description="Share of companies with a level-2 classification — is data quality improving?"
           />
           <div className="px-4 py-4">
-            <LineChart
-              series={coverage}
-              percentage
-              format={(v) => `${v.toFixed(0)}%`}
-            />
+            <LineChart series={coverage} percentage format={(v) => `${v.toFixed(0)}%`} />
           </div>
         </Panel>
       </div>
@@ -203,9 +191,9 @@ export function TrendsView({
         <div className="px-4 py-4">
           <ThemeMixChart points={mix} themes={series.themes} />
           <Footnote>
-            Shares, not counts — the question is whether the mix is drifting, which a
-            stacked count chart would hide behind overall growth. Theme is a single-select
-            in the CRM, so these are exact distinct-company shares and always sum to 100%.
+            Shares, not counts — the question is whether the mix is drifting, which a stacked count
+            chart would hide behind overall growth. Theme is a single-select in the CRM, so these
+            are exact distinct-company shares and always sum to 100%.
           </Footnote>
         </div>
       </Panel>
@@ -217,7 +205,7 @@ export function TrendsView({
           description="Across the whole book, over the last 12 stored snapshots."
           actions={
             <Badge tone={series.spansMultipleDays ? "accent" : "warning"}>
-              {series.distinctDays} {series.distinctDays === 1 ? "day" : "days"} of history
+              {series.points.length} sample snapshots
             </Badge>
           }
         />
@@ -227,11 +215,10 @@ export function TrendsView({
             <Callout tone="warn">
               <span className="block font-medium">History is still accruing.</span>
               All {series.points.length} stored snapshots were written on the same day (
-              {new Date(series.points[0]!.at).toLocaleDateString()}), so there is no
-              elapsed time to plot yet — a rolling chart drawn from them would show
-              movement that never happened. The machinery is running: the Monday cron
-              adds one point a week, and these charts appear as soon as there are two
-              distinct days.
+              {new Date(series.points[0]!.at).toLocaleDateString("en-US", { timeZone: "UTC" })}), so
+              there is no elapsed time to plot yet — a rolling chart drawn from them would show
+              unobserved movement. The public demo uses illustrative points rather than scheduled
+              collection.
             </Callout>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <StatTile
@@ -259,9 +246,7 @@ export function TrendsView({
         ) : (
           <div className="grid gap-4 px-4 py-4 lg:grid-cols-2">
             <div>
-              <p className="mb-2 text-[12px] font-medium text-ink">
-                Share carried to Portfolio
-              </p>
+              <p className="mb-2 text-[12px] font-medium text-ink">Share carried to Portfolio</p>
               <LineChart
                 series={[
                   {
@@ -274,19 +259,13 @@ export function TrendsView({
               />
             </div>
             <div>
-              <p className="mb-2 text-[12px] font-medium text-ink">
-                Data health completeness
-              </p>
+              <p className="mb-2 text-[12px] font-medium text-ink">Data health completeness</p>
               {health.values.length >= 2 ? (
-                <LineChart
-                  series={[health]}
-                  percentage
-                  format={(v) => `${v.toFixed(0)}%`}
-                />
+                <LineChart series={[health]} percentage format={(v) => `${v.toFixed(0)}%`} />
               ) : (
                 <p className="py-8 text-center text-[12px] text-ink-subtle">
-                  {health.values.length} of {series.points.length} snapshots include this
-                  metric. Missing values are skipped rather than shown as zero.
+                  {health.values.length} of {series.points.length} snapshots include this metric.
+                  Missing values are skipped rather than shown as zero.
                 </p>
               )}
             </div>
@@ -295,12 +274,11 @@ export function TrendsView({
 
         <div className="px-4 pb-4">
           <Footnote>
-            Conversion here is portfolio ÷ (portfolio + pipeline) across the whole book,
-            and carries the same caveat as the per-theme table below — it is the share of
-            what we currently carry that has reached Portfolio, not a funnel rate.
-            Completeness is the same figure the Data Health page shows, over Pipeline and
-            Portfolio only, recorded automatically on every digest run rather than
-            transcribed by hand.
+            Conversion here is portfolio ÷ (portfolio + pipeline) across the whole book, and carries
+            the same caveat as the per-theme table below — it is the share of what we currently
+            carry that has reached Portfolio, not a funnel rate. Completeness is the same figure the
+            Data Health page shows, over Pipeline and Portfolio only, recorded automatically on
+            every digest run rather than transcribed by hand.
           </Footnote>
         </div>
       </Panel>
@@ -343,19 +321,19 @@ export function TrendsView({
         </ul>
         <div className="px-4 pb-4">
           <Footnote>
-            Measured as portfolio ÷ (portfolio + pipeline) within each theme. This is
-            deliberately <em>not</em> called a conversion rate: the CRM records no
-            &ldquo;we passed at stage X&rdquo; event, so a true funnel rate is not
-            recoverable from this data. What it measures is the share of what we are
-            currently carrying that has reached Portfolio.
+            Measured as portfolio ÷ (portfolio + pipeline) within each theme. This is deliberately{" "}
+            <em>not</em> called a conversion rate: the CRM records no &ldquo;we passed at stage
+            X&rdquo; event, so a true funnel rate is not recoverable from this data. What it
+            measures is the share of what we are currently carrying that has reached Portfolio.
           </Footnote>
         </div>
       </Panel>
 
       <Footnote>
-        History begins with the first stored digest ({new Date(series.points[0]!.at).toLocaleDateString()}
-        ) and grows one point per Monday cron run. Nothing here is backfilled or
-        interpolated.
+        Illustrative history begins at (
+        {new Date(series.points[0]!.at).toLocaleDateString("en-US", { timeZone: "UTC" })}
+        ). The nine metric-bearing weekly points are generated from deterministic prefixes of the
+        fixed sample; they are not observed operating history.
       </Footnote>
     </>
   );
@@ -363,5 +341,5 @@ export function TrendsView({
 
 function changeLabel(change: number, suffix: string): string {
   if (change === 0) return `no change ${suffix}`;
-  return `${change > 0 ? "+" : ""}${change.toLocaleString()} ${suffix}`;
+  return `${change > 0 ? "+" : ""}${change.toLocaleString("en-US")} ${suffix}`;
 }

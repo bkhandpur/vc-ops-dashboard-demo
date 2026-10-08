@@ -7,15 +7,7 @@ import { useDeferredValue, useMemo, useState } from "react";
 
 import { CompanyAvatar } from "@/components/CompanyAvatar";
 import { ThemeSwatch } from "@/components/statistics/ThemeSwatch";
-import {
-  EmptyState,
-  Input,
-  Panel,
-  PanelHeader,
-  PageHeader,
-  Badge,
-  cx,
-} from "@/components/ui";
+import { EmptyState, Input, Panel, PanelHeader, PageHeader, Badge, cx } from "@/components/ui";
 import type { StagedCompany } from "@/lib/aggregate";
 import { matchCoInvestors, topMatches } from "@/lib/matchmaking";
 import type { TrackedPerson } from "@/lib/people-derive";
@@ -93,10 +85,7 @@ export function MatchView({
         title="Syndicate matchmaking"
         description="Co-investors ranked by thesis, stage fit and prior syndicate history."
         actions={
-          <Link
-            href="/co-investors"
-            className="text-[13px] text-accent hover:underline"
-          >
+          <Link href="/co-investors" className="text-[13px] text-accent hover:underline">
             Full directory
           </Link>
         }
@@ -136,11 +125,7 @@ export function MatchView({
                     )}
                     style={{ "--i": index } as React.CSSProperties}
                   >
-                    <CompanyAvatar
-                      name={company.name}
-                      logoUrl={company.logoUrl}
-                      size={20}
-                    />
+                    <CompanyAvatar name={company.name} logoUrl={company.logoUrl} size={20} />
                     <span className="min-w-0 flex-1 truncate text-[13px]">
                       {company.name ?? "Unnamed"}
                     </span>
@@ -177,27 +162,22 @@ export function MatchView({
                     .join(" · ") || "No sector, stage or round recorded"
                 }
                 actions={
-                  <Badge tone={matches.length ? "accent" : "neutral"}>
-                    {matches.length} shown
-                  </Badge>
+                  <Badge tone={matches.length ? "accent" : "neutral"}>{matches.length} shown</Badge>
                 }
               />
               <MatchList report={report} matches={matches} />
             </>
           ) : (
-            <EmptyState
-              title="Pick a company"
-              icon={<Users className="size-6" />}
-            >
-              Choose a Pipeline or Portfolio company on the left to see which
-              co-investors fit its sector and stage.
+            <EmptyState title="Pick a company" icon={<Users className="size-6" />}>
+              Choose a Pipeline or Portfolio company on the left to see which co-investors fit its
+              sector and stage.
             </EmptyState>
           )}
         </Panel>
       </div>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        Snapshot taken {new Date(generatedAt).toLocaleString()}.
+        Snapshot taken {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
       </p>
     </div>
   );

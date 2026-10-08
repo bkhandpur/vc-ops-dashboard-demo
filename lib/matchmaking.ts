@@ -75,20 +75,6 @@ export const SECTORS_WITHOUT_THESIS_COVERAGE: string[] = (() => {
   ].filter((s) => !mapped.has(s));
 })();
 
-/**
- * The stage ladder, weakest → strongest. Both `stage_focus` on co-investors and the
- * round multiselect on companies are drawn from overlapping but not identical option
- * sets, so both are normalised onto these six rungs before being compared.
- */
-const STAGE_LADDER = [
-  "Pre-Seed",
-  "Seed",
-  "Series A",
-  "Series B",
-  "Series C",
-  "Growth",
-] as const;
-
 /** Map the many round spellings in the CRM onto a ladder rung. */
 function ladderIndex(raw: string): number | null {
   const s = raw.trim().toLowerCase();
@@ -180,10 +166,7 @@ const NOISE_FLOOR = 48;
  * than averaging across all of their terms: a generalist listing six sectors should not
  * be penalised for the five that are irrelevant to this company.
  */
-function sectorComponent(
-  company: StagedCompany,
-  focuses: string[],
-): ScoreComponent {
+function sectorComponent(company: StagedCompany, focuses: string[]): ScoreComponent {
   const target = company.canonicalSector;
   let best = 0;
   let bestDetail: string | null = null;
@@ -225,9 +208,7 @@ function stageComponent(company: StagedCompany, person: TrackedPerson): ScoreCom
   // The company's own stage: prefer its recorded round, fall back to nothing. The
   // Pipeline `stage` column is a deal stage ("Sourcing", "Due Diligence"), not a
   // funding stage, so it deliberately does not feed this.
-  const companyRungs = company.rounds
-    .map(ladderIndex)
-    .filter((r): r is number => r !== null);
+  const companyRungs = company.rounds.map(ladderIndex).filter((r): r is number => r !== null);
 
   if (investorRung === null || companyRungs.length === 0) {
     return {
@@ -236,10 +217,7 @@ function stageComponent(company: StagedCompany, person: TrackedPerson): ScoreCom
       raw: 0,
       weight: WEIGHTS.stage,
       points: 0,
-      detail:
-        investorRung === null
-          ? "No stage focus recorded"
-          : "Company has no recorded round",
+      detail: investorRung === null ? "No stage focus recorded" : "Company has no recorded round",
     };
   }
 

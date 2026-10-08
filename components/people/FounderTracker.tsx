@@ -1,5 +1,6 @@
 "use client";
 
+import { safeSampleLink } from "@/lib/sample-links";
 import { ArrowUpRight, Check, Linkedin, Mail, Sparkles } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 
@@ -101,7 +102,7 @@ export function FounderTracker({
       />
 
       <div className="ws-enter ws-delay-1 mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <StatTile label="Tracked" value={total.toLocaleString()} hint="on the CRM list" />
+        <StatTile label="Tracked" value={total.toLocaleString("en-US")} hint="on the CRM list" />
         <StatTile
           label="With signals"
           value={`${Math.round((stats.withHighlights / Math.max(stats.total, 1)) * 100)}%`}
@@ -171,8 +172,8 @@ export function FounderTracker({
           <div className="px-4 pb-3">
             <Footnote>
               <code className="text-[10px]">sourced_by</code> is a multiselect, so a founder
-              credited to two teammates is counted in both — these are tag counts and can
-              sum above {people.length}.
+              credited to two teammates is counted in both — these are tag counts and can sum above{" "}
+              {people.length}.
             </Footnote>
           </div>
         </Panel>
@@ -226,7 +227,7 @@ export function FounderTracker({
       </div>
 
       <Footnote>
-        Snapshot taken {new Date(generatedAt).toLocaleString()}.
+        Snapshot taken {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
       </Footnote>
     </>
   );
@@ -262,10 +263,7 @@ function FounderRow({
   }, [enrichedHighlights]);
 
   return (
-    <li
-      className="ws-enter px-4 py-3"
-      style={{ animationDelay: `${Math.min(index, 12) * 16}ms` }}
-    >
+    <li className="ws-enter px-4 py-3" style={{ animationDelay: `${Math.min(index, 12) * 16}ms` }}>
       <div className="flex items-start gap-3">
         <CompanyAvatar
           name={person.name}
@@ -321,8 +319,12 @@ function FounderRow({
           <span className="flex items-center gap-1.5">
             {person.email && (
               <a
-                href={`mailto:${person.email}`}
-                title={person.email}
+                href={safeSampleLink(`mailto:${person.email}`)}
+                aria-disabled={!safeSampleLink(`mailto:${person.email}`)}
+                title={
+                  !safeSampleLink(`mailto:${person.email}`) ? "Fictional sample contact" : undefined
+                }
+
                 className="text-ink-subtle transition-colors hover:text-accent"
               >
                 <Mail className="size-3.5" />
@@ -330,10 +332,12 @@ function FounderRow({
             )}
             {person.linkedin && (
               <a
-                href={person.linkedin}
+                href={safeSampleLink(person.linkedin)}
+                aria-disabled={!safeSampleLink(person.linkedin)}
+                title={!safeSampleLink(person.linkedin) ? "Fictional sample contact" : undefined}
                 target="_blank"
                 rel="noreferrer"
-                title="LinkedIn"
+
                 className="text-ink-subtle transition-colors hover:text-accent"
               >
                 <Linkedin className="size-3.5" />
@@ -352,9 +356,7 @@ function FounderRow({
         </div>
       </div>
 
-      {state !== "contacted" && (
-        <LogOutreach person={person} onMarked={onMarked} />
-      )}
+      {state !== "contacted" && <LogOutreach person={person} onMarked={onMarked} />}
     </li>
   );
 }
@@ -459,13 +461,15 @@ function LogOutreach({
   return (
     <div className="mt-2 ml-[46px] space-y-2">
       <Callout tone="warn">
-        Mark <strong>{person.name ?? "this person"}</strong> as contacted? This updates
-        local demo data; it does not send a message.
+        Mark <strong>{person.name ?? "this person"}</strong> as contacted? This updates local demo
+        data; it does not send a message.
       </Callout>
       {error && <Callout tone="error">{error}</Callout>}
       <div className="flex gap-2">
         <Button variant="primary" onClick={() => void confirm()} disabled={saving}>
-          {saving ? "Saving…" : (
+          {saving ? (
+            "Saving…"
+          ) : (
             <>
               <Check className="size-3.5" /> Confirm
             </>

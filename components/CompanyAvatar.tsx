@@ -58,7 +58,6 @@ export function CompanyAvatar({
     >
       {showImage ? (
         // The generated marks are local SVGs and do not need image optimization.
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={logoUrl!}
           alt=""

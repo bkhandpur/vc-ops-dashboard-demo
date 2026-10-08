@@ -42,10 +42,7 @@ export function QuickSummary({ onBack }: PaletteActionProps) {
       onBack={onBack}
     >
       {!selected ? (
-        <LocalCompanyPicker
-          companies={snapshot.companies}
-          onSelect={setSelected}
-        />
+        <LocalCompanyPicker companies={snapshot.companies} onSelect={setSelected} />
       ) : (
         <SummaryBody
           company={selected}
@@ -86,9 +83,7 @@ function LocalCompanyPicker({
           .filter((r) => r.score >= 0)
           .sort((a, b) => b.score - a.score)
           .map((r) => r.c)
-      : companies.filter(
-          (c) => c.stages.includes("pipeline") || c.stages.includes("portfolio"),
-        );
+      : companies.filter((c) => c.stages.includes("pipeline") || c.stages.includes("portfolio"));
     return ranked.slice(0, 24);
   }, [deferred, companies]);
 
@@ -156,7 +151,11 @@ function SummaryBody({
   const matches = useMemo(() => topMatches(report, 3), [report]);
 
   const text = useMemo(
-    () => summaryToText(company, matches.map((m) => m.label)),
+    () =>
+      summaryToText(
+        company,
+        matches.map((m) => m.label),
+      ),
     [company, matches],
   );
 
@@ -200,15 +199,15 @@ function SummaryBody({
 
       <Panel className="divide-y divide-line">
         <Row label="Classification">
-          {[company.theme, company.canonicalSector].filter(Boolean).join(" → ") ||
-            "Unclassified"}
+          {[company.theme, company.canonicalSector].filter(Boolean).join(" → ") || "Unclassified"}
           {company.subSectors.length > 0 && (
             <span className="block text-[11px] text-ink-subtle">
               {company.subSectors.join(", ")}
             </span>
           )}
         </Row>
-        {(company.rounds.length > 0 || company.dealType.length > 0 ||
+        {(company.rounds.length > 0 ||
+          company.dealType.length > 0 ||
           company.vehicle.length > 0) && (
           <Row label="Deal">
             {[
@@ -224,20 +223,16 @@ function SummaryBody({
           <Row label="Raised">
             {formatUsd(funding)}
             <span className="block text-[11px] text-ink-subtle">
-              Total from all investors ({fundingSource}) — the CRM records nothing about
-              our own cheque.
+              Total from all investors ({fundingSource}) — the CRM records nothing about our own
+              cheque.
             </span>
           </Row>
         )}
         {company.location && <Row label="Location">{company.location}</Row>}
       </Panel>
 
-      {company.summary && (
-        <Block title="What they do">{company.summary}</Block>
-      )}
-      {company.teamStructure && (
-        <Block title="Founders &amp; team">{company.teamStructure}</Block>
-      )}
+      {company.summary && <Block title="What they do">{company.summary}</Block>}
+      {company.teamStructure && <Block title="Founders &amp; team">{company.teamStructure}</Block>}
       {company.primaryRelationships && (
         <Block title="How we know them">{company.primaryRelationships}</Block>
       )}
@@ -279,8 +274,8 @@ function SummaryBody({
       </div>
 
       <Footnote>
-        Built from the current snapshot. &ldquo;Draft an email&rdquo; opens a prefilled
-        message in your mail client.
+        Built from the current snapshot. &ldquo;Draft an email&rdquo; opens a prefilled message in
+        your mail client.
       </Footnote>
     </div>
   );

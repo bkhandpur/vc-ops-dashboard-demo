@@ -82,9 +82,7 @@ export function SyndicatePanel({
                   >
                     {investor.name}
                     {investor.isLead && (
-                      <span className="text-[10px] tracking-wide uppercase opacity-70">
-                        lead
-                      </span>
+                      <span className="text-[10px] tracking-wide uppercase opacity-70">lead</span>
                     )}
                   </span>
                 );
@@ -114,8 +112,8 @@ export function SyndicatePanel({
               {formatMoney(fact.valuation.value, "USD")} — attributed to{" "}
               {fact.valuation.source.toLowerCase()}, not to us.
             </span>
-            The provider&rsquo;s figure, carried through with its own attribution rather
-            than restated as fact.
+            The provider&rsquo;s figure, carried through with its own attribution rather than
+            restated as fact.
             {fact.valuation.isPotentiallyStale &&
               " It also flags this value as possibly out of date, which is exactly the qualifier that gets dropped when a number is quoted in a meeting."}
           </Callout>
@@ -124,10 +122,10 @@ export function SyndicatePanel({
 
       <div className="px-4 pb-3">
         <Footnote>
-          Round amounts are the <strong>total raised in that round from all investors</strong>
-          . Neither the CRM nor the enrichment provider records how much of it was ours, so nothing here is
-          our own cheque size. Underlined investors are on our own Co-Investors
-          list — click through to the directory.
+          Round amounts are the <strong>total raised in that round from all investors</strong>.
+          Neither the CRM nor the enrichment provider records how much of it was ours, so nothing
+          here is our own cheque size. Underlined investors are on our own Co-Investors list — click
+          through to the directory.
         </Footnote>
       </div>
     </Panel>

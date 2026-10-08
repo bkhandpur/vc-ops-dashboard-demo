@@ -40,9 +40,7 @@ export function LargestHoldings({
       (c) => typeof c.fundingRaisedUsd === "number" && c.fundingRaisedUsd > 0,
     );
     return {
-      ranked: [...withFigure].sort(
-        (a, b) => (b.fundingRaisedUsd ?? 0) - (a.fundingRaisedUsd ?? 0),
-      ),
+      ranked: [...withFigure].sort((a, b) => (b.fundingRaisedUsd ?? 0) - (a.fundingRaisedUsd ?? 0)),
       missing: scope.length - withFigure.length,
       inScope: scope.length,
     };
@@ -62,8 +60,8 @@ export function LargestHoldings({
         </span>
       </div>
       <p className="mb-4 text-[11px] leading-relaxed text-ink-subtle">
-        Generated capital raised from all investors. These values are company fundraising
-        totals, not investment positions.
+        Generated capital raised from all investors. These values are company fundraising totals,
+        not investment positions.
       </p>
 
       {ranked.length === 0 ? (

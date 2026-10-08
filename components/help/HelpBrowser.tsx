@@ -26,8 +26,7 @@ export function HelpBrowser({ articles }: { articles: HelpIndexEntry[] }) {
   const [query, setQuery] = useState("");
 
   const matches = useMemo(
-    () =>
-      fuzzySearch(query, articles, (a) => [a.title, a.summary, a.content]).map((m) => m.item),
+    () => fuzzySearch(query, articles, (a) => [a.title, a.summary, a.content]).map((m) => m.item),
     [query, articles],
   );
 
@@ -62,9 +61,7 @@ export function HelpBrowser({ articles }: { articles: HelpIndexEntry[] }) {
             >
               <span className="block">{article.title}</span>
               {article.summary && (
-                <span className="mt-0.5 block text-[11px] text-ink-subtle">
-                  {article.summary}
-                </span>
+                <span className="mt-0.5 block text-[11px] text-ink-subtle">{article.summary}</span>
               )}
             </Link>
           );

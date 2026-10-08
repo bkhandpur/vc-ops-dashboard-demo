@@ -128,8 +128,7 @@ const ROUTES_BY_SPECIFICITY = NAV_ITEMS.filter(
 export function activeRoute(pathname: string | null): string | null {
   if (!pathname) return null;
   return (
-    ROUTES_BY_SPECIFICITY.find(
-      (route) => pathname === route || pathname.startsWith(`${route}/`),
-    ) ?? null
+    ROUTES_BY_SPECIFICITY.find((route) => pathname === route || pathname.startsWith(`${route}/`)) ??
+    null
   );
 }

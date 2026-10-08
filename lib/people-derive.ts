@@ -151,7 +151,12 @@ export function parseThesisFocus(raw: string | null): string[] {
   const withoutPrefix = text.replace(/^invests?\s+primarily\s+in\s+/i, "");
   return withoutPrefix
     .split(",")
-    .map((part) => part.trim().replace(/[.;]+$/, "").trim())
+    .map((part) =>
+      part
+        .trim()
+        .replace(/[.;]+$/, "")
+        .trim(),
+    )
     .filter(Boolean);
 }
 
@@ -216,7 +221,12 @@ export interface DealRollup {
 /** Companies ranked by how many co-investors we share them with. */
 export function rollupByDeal(
   people: readonly TrackedPerson[],
-  companies: readonly { recordId: string; name: string | null; logoUrl: string | null; theme: string | null }[],
+  companies: readonly {
+    recordId: string;
+    name: string | null;
+    logoUrl: string | null;
+    theme: string | null;
+  }[],
 ): DealRollup[] {
   const byNormalised = new Map<string, (typeof companies)[number]>();
   for (const c of companies) {
@@ -311,9 +321,7 @@ const TEXT_FIELDS: [keyof TrackedPerson, string][] = [
   ["location", "current_location"],
 ];
 
-export function findCorruptedText(
-  people: readonly TrackedPerson[],
-): CorruptedTextRow[] {
+export function findCorruptedText(people: readonly TrackedPerson[]): CorruptedTextRow[] {
   const rows: CorruptedTextRow[] = [];
   for (const person of people) {
     const fields: string[] = [];

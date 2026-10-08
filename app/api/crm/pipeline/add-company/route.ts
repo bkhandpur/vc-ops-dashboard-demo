@@ -12,7 +12,13 @@ const bodySchema = z.object({
     .max(255)
     // Accept "acme.com" or a pasted URL; normalise to the bare host. Users paste URLs,
     // and the domain is the upsert matching key — a scheme in it creates a duplicate.
-    .transform((raw) => raw.trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase()),
+    .transform((raw) =>
+      raw
+        .trim()
+        .replace(/^https?:\/\//i, "")
+        .replace(/\/.*$/, "")
+        .toLowerCase(),
+    ),
   description: z.string().max(5000).optional(),
   theme: z.string().max(200).optional(),
   canonicalSector: z.string().max(200).optional(),

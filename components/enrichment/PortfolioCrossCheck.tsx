@@ -116,15 +116,16 @@ export function PortfolioCrossCheck({
         )}
         <div className="px-4 pb-3">
           <Footnote>
-            A missing credit is not proof of a CRM error. The comparison only includes
-            publicly reported rounds.
+            A missing credit is not proof of a CRM error. The comparison only includes publicly
+            reported rounds.
           </Footnote>
         </div>
       </Panel>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        CRM snapshot {new Date(generatedAt).toLocaleString()} · enrichment snapshot{" "}
-        {new Date(enrichmentGeneratedAt).toLocaleString()}.
+        CRM snapshot {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })} ·
+        enrichment snapshot{" "}
+        {new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
       </p>
     </div>
   );
@@ -171,8 +172,8 @@ function Row({ row, index }: { row: CrossCheckRow; index: number }) {
             {row.enrichedInvestors.length > 0 ? (
               <>
                 Enrichment data lists {row.enrichedInvestors.length} investor
-                {row.enrichedInvestors.length === 1 ? "" : "s"} on this company, none of
-                them us: {row.enrichedInvestors.slice(0, 6).join(", ")}
+                {row.enrichedInvestors.length === 1 ? "" : "s"} on this company, none of them us:{" "}
+                {row.enrichedInvestors.slice(0, 6).join(", ")}
                 {row.enrichedInvestors.length > 6 ? "…" : ""}
               </>
             ) : (

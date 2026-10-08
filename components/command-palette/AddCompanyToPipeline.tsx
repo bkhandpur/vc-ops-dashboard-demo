@@ -191,15 +191,18 @@ export function AddCompanyToPipeline({ onBack, onClose }: PaletteActionProps) {
 
         {optionsError && (
           <Callout tone="warn">
-            Could not load the CRM field options ({optionsError}). You can still create the
-            company; classification can be set in the CRM afterwards.
+            Could not load the CRM field options ({optionsError}). You can still create the company;
+            classification can be set in the CRM afterwards.
           </Callout>
         )}
         {!options && !optionsError && <Spinner label="Loading field options from the CRM…" />}
 
         {options && (
           <>
-            <Field label="Theme" hint="Normally assigned upstream by the rules-based classifier — set only to override.">
+            <Field
+              label="Theme"
+              hint="Normally assigned upstream by the rules-based classifier — set only to override."
+            >
               <Select value={form.theme} onChange={(e) => set("theme", e.target.value)}>
                 <option value="">(leave unset)</option>
                 {options.themes.map((o) => (

@@ -34,11 +34,32 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import {
-  ARCHIVE_CITIES, ARR_BANDS, CATEGORY_TAGS, CHECK_SIZES, CITIES, CLIENT_FOCUS,
-  COMPANY_SUFFIXES, DEAL_STRUCTURES, EDUCATION, GIVEN_NAMES, HEADCOUNT_BANDS,
-  HIGHLIGHT_TAGS, INDUSTRY_TAGS, INVESTMENT_THEME_TAGS, NAME_ENDINGS, NAME_PREFIXES,
-  OWNERSHIP_TYPES, PIPELINE_STAGES, PORTFOLIO_STATUSES, PRIOR_ROLES, STAGE_FOCUS,
-  SURNAME_ENDINGS, TAXONOMY, TEAM_MEMBERS, THESIS_TERMS, VEHICLES,
+  ARCHIVE_CITIES,
+  ARR_BANDS,
+  CATEGORY_TAGS,
+  CHECK_SIZES,
+  CITIES,
+  CLIENT_FOCUS,
+  COMPANY_SUFFIXES,
+  DEAL_STRUCTURES,
+  EDUCATION,
+  GIVEN_NAMES,
+  HEADCOUNT_BANDS,
+  HIGHLIGHT_TAGS,
+  INDUSTRY_TAGS,
+  INVESTMENT_THEME_TAGS,
+  NAME_ENDINGS,
+  NAME_PREFIXES,
+  OWNERSHIP_TYPES,
+  PIPELINE_STAGES,
+  PORTFOLIO_STATUSES,
+  PRIOR_ROLES,
+  STAGE_FOCUS,
+  SURNAME_ENDINGS,
+  TAXONOMY,
+  TEAM_MEMBERS,
+  THESIS_TERMS,
+  VEHICLES,
 } from "./vocabulary.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -124,10 +145,14 @@ function location(locality: string, region: string | null): RawValue[] {
   return [{ active_from: T0, active_until: null, locality, region, country_code: null }];
 }
 function actor(id: string): RawValue[] {
-  return [{ active_from: T0, active_until: null, referenced_actor_id: id, referenced_actor_type: "workspace-member" }];
-}
-function recordRef(id: string): RawValue[] {
-  return [{ active_from: T0, active_until: null, target_record_id: id, target_object: "companies" }];
+  return [
+    {
+      active_from: T0,
+      active_until: null,
+      referenced_actor_id: id,
+      referenced_actor_type: "workspace-member",
+    },
+  ];
 }
 
 /**
@@ -136,10 +161,7 @@ function recordRef(id: string): RawValue[] {
  * gets a stale answer — which is exactly the bug the read helpers exist to prevent.
  */
 function withHistory(current: RawValue[], previous: Record<string, unknown>): RawValue[] {
-  return [
-    { active_from: "2025-11-02T09:00:00.000Z", active_until: T0, ...previous },
-    ...current,
-  ];
+  return [{ active_from: "2025-11-02T09:00:00.000Z", active_until: T0, ...previous }, ...current];
 }
 
 // ---------------------------------------------------------------------------
@@ -204,9 +226,7 @@ const THEMES = Object.keys(TAXONOMY);
 const SECTORS_BY_THEME: Record<string, string[]> = Object.fromEntries(
   THEMES.map((theme) => [theme, Object.keys(TAXONOMY[theme]!)]),
 );
-const ALL_SUB_SECTORS = THEMES.flatMap((theme) =>
-  Object.values(TAXONOMY[theme]!).flat(),
-);
+const ALL_SUB_SECTORS = THEMES.flatMap((theme) => Object.values(TAXONOMY[theme]!).flat());
 
 /** Themes are not uniform in a real book — one is always over-represented. */
 const THEME_WEIGHTS: Record<string, number> = {
@@ -225,7 +245,17 @@ function weightedTheme(): string {
   return THEMES[0]!;
 }
 
-const ROUNDS = ["Pre-Seed", "Seed", "Seed Extension", "Bridge", "Series A", "Series B", "Series C", "Series D", "Growth"];
+const ROUNDS = [
+  "Pre-Seed",
+  "Seed",
+  "Seed Extension",
+  "Bridge",
+  "Series A",
+  "Series B",
+  "Series C",
+  "Series D",
+  "Growth",
+];
 
 // ---------------------------------------------------------------------------
 // Coverage profiles
@@ -238,62 +268,170 @@ const ROUNDS = ["Pre-Seed", "Seed", "Seed Extension", "Bridge", "Series A", "Ser
  * complete and incomplete records for demonstrating fallback and cleanup states.
  */
 interface Coverage {
-  theme: number; canonicalSector: number; subSector: number;
-  roundCurrent: number; roundLegacy: number;
-  description: number; descriptionEnriched: number; companySummary: number;
-  fundingRaised: number; enrichedFunding: number; arr: number; logo: number;
-  primaryLocation: number; headcountBand: number; headcountExact: number;
-  enrichedHeadcount: number; foundationDate: number; foundedYear: number;
-  relationshipNotes: number; teamNotes: number; driveFolder: number; linkedin: number;
-  investmentTheme: number; portfolioStatus: number; raiseLow: number; raiseHigh: number;
-  dealType: number; vehicle: number; valuation: number; industry: number;
-  categoryTags: number; clientFocus: number; ownership: number; lastRoundEur: number;
-  headcountGrowth: number; webTrafficGrowth: number; domainsBackup: number;
-  twitter: number; connection: number;
+  theme: number;
+  canonicalSector: number;
+  subSector: number;
+  roundCurrent: number;
+  roundLegacy: number;
+  description: number;
+  descriptionEnriched: number;
+  companySummary: number;
+  fundingRaised: number;
+  enrichedFunding: number;
+  arr: number;
+  logo: number;
+  primaryLocation: number;
+  headcountBand: number;
+  headcountExact: number;
+  enrichedHeadcount: number;
+  foundationDate: number;
+  foundedYear: number;
+  relationshipNotes: number;
+  teamNotes: number;
+  driveFolder: number;
+  linkedin: number;
+  investmentTheme: number;
+  portfolioStatus: number;
+  raiseLow: number;
+  raiseHigh: number;
+  dealType: number;
+  vehicle: number;
+  valuation: number;
+  industry: number;
+  categoryTags: number;
+  clientFocus: number;
+  ownership: number;
+  lastRoundEur: number;
+  headcountGrowth: number;
+  webTrafficGrowth: number;
+  domainsBackup: number;
+  twitter: number;
+  connection: number;
 }
 
 const COVERAGE: Record<"pipeline" | "portfolio" | "archive", Coverage> = {
   pipeline: {
-    theme: 97, canonicalSector: 84, subSector: 90,
-    roundCurrent: 79, roundLegacy: 0,
-    description: 61, descriptionEnriched: 43, companySummary: 88,
-    fundingRaised: 44, enrichedFunding: 74, arr: 41, logo: 51,
-    primaryLocation: 9, headcountBand: 27, headcountExact: 34,
-    enrichedHeadcount: 61, foundationDate: 19, foundedYear: 59,
-    relationshipNotes: 87, teamNotes: 94, driveFolder: 96, linkedin: 60,
-    investmentTheme: 77, portfolioStatus: 0, raiseLow: 68, raiseHigh: 59,
-    dealType: 53, vehicle: 5, valuation: 33, industry: 24,
-    categoryTags: 42, clientFocus: 25, ownership: 22, lastRoundEur: 18,
-    headcountGrowth: 17, webTrafficGrowth: 9, domainsBackup: 64,
-    twitter: 17, connection: 2,
+    theme: 97,
+    canonicalSector: 84,
+    subSector: 90,
+    roundCurrent: 79,
+    roundLegacy: 0,
+    description: 61,
+    descriptionEnriched: 43,
+    companySummary: 88,
+    fundingRaised: 44,
+    enrichedFunding: 74,
+    arr: 41,
+    logo: 51,
+    primaryLocation: 9,
+    headcountBand: 27,
+    headcountExact: 34,
+    enrichedHeadcount: 61,
+    foundationDate: 19,
+    foundedYear: 59,
+    relationshipNotes: 87,
+    teamNotes: 94,
+    driveFolder: 96,
+    linkedin: 60,
+    investmentTheme: 77,
+    portfolioStatus: 0,
+    raiseLow: 68,
+    raiseHigh: 59,
+    dealType: 53,
+    vehicle: 5,
+    valuation: 33,
+    industry: 24,
+    categoryTags: 42,
+    clientFocus: 25,
+    ownership: 22,
+    lastRoundEur: 18,
+    headcountGrowth: 17,
+    webTrafficGrowth: 9,
+    domainsBackup: 64,
+    twitter: 17,
+    connection: 2,
   },
   portfolio: {
-    theme: 99, canonicalSector: 52, subSector: 96,
-    roundCurrent: 52, roundLegacy: 0,
-    description: 95, descriptionEnriched: 91, companySummary: 84,
-    fundingRaised: 61, enrichedFunding: 45, arr: 74, logo: 92,
-    primaryLocation: 5, headcountBand: 63, headcountExact: 93,
-    enrichedHeadcount: 53, foundationDate: 58, foundedYear: 88,
-    relationshipNotes: 66, teamNotes: 45, driveFolder: 85, linkedin: 91,
-    investmentTheme: 69, portfolioStatus: 100, raiseLow: 28, raiseHigh: 21,
-    dealType: 55, vehicle: 42, valuation: 11, industry: 88,
-    categoryTags: 81, clientFocus: 66, ownership: 69, lastRoundEur: 64,
-    headcountGrowth: 39, webTrafficGrowth: 45, domainsBackup: 28,
-    twitter: 39, connection: 2,
+    theme: 99,
+    canonicalSector: 52,
+    subSector: 96,
+    roundCurrent: 52,
+    roundLegacy: 0,
+    description: 95,
+    descriptionEnriched: 91,
+    companySummary: 84,
+    fundingRaised: 61,
+    enrichedFunding: 45,
+    arr: 74,
+    logo: 92,
+    primaryLocation: 5,
+    headcountBand: 63,
+    headcountExact: 93,
+    enrichedHeadcount: 53,
+    foundationDate: 58,
+    foundedYear: 88,
+    relationshipNotes: 66,
+    teamNotes: 45,
+    driveFolder: 85,
+    linkedin: 91,
+    investmentTheme: 69,
+    portfolioStatus: 100,
+    raiseLow: 28,
+    raiseHigh: 21,
+    dealType: 55,
+    vehicle: 42,
+    valuation: 11,
+    industry: 88,
+    categoryTags: 81,
+    clientFocus: 66,
+    ownership: 69,
+    lastRoundEur: 64,
+    headcountGrowth: 39,
+    webTrafficGrowth: 45,
+    domainsBackup: 28,
+    twitter: 39,
+    connection: 2,
   },
   archive: {
-    theme: 92, canonicalSector: 71, subSector: 88,
-    roundCurrent: 64, roundLegacy: 0,
-    description: 69, descriptionEnriched: 66, companySummary: 41,
-    fundingRaised: 33, enrichedFunding: 79, arr: 27, logo: 39,
-    primaryLocation: 3, headcountBand: 47, headcountExact: 73,
-    enrichedHeadcount: 74, foundationDate: 51, foundedYear: 91,
-    relationshipNotes: 22, teamNotes: 49, driveFolder: 97, linkedin: 68,
-    investmentTheme: 71, portfolioStatus: 0, raiseLow: 49, raiseHigh: 41,
-    dealType: 7, vehicle: 4, valuation: 18, industry: 61,
-    categoryTags: 68, clientFocus: 53, ownership: 55, lastRoundEur: 38,
-    headcountGrowth: 72, webTrafficGrowth: 70, domainsBackup: 6,
-    twitter: 47, connection: 1,
+    theme: 92,
+    canonicalSector: 71,
+    subSector: 88,
+    roundCurrent: 64,
+    roundLegacy: 0,
+    description: 69,
+    descriptionEnriched: 66,
+    companySummary: 41,
+    fundingRaised: 33,
+    enrichedFunding: 79,
+    arr: 27,
+    logo: 39,
+    primaryLocation: 3,
+    headcountBand: 47,
+    headcountExact: 73,
+    enrichedHeadcount: 74,
+    foundationDate: 51,
+    foundedYear: 91,
+    relationshipNotes: 22,
+    teamNotes: 49,
+    driveFolder: 97,
+    linkedin: 68,
+    investmentTheme: 71,
+    portfolioStatus: 0,
+    raiseLow: 49,
+    raiseHigh: 41,
+    dealType: 7,
+    vehicle: 4,
+    valuation: 18,
+    industry: 61,
+    categoryTags: 68,
+    clientFocus: 53,
+    ownership: 55,
+    lastRoundEur: 38,
+    headcountGrowth: 72,
+    webTrafficGrowth: 70,
+    domainsBackup: 6,
+    twitter: 47,
+    connection: 1,
   },
 };
 
@@ -369,46 +507,60 @@ function buildCompany(primaryStage: StageName, alsoPipeline: boolean): Plan {
   // precisely so the "read both, write one" decision has something to be about.
   if (chance(cov.roundCurrent)) values["round_current"] = select(pick(ROUNDS));
 
-  if (chance(cov.description)) values["description"] = text(`${name} builds tooling for ${pick(subPool).toLowerCase()}.`);
-  if (chance(cov.descriptionEnriched)) values["description_enriched"] = text(`${name} is a ${pick(CATEGORY_TAGS).toLowerCase()} company operating in ${pick(INDUSTRY_TAGS).toLowerCase()}.`);
+  if (chance(cov.description))
+    values["description"] = text(`${name} builds tooling for ${pick(subPool).toLowerCase()}.`);
+  if (chance(cov.descriptionEnriched))
+    values["description_enriched"] = text(
+      `${name} is a ${pick(CATEGORY_TAGS).toLowerCase()} company operating in ${pick(INDUSTRY_TAGS).toLowerCase()}.`,
+    );
   if (chance(cov.companySummary)) {
     values["business_summary"] = text(
       `${name} sells into ${pick(["hospital systems", "mid-market operators", "public agencies", "national retailers", "regional utilities", "logistics carriers"])}. ` +
-      `Revenue is ${pick(["subscription", "usage-based", "per-seat", "transaction-fee"])}, and the team is ${intBetween(4, 40)} people.`,
+        `Revenue is ${pick(["subscription", "usage-based", "per-seat", "transaction-fee"])}, and the team is ${intBetween(4, 40)} people.`,
     );
   }
 
-  if (chance(cov.fundingRaised)) values["total_raised_usd"] = currency(intBetween(3, 220) * 250_000);
-  if (chance(cov.enrichedFunding)) values["enriched_total_raised_usd"] = currency(intBetween(3, 240) * 250_000);
+  if (chance(cov.fundingRaised))
+    values["total_raised_usd"] = currency(intBetween(3, 220) * 250_000);
+  if (chance(cov.enrichedFunding))
+    values["enriched_total_raised_usd"] = currency(intBetween(3, 240) * 250_000);
   if (chance(cov.arr)) values["arr_band"] = select(pick(ARR_BANDS));
   if (chance(cov.logo)) values["logo_url"] = text(`/demo-logo/${recordId}.svg`);
 
   // The trap: an obvious-looking location field that nobody fills in. The real one
   // sits on the list entry, and is added below.
-  if (chance(cov.primaryLocation)) values["hq_location"] = location(pick(CITIES).split(",")[0]!, null);
+  if (chance(cov.primaryLocation))
+    values["hq_location"] = location(pick(CITIES).split(",")[0]!, null);
 
   if (chance(cov.headcountBand)) values["headcount_band"] = select(pick(HEADCOUNT_BANDS));
   if (chance(cov.headcountExact)) values["headcount_exact"] = num(intBetween(3, 900));
   if (chance(cov.enrichedHeadcount)) values["enriched_headcount"] = num(intBetween(3, 1200));
-  if (chance(cov.foundationDate)) values["founded_on"] = text(`${intBetween(2012, 2025)}-0${intBetween(1, 9)}-1${intBetween(0, 9)}`);
+  if (chance(cov.foundationDate))
+    values["founded_on"] = text(
+      `${intBetween(2012, 2025)}-0${intBetween(1, 9)}-1${intBetween(0, 9)}`,
+    );
   if (chance(cov.foundedYear)) values["founded_year"] = num(intBetween(2011, 2025));
 
   if (chance(cov.relationshipNotes)) {
     values["relationship_notes"] = text(
       `${pick(TEAM_MEMBERS)}${chance(45) ? `, ${pick(TEAM_MEMBERS)}` : ""} know the team; ` +
-      `${pick(["intro via", "referral from", "met at a conference through", "warm intro from"])} ${personName()}, ${pick(PRIOR_ROLES)}.`,
+        `${pick(["intro via", "referral from", "met at a conference through", "warm intro from"])} ${personName()}, ${pick(PRIOR_ROLES)}.`,
     );
   }
   if (chance(cov.teamNotes)) {
     values["team_notes"] = text(
       `Founded by ${personName()} (${pick(PRIOR_ROLES)}) and ${personName()} (${pick(PRIOR_ROLES)}). ` +
-      `${intBetween(2, 6)} of the first ${intBetween(6, 15)} hires came from the founders' prior company.`,
+        `${intBetween(2, 6)} of the first ${intBetween(6, 15)} hires came from the founders' prior company.`,
     );
   }
-  if (chance(cov.driveFolder)) values["drive_folder_url"] = text(`https://files.example/folders/${recordId}`);
-  if (chance(cov.linkedin)) values["linkedin_url"] = text(`https://social.example/company/${slugify(name)}`);
-  if (chance(cov.investmentTheme)) values["investment_theme_tags"] = multi(pickSome(INVESTMENT_THEME_TAGS, 1, 3));
-  if (primaryStage === "portfolio" && chance(cov.portfolioStatus)) values["portfolio_status"] = select(pick(PORTFOLIO_STATUSES));
+  if (chance(cov.driveFolder))
+    values["drive_folder_url"] = text(`https://files.example/folders/${recordId}`);
+  if (chance(cov.linkedin))
+    values["linkedin_url"] = text(`https://social.example/company/${slugify(name)}`);
+  if (chance(cov.investmentTheme))
+    values["investment_theme_tags"] = multi(pickSome(INVESTMENT_THEME_TAGS, 1, 3));
+  if (primaryStage === "portfolio" && chance(cov.portfolioStatus))
+    values["portfolio_status"] = select(pick(PORTFOLIO_STATUSES));
 
   // A recorded 0 in a raise amount is not a raise — it means "not raising" or "never
   // filled in". Emitted here on purpose so formatRaise() has to treat 0 as absent.
@@ -417,7 +569,10 @@ function buildCompany(primaryStage: StageName, alsoPipeline: boolean): Plan {
 
   if (chance(cov.dealType)) values["deal_structure"] = multi(pickSome(DEAL_STRUCTURES, 1, 2));
   if (chance(cov.vehicle)) values["funding_vehicle"] = multi([pick(VEHICLES)]);
-  if (chance(cov.valuation)) values["valuation_note"] = text(`$${intBetween(4, 60)}M ${pick(["post-money cap", "pre-money", "post-money"])}`);
+  if (chance(cov.valuation))
+    values["valuation_note"] = text(
+      `$${intBetween(4, 60)}M ${pick(["post-money cap", "pre-money", "post-money"])}`,
+    );
   if (chance(cov.industry)) values["industry_tags"] = multi(pickSome(INDUSTRY_TAGS, 1, 3));
   if (chance(cov.categoryTags)) values["category_tags"] = multi(pickSome(CATEGORY_TAGS, 1, 3));
   if (chance(cov.clientFocus)) values["client_focus"] = multi([pick(CLIENT_FOCUS)]);
@@ -456,7 +611,16 @@ function buildCompany(primaryStage: StageName, alsoPipeline: boolean): Plan {
   companies.push({ id: { record_id: recordId }, created_at: created, values });
 
   const stages: StageName[] = alsoPipeline ? [primaryStage, "pipeline"] : [primaryStage];
-  const plan: Plan = { recordId, name, domain: dom, theme, sector, subSectors, primaryStage, stages };
+  const plan: Plan = {
+    recordId,
+    name,
+    domain: dom,
+    theme,
+    sector,
+    subSectors,
+    primaryStage,
+    stages,
+  };
   plans.push(plan);
   return plan;
 }
@@ -480,7 +644,11 @@ interface Entry {
 }
 
 const entries: Record<string, Entry[]> = {
-  pipeline: [], portfolio: [], archive: [], investor_network: [], stealth_watchlist: [],
+  pipeline: [],
+  portfolio: [],
+  archive: [],
+  investor_network: [],
+  stealth_watchlist: [],
 };
 
 let entrySeq = 0;
@@ -496,16 +664,21 @@ function addCompanyEntry(list: StageName, plan: Plan, createdAt: string): void {
     if (chance(97)) {
       entry_values["product_overview"] = text(
         `${plan.name} ${pick(["automates", "replaces", "coordinates", "instruments", "underwrites"])} ` +
-        `${pick(["a manual workflow", "a spreadsheet process", "a paper-based handoff", "an outsourced function"])} for ` +
-        `${pick(["clinics", "operators", "manufacturers", "carriers", "schools", "utilities", "retailers"])}. ` +
-        `Sold ${pick(["direct", "through channel partners", "via a self-serve motion"])}; ` +
-        `${pick(["contracts are annual", "pricing is per-transaction", "pricing is per-seat"])}.`,
+          `${pick(["a manual workflow", "a spreadsheet process", "a paper-based handoff", "an outsourced function"])} for ` +
+          `${pick(["clinics", "operators", "manufacturers", "carriers", "schools", "utilities", "retailers"])}. ` +
+          `Sold ${pick(["direct", "through channel partners", "via a self-serve motion"])}; ` +
+          `${pick(["contracts are annual", "pricing is per-transaction", "pricing is per-seat"])}.`,
       );
     }
-    if (chance(38)) entry_values["next_steps"] = text(pick([
-      "Waiting on a data room.", "Second partner meeting to schedule.",
-      "Following up after the diligence call.", "Founder asked to reconnect next quarter.",
-    ]));
+    if (chance(38))
+      entry_values["next_steps"] = text(
+        pick([
+          "Waiting on a data room.",
+          "Second partner meeting to schedule.",
+          "Following up after the diligence call.",
+          "Founder asked to reconnect next quarter.",
+        ]),
+      );
   }
 
   if (list === "archive") {
@@ -568,8 +741,12 @@ for (let i = 0; i < STEALTH_COUNT; i += 1) {
     linkedin_url: text(linkedin),
   };
 
-  if (chance(79)) values["linkedin_company"] = text(chance(30) ? "Stealth" : companyNameForFounder());
-  if (chance(79)) values["linkedin_position"] = text(pick(["Founder", "Co-Founder", "Founder & CEO", "Building something new"]));
+  if (chance(79))
+    values["linkedin_company"] = text(chance(30) ? "Stealth" : companyNameForFounder());
+  if (chance(79))
+    values["linkedin_position"] = text(
+      pick(["Founder", "Co-Founder", "Founder & CEO", "Building something new"]),
+    );
   if (chance(66)) {
     // Highlights are NOT uniform, and the skew is the whole point. In the real
     // provider's taxonomy one generic credential ("Top University") accounted for 45%
@@ -579,7 +756,11 @@ for (let i = 0; i < STEALTH_COUNT; i += 1) {
     // lands on most records and the rare signals stay rare.
     const tags = new Set<string>();
     if (chance(74)) tags.add("Top University");
-    for (const tag of pickSome(HIGHLIGHT_TAGS.filter((t) => t !== "Top University"), 0, 2)) {
+    for (const tag of pickSome(
+      HIGHLIGHT_TAGS.filter((t) => t !== "Top University"),
+      0,
+      2,
+    )) {
       tags.add(tag);
     }
     if (tags.size > 0) values["person_highlights"] = multi([...tags]);
@@ -591,10 +772,14 @@ for (let i = 0; i < STEALTH_COUNT; i += 1) {
   // false: "triaged, not contacted" is not "never looked at".
   if (i < TRIAGED) values["reached_out"] = checkbox(false);
   if (chance(29)) values["avatar_url"] = text(`/demo-logo/${recordId}.svg`);
-  if (chance(58)) values["email_addresses"] = text(`${handle}@${slugify(pick(NAME_PREFIXES) + pick(NAME_ENDINGS))}.example`);
+  if (chance(58))
+    values["email_addresses"] = text(
+      `${handle}@${slugify(pick(NAME_PREFIXES) + pick(NAME_ENDINGS))}.example`,
+    );
   if (chance(83)) values["current_location"] = text(pick(CITIES));
   if (chance(29)) values["home_location"] = location(pick(CITIES).split(",")[0]!, null);
-  if (chance(71)) values["education"] = text(chance(2) ? corrupt(pick(EDUCATION)) : pick(EDUCATION));
+  if (chance(71))
+    values["education"] = text(chance(2) ? corrupt(pick(EDUCATION)) : pick(EDUCATION));
   if (chance(21)) values["twitter_handle"] = text(handle.slice(0, 14));
 
   people.push({ id: { record_id: recordId }, created_at: T0, values });
@@ -604,7 +789,9 @@ for (let i = 0; i < STEALTH_COUNT; i += 1) {
   entries["stealth_watchlist"]!.push({
     id: { entry_id: `ent_${String(entrySeq).padStart(5, "0")}` },
     parent_record_id: recordId,
-    created_at: chance(70) ? "2026-02-16T11:20:00.000Z" : `2026-0${intBetween(3, 7)}-${String(intBetween(1, 28)).padStart(2, "0")}T09:00:00.000Z`,
+    created_at: chance(70)
+      ? "2026-02-16T11:20:00.000Z"
+      : `2026-0${intBetween(3, 7)}-${String(intBetween(1, 28)).padStart(2, "0")}T09:00:00.000Z`,
     // No substantive list attributes on this list.
     // all seven of its list fields measure 0%.
     entry_values: {},
@@ -634,9 +821,7 @@ for (let i = 0; i < CO_INVESTOR_COUNT; i += 1) {
   // 100% raw. 20% of the values are the literal string "unavailable", which is why
   // this reads 100% populated and 80% useful once cleanText() has run.
   values["thesis_focus"] = text(
-    chance(17)
-      ? "unavailable"
-      : `Invests primarily in ${pickSome(THESIS_TERMS, 1, 3).join(", ")}.`,
+    chance(17) ? "unavailable" : `Invests primarily in ${pickSome(THESIS_TERMS, 1, 3).join(", ")}.`,
   );
   // 100% — the enrichment profile each row came from.
   values["source_profile_url"] = text(`https://profiles.example/investor/${slugify(firm)}`);
@@ -715,8 +900,13 @@ for (let i = 0; i < 480; i += 1) {
     parent_object: "companies",
     parent_record_id: plan.recordId,
     title: pick([
-      "Intro call", "Diligence notes", "Founder update", "Reference call",
-      "Partner discussion", "Follow-up", "Data room review",
+      "Intro call",
+      "Diligence notes",
+      "Founder update",
+      "Reference call",
+      "Partner discussion",
+      "Follow-up",
+      "Data room review",
     ]),
     created_at: `2026-0${intBetween(4, 8)}-${String(intBetween(1, 28)).padStart(2, "0")}T1${intBetween(0, 7)}:00:00.000Z`,
     content_plaintext:
@@ -746,7 +936,11 @@ const enrichmentCompanies = plans
     headcount_growth_90d: chance(82) ? Number((rng() * 90 - 18).toFixed(1)) : null,
     web_traffic_growth_90d: chance(78) ? Number((rng() * 120 - 30).toFixed(1)) : null,
     funding_rounds: Array.from({ length: intBetween(0, 3) }, () => {
-      const investors = pickSome(coInvestorPlans.map((c) => c.firm), 1, 4);
+      const investors = pickSome(
+        coInvestorPlans.map((c) => c.firm),
+        1,
+        4,
+      );
       // The operator of this dashboard appears on some rounds and not others, which is
       // what makes the portfolio cross-check a real comparison rather than a formality.
       // Name kept in sync with lib/enrichment.ts OUR_ALIASES.
@@ -792,7 +986,11 @@ const enrichmentFounders = founderPlans
       current_company: launched
         ? { name: companyName(), domain: null as string | null, founded: intBetween(2025, 2026) }
         : null,
-      prior_companies: pickSome([...Array.from({ length: 12 }, () => companyNameForFounder())], 1, 3),
+      prior_companies: pickSome(
+        [...Array.from({ length: 12 }, () => companyNameForFounder())],
+        1,
+        3,
+      ),
     };
   });
 
@@ -864,8 +1062,12 @@ write("digest-seeds.json", digestSeeds);
  * remembering to.
  */
 const seedFiles = [
-  "companies.json", "people.json", "list-entries.json",
-  "notes.json", "enrichment.json", "taxonomy.json",
+  "companies.json",
+  "people.json",
+  "list-entries.json",
+  "notes.json",
+  "enrichment.json",
+  "taxonomy.json",
 ];
 const hash = createHash("sha256");
 for (const file of seedFiles) hash.update(readFileSync(join(OUT, file)));
@@ -874,13 +1076,13 @@ writeFileSync(join(OUT, "version.json"), `${JSON.stringify({ version }, null, 1)
 
 console.log(
   `seed written  (version ${version})\n` +
-  `  companies      ${companies.length}\n` +
-  `  people         ${people.length}\n` +
-  `  pipeline       ${entries["pipeline"]!.length}\n` +
-  `  portfolio      ${entries["portfolio"]!.length}\n` +
-  `  archive        ${entries["archive"]!.length}\n` +
-  `  stealth        ${entries["stealth_watchlist"]!.length}\n` +
-  `  co-investors   ${entries["investor_network"]!.length}\n` +
-  `  notes          ${notes.length}\n` +
-  `  sub-sectors    ${ALL_SUB_SECTORS.length}\n`,
+    `  companies      ${companies.length}\n` +
+    `  people         ${people.length}\n` +
+    `  pipeline       ${entries["pipeline"]!.length}\n` +
+    `  portfolio      ${entries["portfolio"]!.length}\n` +
+    `  archive        ${entries["archive"]!.length}\n` +
+    `  stealth        ${entries["stealth_watchlist"]!.length}\n` +
+    `  co-investors   ${entries["investor_network"]!.length}\n` +
+    `  notes          ${notes.length}\n` +
+    `  sub-sectors    ${ALL_SUB_SECTORS.length}\n`,
 );

@@ -146,5 +146,9 @@ export function ThemeMixChart({
 
 function shortDate(iso: string | undefined): string {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    month: "short",
+    day: "numeric",
+  });
 }

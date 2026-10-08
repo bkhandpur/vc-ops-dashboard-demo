@@ -1,3 +1,4 @@
+import { withDemoPage } from "@/lib/demo-session";
 import { StatisticsView } from "@/components/statistics/StatisticsView";
 import { PageHeader } from "@/components/ui";
 import { readOrBuildSnapshot } from "@/lib/stats";
@@ -7,7 +8,7 @@ export const metadata = { title: "Statistics" };
 // Read the cache on every request, and never call anything external from a page load.
 export const dynamic = "force-dynamic";
 
-export default async function StatisticsPage() {
+async function StatisticsPage() {
   const cached = await readOrBuildSnapshot();
 
   return (
@@ -25,3 +26,5 @@ export default async function StatisticsPage() {
     </div>
   );
 }
+
+export default withDemoPage(StatisticsPage);

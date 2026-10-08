@@ -1,25 +1,6 @@
-/**
- * The write overlay for the demo build.
- *
- * Store confirmed demo actions locally so write flows can be exercised safely.
- *
- * A public demo obviously cannot write to anyone's CRM. But deleting the write actions
- * would delete the most interesting UX in the app — the confirm-before-write dialog is
- * a deliberate architectural position, not a formality — so instead the writes land
- * here: an in-process overlay applied on top of the immutable seed on every read.
- *
- * Consequences, stated rather than hidden:
- *   - Writes are visible immediately, across every page, because every read applies the
- *     overlay.
- *   - Writes do NOT persist. The overlay lives in the process, so a redeploy, a cold
- *     start, or a second serverless instance will not have them. The UI says so in the
- *     confirm copy and again after the write lands. This mirrors the real build's
- *     honesty about its own cache: when no durable backend was configured it fell back
- *     to memory and warned in the UI rather than pretending to be durable.
- *   - The seed JSON is never mutated. Nothing in this repository writes to disk.
- */
-
+/** Visitor-owned demo edits are stored in a bounded browser cookie. */
 import "server-only";
+import { demoSession } from "./demo-session";
 
 import type { CrmListEntry, CrmNote, CrmRecord } from "./crm";
 import type { ParentObject } from "./constants";
@@ -46,16 +27,10 @@ export interface DemoWrite {
   detail: string;
 }
 
-/**
- * Held on `globalThis` rather than in a module-level `const`, because Next's dev server
- * re-evaluates modules on hot reload and a plain const would silently reset mid-session
- * — which looks exactly like "the write did not work".
- */
-const globalStore = globalThis as unknown as { __demoOverlay?: Overlay };
-
 function overlay(): Overlay {
-  if (!globalStore.__demoOverlay) {
-    globalStore.__demoOverlay = {
+  const session = demoSession();
+  if (!session.overlay)
+    session.overlay = {
       newRecords: { companies: [], people: [] },
       patches: { companies: new Map(), people: new Map() },
       newEntries: new Map(),
@@ -63,8 +38,14 @@ function overlay(): Overlay {
       log: [],
       seq: 0,
     };
-  }
-  return globalStore.__demoOverlay;
+  return session.overlay as Overlay;
+}
+function changed(): void {
+  const session = demoSession();
+  session.dirty = true;
+  const o = overlay();
+  o.log = o.log.slice(-19);
+  session.cache.clear();
 }
 
 export function demoWriteLog(): DemoWrite[] {
@@ -84,7 +65,9 @@ function wrap(slug: string, value: unknown): unknown[] {
   const stamp = { active_from: now(), active_until: null };
   if (Array.isArray(value)) {
     return value.map((item) =>
-      typeof item === "object" && item !== null ? { ...stamp, ...item } : { ...stamp, option: { title: item } },
+      typeof item === "object" && item !== null
+        ? { ...stamp, ...item }
+        : { ...stamp, option: { title: item } },
     );
   }
   if (typeof value === "boolean" || typeof value === "number") return [{ ...stamp, value }];
@@ -105,7 +88,7 @@ export const applyOverlay = {
     const created = o.newRecords[object];
     if (patches.size === 0 && created.length === 0) return base;
 
-    const patched = base.map((record) => {
+    const patched = [...created, ...base].map((record) => {
       const patch = patches.get(record.id.record_id);
       if (!patch) return record;
       return {
@@ -113,7 +96,7 @@ export const applyOverlay = {
         values: { ...record.values, ...(patch as CrmRecord["values"]) },
       };
     });
-    return [...created, ...patched];
+    return patched;
   },
 
   entries(listSlug: string, base: CrmListEntry[]): CrmListEntry[] {
@@ -142,21 +125,28 @@ export const recordWrite = {
     matchingSlug: string,
     matchingValue: string,
     values: Record<string, unknown>,
+    seed: CrmRecord[] = [],
   ): CrmRecord {
     const o = overlay();
-    const existing = o.newRecords[object].find((r) => {
+    const existing = applyOverlay.records(object, seed).find((r) => {
       const raw = r.values[matchingSlug]?.[0];
       const candidate = raw?.["domain"] ?? raw?.["value"];
-      return candidate === matchingValue;
+      return (
+        typeof candidate === "string" && candidate.toLowerCase() === matchingValue.toLowerCase()
+      );
     });
 
     const wrapped: Record<string, unknown[]> = {};
     for (const [slug, value] of Object.entries(values)) wrapped[slug] = wrap(slug, value);
 
     if (existing) {
-      Object.assign(existing.values, wrapped);
+      o.patches[object].set(existing.id.record_id, {
+        ...o.patches[object].get(existing.id.record_id),
+        ...wrapped,
+      });
+      changed();
       o.log.push({ at: now(), action: "update", detail: `${object} ${matchingValue}` });
-      return existing;
+      return { ...existing, values: { ...existing.values, ...wrapped } as CrmRecord["values"] };
     }
 
     o.seq += 1;
@@ -166,6 +156,7 @@ export const recordWrite = {
       values: wrapped as CrmRecord["values"],
     };
     o.newRecords[object].push(record);
+    changed();
     o.log.push({ at: now(), action: "create", detail: `${object} ${matchingValue}` });
     return record;
   },
@@ -199,6 +190,7 @@ export const recordWrite = {
       existingPatch[slug] = wrap(slug, value);
     }
     o.patches[object].set(recordId, existingPatch);
+    changed();
     o.log.push({
       at: now(),
       action: "patch",
@@ -208,11 +200,7 @@ export const recordWrite = {
     return { ...base, values: { ...base.values, ...(existingPatch as CrmRecord["values"]) } };
   },
 
-  addEntry(
-    listSlug: string,
-    recordId: string,
-    entryValues: Record<string, unknown>,
-  ): CrmListEntry {
+  addEntry(listSlug: string, recordId: string, entryValues: Record<string, unknown>): CrmListEntry {
     const o = overlay();
     o.seq += 1;
     const wrapped: Record<string, unknown[]> = {};
@@ -226,6 +214,7 @@ export const recordWrite = {
     const list = o.newEntries.get(listSlug) ?? [];
     list.push(entry);
     o.newEntries.set(listSlug, list);
+    changed();
     o.log.push({ at: now(), action: "add to list", detail: `${recordId} → ${listSlug}` });
     return entry;
   },
@@ -247,6 +236,7 @@ export const recordWrite = {
       created_at: now(),
     };
     o.newNotes.push(note);
+    changed();
     o.log.push({ at: now(), action: "note", detail: `${input.recordId}: ${input.title}` });
     return note;
   },

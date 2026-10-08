@@ -40,9 +40,7 @@ export function ScoreBreakdown({
 
         return (
           <div key={component.key} className="flex items-center gap-2.5">
-            <span className="w-[104px] shrink-0 text-[11px] text-ink-muted">
-              {component.label}
-            </span>
+            <span className="w-[104px] shrink-0 text-[11px] text-ink-muted">{component.label}</span>
 
             <span
               className="relative h-1.5 shrink-0 overflow-hidden rounded-full bg-surface-sunken"
@@ -81,13 +79,7 @@ export function ScoreBreakdown({
 }
 
 /** Shared-deal chips, where the theme swatch is a genuine theme encoding. */
-export function SharedDeals({
-  deals,
-  theme,
-}: {
-  deals: string[];
-  theme: string | null;
-}) {
+export function SharedDeals({ deals, theme }: { deals: string[]; theme: string | null }) {
   if (deals.length === 0) return null;
   return (
     <div className="mt-2 flex flex-wrap items-center gap-1.5">

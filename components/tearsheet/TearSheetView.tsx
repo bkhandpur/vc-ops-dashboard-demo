@@ -12,11 +12,9 @@ import {
   EmptyState,
   Footnote,
   Panel,
-  PanelHeader,
   PageHeader,
   Segmented,
   TogglePill,
-  cx,
 } from "@/components/ui";
 import type { StagedCompany } from "@/lib/aggregate";
 import { STAGE_LABELS, STAGE_LISTS, type StageKey } from "@/lib/constants";
@@ -66,10 +64,9 @@ export function TearSheetView({
           title="Tear sheets"
           description={
             <>
-              Everything written about each company, grouped for reading before a partner
-              meeting. Assembled from the four free-text fields the team actually
-              maintains — {report.coveragePct.toFixed(0)}% of blocks are filled across{" "}
-              {report.total} companies.
+              Everything written about each company, grouped for reading before a partner meeting.
+              Assembled from the four free-text fields the team actually maintains —{" "}
+              {report.coveragePct.toFixed(0)}% of blocks are filled across {report.total} companies.
             </>
           }
           actions={
@@ -120,12 +117,12 @@ export function TearSheetView({
 
       <div className="ws-no-print">
         <Footnote>
-          Cards show only the blocks that have text — a card with no
-          &ldquo;Founders &amp; team&rdquo; is missing it in the CRM, not hidden by a
-          filter. Each block names the field it came from, because the written fields are
-          maintained on <strong>Pipeline</strong> and thin on Portfolio (team notes 97%
-          vs 41%, relationships 91% vs 35%), the opposite of most enrichment fields. Snapshot
-          taken {new Date(generatedAt).toLocaleString()}.
+          Cards show only the blocks that have text — a card with no &ldquo;Founders &amp;
+          team&rdquo; is missing it in the CRM, not hidden by a filter. Each block names the field
+          it came from, because the written fields are maintained on <strong>Pipeline</strong> and
+          thin on Portfolio (team notes 97% vs 41%, relationships 91% vs 35%), the opposite of most
+          enrichment fields. Snapshot taken{" "}
+          {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}.
         </Footnote>
       </div>
     </div>
@@ -146,17 +143,13 @@ function GroupSection({ group, index }: { group: TearSheetGroup; index: number }
   }
 
   return (
-    <section
-      className="ws-settle ws-stagger"
-      style={{ "--i": index } as React.CSSProperties}
-    >
+    <section className="ws-settle ws-stagger" style={{ "--i": index } as React.CSSProperties}>
       <div className="ws-waterline mb-3 flex items-end justify-between gap-4 pb-2">
         <div className="flex items-center gap-2">
           <ThemeSwatch theme={group.theme} size={10} />
           <h2 className="text-[16px] font-semibold text-ink">{group.name}</h2>
           <Badge tone="neutral">
-            {group.entries.length}{" "}
-            {group.entries.length === 1 ? "company" : "companies"}
+            {group.entries.length} {group.entries.length === 1 ? "company" : "companies"}
           </Badge>
           <Badge tone={group.complete === group.entries.length ? "positive" : "neutral"}>
             {group.complete} complete
@@ -229,9 +222,7 @@ function TearSheetCard({ entry, index }: { entry: TearSheetEntry; index: number 
               <span className="text-[11px] font-medium tracking-[0.04em] text-ink-subtle uppercase">
                 {field.label}
               </span>
-              <span className="font-mono text-[10px] text-ink-subtle/70">
-                {field.source}
-              </span>
+              <span className="font-mono text-[10px] text-ink-subtle/70">{field.source}</span>
             </p>
             <p className="text-[12.5px] leading-relaxed text-ink-muted">{field.value}</p>
           </div>

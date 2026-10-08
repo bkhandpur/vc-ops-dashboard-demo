@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  Check,
-  GraduationCap,
-  Linkedin,
-  Mail,
-  MapPin,
-  Sparkles,
-} from "lucide-react";
+import { safeSampleLink } from "@/lib/sample-links";
+import { ArrowUpRight, Check, GraduationCap, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -25,7 +18,6 @@ import {
   PageHeader,
   Segmented,
   StatTile,
-  cx,
 } from "@/components/ui";
 import { crmRecordUrl } from "@/lib/constants";
 import { buildOutreachQueue, outreachSummary, type QueueEntry } from "@/lib/outreach";
@@ -132,9 +124,7 @@ export function OutreachQueue({
                 entry={entry}
                 index={index}
                 hasEnrichment={Boolean(enrichmentGeneratedAt)}
-                onMarked={(recordId) =>
-                  setMarkedLocally((prev) => new Set(prev).add(recordId))
-                }
+                onMarked={(recordId) => setMarkedLocally((prev) => new Set(prev).add(recordId))}
               />
             ))}
           </ul>
@@ -142,18 +132,15 @@ export function OutreachQueue({
 
         <div className="px-4 pb-3">
           <Footnote>
-            {queue.remaining} records remain after this week&rsquo;s {queue.entries.length}.
-            Profile completeness and founder signals break ties within each teammate&rsquo;s
-            backlog; they do not change the teammate rotation.
+            {queue.remaining} records remain after this week&rsquo;s {queue.entries.length}. Profile
+            completeness and founder signals break ties within each teammate&rsquo;s backlog; they
+            do not change the teammate rotation.
           </Footnote>
         </div>
       </Panel>
 
       <Panel className="ws-enter ws-delay-2 mt-4 overflow-hidden">
-        <PanelHeader
-          title="Backlog by teammate"
-          description="Open records by sourcing teammate."
-        />
+        <PanelHeader title="Backlog by teammate" description="Open records by sourcing teammate." />
         <ul className="divide-y divide-line">
           {summary.backlogBySourcer.map((row, index) => (
             <li
@@ -169,9 +156,9 @@ export function OutreachQueue({
       </Panel>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        CRM snapshot {new Date(generatedAt).toLocaleString()}
+        CRM snapshot {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}
         {enrichmentGeneratedAt
-          ? ` · enrichment snapshot ${new Date(enrichmentGeneratedAt).toLocaleString()}`
+          ? ` · enrichment snapshot ${new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}`
           : ""}
         .
       </p>
@@ -225,10 +212,7 @@ function QueueRow({
   }
 
   return (
-    <li
-      className="ws-settle ws-stagger px-4 py-3"
-      style={{ "--i": index } as React.CSSProperties}
-    >
+    <li className="ws-settle ws-stagger px-4 py-3" style={{ "--i": index } as React.CSSProperties}>
       <div className="flex items-start gap-3">
         <span className="ws-nums mt-0.5 w-5 shrink-0 text-[12px] text-ink-subtle">
           {entry.position}
@@ -246,9 +230,7 @@ function QueueRow({
           </div>
 
           {personSubtitle(person) && (
-            <p className="mt-0.5 truncate text-[12px] text-ink-muted">
-              {personSubtitle(person)}
-            </p>
+            <p className="mt-0.5 truncate text-[12px] text-ink-muted">{personSubtitle(person)}</p>
           )}
           {person.highlights && (
             <p className="mt-1 text-[12px] text-ink-muted">{person.highlights}</p>
@@ -267,7 +249,11 @@ function QueueRow({
             )}
             {person.email && (
               <a
-                href={`mailto:${person.email}`}
+                href={safeSampleLink(`mailto:${person.email}`)}
+                aria-disabled={!safeSampleLink(`mailto:${person.email}`)}
+                title={
+                  !safeSampleLink(`mailto:${person.email}`) ? "Fictional sample contact" : undefined
+                }
                 className="inline-flex items-center gap-1 hover:text-accent"
               >
                 <Mail className="size-3" /> {person.email}
@@ -275,7 +261,9 @@ function QueueRow({
             )}
             {person.linkedin && (
               <a
-                href={person.linkedin}
+                href={safeSampleLink(person.linkedin)}
+                aria-disabled={!safeSampleLink(person.linkedin)}
+                title={!safeSampleLink(person.linkedin) ? "Fictional sample contact" : undefined}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1 hover:text-accent"
@@ -361,16 +349,12 @@ function QueueRow({
       {(state === "confirming" || state === "saving") && (
         <div className="mt-3 ml-8 space-y-2">
           <Callout tone="warn">
-            Mark <strong>{person.name ?? "this person"}</strong> as contacted? This
-            updates local demo data; it does not send a message.
+            Mark <strong>{person.name ?? "this person"}</strong> as contacted? This updates local
+            demo data; it does not send a message.
           </Callout>
           {error && <Callout tone="error">{error}</Callout>}
           <div className="flex gap-2">
-            <Button
-              variant="primary"
-              onClick={confirm}
-              disabled={state === "saving"}
-            >
+            <Button variant="primary" onClick={confirm} disabled={state === "saving"}>
               {state === "saving" ? "Saving…" : "Confirm"}
             </Button>
             <Button

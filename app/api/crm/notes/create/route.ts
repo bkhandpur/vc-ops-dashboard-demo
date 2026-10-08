@@ -8,8 +8,8 @@ const bodySchema = z.object({
   // that encodes the *format* of an id rather than its constraints breaks the moment
   // the id format changes. Length-bounded instead.
   recordId: z.string().min(1).max(100),
-  title: z.string().min(1).max(300),
-  content: z.string().min(1).max(20000),
+  title: z.string().min(1).max(200),
+  content: z.string().min(1).max(1200),
   parentObject: z.enum(["companies", "people"]).default("companies"),
 });
 

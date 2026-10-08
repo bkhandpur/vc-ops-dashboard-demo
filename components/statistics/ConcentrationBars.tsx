@@ -91,10 +91,7 @@ export function ConcentrationBars({
                   isHovered ? "bg-surface-sunken" : "bg-transparent",
                 )}
               >
-                <span
-                  className="w-44 shrink-0 truncate text-[12.5px] text-ink"
-                  title={node.name}
-                >
+                <span className="w-44 shrink-0 truncate text-[12.5px] text-ink" title={node.name}>
                   {node.name}
                 </span>
 
@@ -139,8 +136,7 @@ export function ConcentrationBars({
 
       {hiddenCount > 0 && (
         <p className="mt-3 px-2 text-[11px] text-ink-subtle">
-          Showing the {MAX_ROWS} largest of {level.length}. The table below lists every
-          row.
+          Showing the {MAX_ROWS} largest of {level.length}. The table below lists every row.
         </p>
       )}
     </div>

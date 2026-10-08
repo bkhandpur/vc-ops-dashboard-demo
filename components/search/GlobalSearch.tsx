@@ -102,9 +102,8 @@ export function GlobalSearch({
         <div className="max-h-[52vh] overflow-y-auto py-1">
           {query.trim() === "" ? (
             <p className="px-4 py-8 text-center text-[13px] text-ink-subtle">
-              Type to search across {index.companies.length} companies,{" "}
-              {index.founders.length} stealth founders and {index.coInvestors.length}{" "}
-              co-investors.
+              Type to search across {index.companies.length} companies, {index.founders.length}{" "}
+              stealth founders and {index.coInvestors.length} co-investors.
             </p>
           ) : flat.length === 0 ? (
             <p className="px-4 py-8 text-center text-[13px] text-ink-subtle">
@@ -164,7 +163,7 @@ export function GlobalSearch({
           <span>↑↓ to navigate · ↵ to open</span>
           <span>
             {generatedAt
-              ? `Snapshot ${new Date(generatedAt).toLocaleDateString()} · read-only`
+              ? `Snapshot ${new Date(generatedAt).toLocaleDateString("en-US", { timeZone: "UTC" })} · read-only`
               : "Read-only"}
           </span>
         </div>

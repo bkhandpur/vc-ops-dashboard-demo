@@ -197,8 +197,10 @@ export function aggregate(
   for (const company of included) {
     const theme = company.theme ?? UNCLASSIFIED;
     const sector = company.canonicalSector ?? UNCLASSIFIED;
-    const subSectors = company.subSectors.length ? company.subSectors : [UNCLASSIFIED];
-    const rounds = company.rounds.length ? company.rounds : [UNKNOWN_ROUND];
+    const subSectors = company.subSectors.length
+      ? [...new Set(company.subSectors)]
+      : [UNCLASSIFIED];
+    const rounds = company.rounds.length ? [...new Set(company.rounds)] : [UNKNOWN_ROUND];
     rounds.forEach((r) => roundLabels.add(r));
 
     themeCounts.set(theme, (themeCounts.get(theme) ?? 0) + 1);
@@ -365,8 +367,7 @@ export function crossTabByStage(
 
   const rows = [...byRow.values()].sort((a, b) => b.total - a.total);
   const max = rows.reduce(
-    (m, row) =>
-      Math.max(m, ...stages.map((stage) => row.countsByStage[stage])),
+    (m, row) => Math.max(m, ...stages.map((stage) => row.countsByStage[stage])),
     0,
   );
 

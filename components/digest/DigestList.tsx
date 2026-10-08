@@ -1,4 +1,5 @@
 "use client";
+import { mutateDemo } from "@/lib/demo-mutation";
 
 import { ChevronDown, ChevronRight, FileText } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,9 +20,10 @@ export function DigestList({ digests }: { digests: Digest[] }) {
     setRunning(true);
     setError(null);
     try {
-      const res = await fetch("/api/digest/run", { method: "POST" });
-      const payload = (await res.json()) as { error?: string };
+      const res = await mutateDemo(() => fetch("/api/digest/run", { method: "POST" }));
+      const payload = (await res.json()) as { error?: string; digestId?: string };
       if (!res.ok) throw new Error(payload.error || `Failed (${res.status})`);
+      if (payload.digestId) setOpenId(payload.digestId);
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to run the digest job");
@@ -34,8 +36,8 @@ export function DigestList({ digests }: { digests: Digest[] }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-3">
         <p className="text-[12px] text-ink-subtle">
-          Built by a scheduled data job (Mondays). Running it manually creates a snapshot
-          now — the first run is a baseline with nothing to diff against.
+          Illustrative weekly snapshots are generated from the sample. Run a diff to compare this
+          browser’s edits with the original seed. No scheduled collection is active.
         </p>
         <Button variant="secondary" onClick={runDiff} disabled={running}>
           {running ? "Running…" : "Run diff now"}
@@ -46,8 +48,7 @@ export function DigestList({ digests }: { digests: Digest[] }) {
 
       {digests.length === 0 && (
         <Panel className="p-6 text-[13px] text-ink-muted">
-          No digests yet. Run the diff once to capture a baseline snapshot; next week’s run
-          will produce the first real digest.
+          No sample digests are available. Run a diff to compare your edits with the seed.
         </Panel>
       )}
 
@@ -80,9 +81,11 @@ function DigestCard({
     setGenerating(true);
     setError(null);
     try {
-      const res = await fetch(`/api/digest/${encodeURIComponent(digest.id)}/summarize`, {
-        method: "POST",
-      });
+      const res = await mutateDemo(() =>
+        fetch(`/api/digest/${encodeURIComponent(digest.id)}/summarize`, {
+          method: "POST",
+        }),
+      );
       const payload = (await res.json()) as { error?: string };
       if (!res.ok) throw new Error(payload.error || `Failed (${res.status})`);
       router.refresh();
@@ -119,7 +122,9 @@ function DigestCard({
               : `${changeCount} change${changeCount === 1 ? "" : "s"}`}
             {" · "}
             {Object.entries(digest.totals)
-              .map(([stage, count]) => `${STAGE_LABELS[stage as keyof typeof STAGE_LABELS]} ${count}`)
+              .map(
+                ([stage, count]) => `${STAGE_LABELS[stage as keyof typeof STAGE_LABELS]} ${count}`,
+              )
               .join(" · ")}
           </span>
         </span>
@@ -152,7 +157,9 @@ function DigestCard({
                 <p className="text-[11px] text-ink-subtle">
                   Drafted{" "}
                   {digest.summaryGeneratedAt &&
-                    new Date(digest.summaryGeneratedAt).toLocaleString()}
+                    new Date(digest.summaryGeneratedAt).toLocaleString("en-US", {
+                      timeZone: "UTC",
+                    })}
                   {digest.summaryGeneratedBy ? ` by ${digest.summaryGeneratedBy}` : ""} from the
                   structured diff below. Review before sharing.
                 </p>
@@ -204,7 +211,7 @@ function DigestCard({
               <Row
                 key={n.noteId}
                 primary={n.title || "(untitled note)"}
-                secondary={new Date(n.createdAt).toLocaleString()}
+                secondary={new Date(n.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}
               />
             ))}
           </Section>
@@ -314,10 +321,7 @@ function Row({
       </span>
       {delta !== undefined && (
         <span
-          className={cx(
-            "shrink-0 tabular-nums",
-            delta > 0 ? "text-positive" : "text-negative",
-          )}
+          className={cx("shrink-0 tabular-nums", delta > 0 ? "text-positive" : "text-negative")}
         >
           {delta > 0 ? "+" : ""}
           {delta}

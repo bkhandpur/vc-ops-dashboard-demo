@@ -86,9 +86,7 @@ export function classifyLaunch(signal: FounderLaunchSignal): LaunchSuggestion | 
   );
 
   if (confidence === "possible") {
-    evidence.push(
-      "Not a founder role, so this may be a job rather than a company of their own.",
-    );
+    evidence.push("Not a founder role, so this may be a job rather than a company of their own.");
   }
 
   return { signal, confidence, evidence };

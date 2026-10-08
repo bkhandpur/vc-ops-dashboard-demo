@@ -1,5 +1,6 @@
 "use client";
 
+import { safeSampleLink } from "@/lib/sample-links";
 import { ArrowLeft, ArrowUpRight, Check, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useState, type ReactNode } from "react";
@@ -9,15 +10,7 @@ import { useAsyncAction } from "@/components/useAsyncAction";
 import { CoInvestorMatchPanel } from "@/components/company/CoInvestorMatchPanel";
 import { SyndicatePanel } from "@/components/enrichment/SyndicatePanel";
 import { ThemeSwatch } from "@/components/statistics/ThemeSwatch";
-import {
-  Badge,
-  Button,
-  Callout,
-  cx,
-  Footnote,
-  Panel,
-  PanelHeader,
-} from "@/components/ui";
+import { Badge, Button, Callout, cx, Footnote, Panel, PanelHeader } from "@/components/ui";
 import type { Company } from "@/lib/crm";
 import type { StagedCompany } from "@/lib/aggregate";
 import type { EnrichedCompanyFact } from "@/lib/enrichment-snapshot";
@@ -60,8 +53,7 @@ export function CompanyDetail({
     useCallback(async () => {
       const res = await fetch(`/api/crm/companies/${company.recordId}`);
       const body = (await res.json()) as
-        | { company: Company; fetchedAt: string }
-        | { error: string };
+        { company: Company; fetchedAt: string } | { error: string };
       if (!res.ok || "error" in body) {
         throw new Error("error" in body ? body.error : `Failed (${res.status})`);
       }
@@ -88,8 +80,7 @@ export function CompanyDetail({
     company.fundingRaisedUsd ??
     company.enrichedFundingUsd;
   const arr = live?.estimatedArr ?? company.estimatedArr;
-  const employeeRange =
-    live?.numberOfEmployees ?? live?.employeeRange ?? company.employeeRange;
+  const employeeRange = live?.numberOfEmployees ?? live?.employeeRange ?? company.employeeRange;
   // Prefer the list-entry `city` (88% on Pipeline) over `hq_location` (14%). A live
   // record refresh has no entry, so it falls back to the snapshot's city.
   const location = live?.city ?? company.location;
@@ -143,7 +134,11 @@ export function CompanyDetail({
           <div className="mt-3 flex flex-wrap items-center gap-3 text-[12px]">
             {domains[0] && (
               <a
-                href={`https://${domains[0]}`}
+                href={safeSampleLink(`https://${domains[0]}`)}
+                aria-disabled={!safeSampleLink(`https://${domains[0]}`)}
+                title={
+                  !safeSampleLink(`https://${domains[0]}`) ? "Fictional sample contact" : undefined
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-accent hover:underline"
@@ -179,8 +174,8 @@ export function CompanyDetail({
           </Button>
           <span className="text-[10px] text-ink-subtle">
             {fetchedAt
-              ? `Live as of ${new Date(fetchedAt).toLocaleTimeString()}`
-              : `Snapshot ${new Date(generatedAt).toLocaleDateString()}`}
+              ? `Record refreshed (UTC) ${new Date(fetchedAt).toLocaleTimeString("en-US", { timeZone: "UTC" })}`
+              : `Snapshot ${new Date(generatedAt).toLocaleDateString("en-US", { timeZone: "UTC" })}`}
           </span>
         </div>
       </header>
@@ -231,9 +226,7 @@ export function CompanyDetail({
           <PanelHeader title="Company facts" />
           <dl className="divide-y divide-line">
             <Row label="Funding raised">
-              {funding !== null ? (
-                <span className="ws-nums">{formatUsd(funding)}</span>
-              ) : null}
+              {funding !== null ? <span className="ws-nums">{formatUsd(funding)}</span> : null}
             </Row>
             <Row label="Estimated ARR">{arr}</Row>
             <Row label="Employees">{employeeRange}</Row>
@@ -244,9 +237,7 @@ export function CompanyDetail({
             </Row>
             <Row label="Valuation">{company.valuationText}</Row>
             <Row label="Headcount growth">
-              {company.headcountGrowth !== null ? (
-                <Delta value={company.headcountGrowth} />
-              ) : null}
+              {company.headcountGrowth !== null ? <Delta value={company.headcountGrowth} /> : null}
             </Row>
             <Row label="Web traffic 90d">
               {company.webTrafficGrowth !== null ? (
@@ -259,7 +250,11 @@ export function CompanyDetail({
                 <span className="flex flex-wrap gap-3">
                   {company.linkedin && (
                     <a
-                      href={company.linkedin}
+                      href={safeSampleLink(company.linkedin)}
+                      aria-disabled={!safeSampleLink(company.linkedin)}
+                      title={
+                        !safeSampleLink(company.linkedin) ? "Fictional sample contact" : undefined
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent hover:underline"
@@ -269,7 +264,11 @@ export function CompanyDetail({
                   )}
                   {company.twitter && (
                     <a
-                      href={company.twitter}
+                      href={safeSampleLink(company.twitter)}
+                      aria-disabled={!safeSampleLink(company.twitter)}
+                      title={
+                        !safeSampleLink(company.twitter) ? "Fictional sample contact" : undefined
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent hover:underline"
@@ -293,8 +292,8 @@ export function CompanyDetail({
           </dl>
           <Footnote>
             <span className="px-4 pb-3 block">
-              Funding raised is the generated company total from <em>all</em> investors,
-              not an investment position.
+              Funding raised is the generated company total from <em>all</em> investors, not an
+              investment position.
             </span>
           </Footnote>
         </Panel>
@@ -322,7 +321,7 @@ export function CompanyDetail({
             <Row label="Raising">{formatRaise(company.raisingLowM, company.raisingHighM)}</Row>
             <Row label="Added to list">
               {company.addedToListAt
-                ? new Date(company.addedToListAt).toLocaleDateString()
+                ? new Date(company.addedToListAt).toLocaleDateString("en-US", { timeZone: "UTC" })
                 : null}
             </Row>
           </dl>
@@ -337,13 +336,11 @@ export function CompanyDetail({
         <Panel className="ws-enter ws-delay-4 mt-4 overflow-hidden">
           <PanelHeader
             title="Enrichment tags"
-            description="From the CRM and the enrichment provider. Separate from the taxonomy above — these are not what Statistics counts."
+            description="From the CRM and the enrichment provider. Separate from the taxonomy above. Statistics counts the company classifications."
           />
           <dl className="divide-y divide-line">
             <Row label="Investment theme">
-              {company.investmentThemes.length ? (
-                <Tags values={company.investmentThemes} />
-              ) : null}
+              {company.investmentThemes.length ? <Tags values={company.investmentThemes} /> : null}
             </Row>
             <Row label="Industry">
               {company.industry.length ? <Tags values={company.industry} /> : null}
@@ -432,11 +429,7 @@ export function CompanyDetail({
 
       <SyndicatePanel fact={enrichedFact} coInvestors={coInvestors} />
 
-      <CoInvestorMatchPanel
-        company={company}
-        companies={companies}
-        coInvestors={coInvestors}
-      />
+      <CoInvestorMatchPanel company={company} companies={companies} coInvestors={coInvestors} />
 
       {missing.length > 0 && (
         <div className="ws-enter ws-delay-5 mt-4">
@@ -487,8 +480,7 @@ function Tags({ values, tone }: { values: string[]; tone?: "accent" }) {
 /** A signed percentage. Growth can legitimately be negative — show that, don't hide it. */
 function Delta({ value }: { value: number }) {
   const rounded = Math.round(value * 10) / 10;
-  const tone =
-    rounded > 0 ? "text-positive" : rounded < 0 ? "text-negative" : "text-ink-muted";
+  const tone = rounded > 0 ? "text-positive" : rounded < 0 ? "text-negative" : "text-ink-muted";
   return (
     <span className={cx("ws-nums font-medium", tone)}>
       {rounded > 0 ? "+" : ""}
@@ -512,12 +504,12 @@ function formatEur(value: number): string {
   if (value >= 1_000_000_000) return `€${(value / 1_000_000_000).toFixed(1)}B`;
   if (value >= 1_000_000) return `€${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `€${(value / 1_000).toFixed(0)}K`;
-  return `€${value.toLocaleString()}`;
+  return `€${value.toLocaleString("en-US")}`;
 }
 
 function formatUsd(value: number): string {
   if (value >= 1_000_000_000) return `$${(value / 1_000_000_000).toFixed(1)}B`;
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `$${(value / 1_000).toFixed(0)}K`;
-  return `$${value.toLocaleString()}`;
+  return `$${value.toLocaleString("en-US")}`;
 }

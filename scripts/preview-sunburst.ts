@@ -117,7 +117,10 @@ function verify(path: string[]): ReturnType<typeof buildArcs> {
   const inner = arcs.filter((a) => a.depth === 0);
   const outer = arcs.filter((a) => a.depth === 1);
 
-  check("no NaN in any path", arcs.every((a) => !arcPath(a).includes("NaN")));
+  check(
+    "no NaN in any path",
+    arcs.every((a) => !arcPath(a).includes("NaN")),
+  );
   check(
     "every arc stays inside the viewBox",
     arcs.every((a) => a.rOuter <= CENTER && a.rInner > 0),
@@ -127,7 +130,10 @@ function verify(path: string[]): ReturnType<typeof buildArcs> {
     Math.abs(inner.reduce((sum, a) => sum + (a.a1 - a.a0), 0) - Math.PI * 2) < 0.25,
     `${inner.reduce((sum, a) => sum + (a.a1 - a.a0), 0).toFixed(3)} rad`,
   );
-  check("every sweep is positive", arcs.every((a) => a.a1 > a.a0));
+  check(
+    "every sweep is positive",
+    arcs.every((a) => a.a1 > a.a0),
+  );
   check(
     "inner-ring values sum to the level total",
     inner.reduce((sum, a) => sum + a.value, 0) === levelTotal,
@@ -175,11 +181,7 @@ function verify(path: string[]): ReturnType<typeof buildArcs> {
 // Render
 // ---------------------------------------------------------------------------
 
-function toSvg(
-  built: ReturnType<typeof buildArcs>,
-  caption: string,
-  mode: ColorMode,
-): string {
+function toSvg(built: ReturnType<typeof buildArcs>, caption: string, mode: ColorMode): string {
   const { arcs, levelTotal } = built;
   const surface = mode === "dark" ? "#1a1a19" : "#ffffff";
   const ink = mode === "dark" ? "#f5f5f3" : "#16191d";
@@ -237,8 +239,6 @@ for (const mode of ["light", "dark"] as ColorMode[]) {
   );
 }
 
-console.log(
-  `\n${failures === 0 ? "All invariants hold." : `${failures} invariant(s) FAILED.`}`,
-);
+console.log(`\n${failures === 0 ? "All invariants hold." : `${failures} invariant(s) FAILED.`}`);
 console.log("Wrote preview-sunburst-{root,drilled}-{light,dark}.svg");
 process.exit(failures === 0 ? 0 : 1);

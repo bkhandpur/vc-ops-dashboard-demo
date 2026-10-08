@@ -24,7 +24,7 @@ export function LineChart({
   series,
   height = 200,
   /** Formats the y value in the tooltip and axis. */
-  format = (v: number) => v.toLocaleString(),
+  format = (v: number) => v.toLocaleString("en-US"),
   /** Fix the y-axis to 0–100 for percentage charts. */
   percentage = false,
 }: {
@@ -180,7 +180,8 @@ export function LineChart({
           <p className="font-medium text-ink">{shortDate(series[0]?.values[hover]?.at)}</p>
           {series.map((line) => (
             <p key={line.label} className="ws-nums text-ink-muted">
-              {line.label}: <strong className="text-ink">{format(line.values[hover]?.value ?? 0)}</strong>
+              {line.label}:{" "}
+              <strong className="text-ink">{format(line.values[hover]?.value ?? 0)}</strong>
             </p>
           ))}
         </div>
@@ -225,5 +226,9 @@ function compact(value: number): string {
 
 function shortDate(iso: string | undefined): string {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    month: "short",
+    day: "numeric",
+  });
 }

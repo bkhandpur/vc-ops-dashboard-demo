@@ -253,8 +253,7 @@ export function computeHealth(
 
 /** Portfolio gaps first — those are the ones worth someone's afternoon. */
 function sortByStageImportance(companies: StagedCompany[]): StagedCompany[] {
-  const rank = (c: StagedCompany) =>
-    Math.max(...c.stages.map((s) => STAGE_WEIGHT[s]), 0);
+  const rank = (c: StagedCompany) => Math.max(...c.stages.map((s) => STAGE_WEIGHT[s]), 0);
   return [...companies].sort(
     (a, b) => rank(b) - rank(a) || (a.name ?? "").localeCompare(b.name ?? ""),
   );

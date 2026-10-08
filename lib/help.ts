@@ -19,7 +19,19 @@ import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import matter from "gray-matter";
+/** Read the three simple frontmatter fields used by the committed help articles. */
+function matter(raw: string): { data: Record<string, string | number>; content: string } {
+  const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/.exec(raw);
+  const data: Record<string, string | number> = {};
+  if (!match) return { data, content: raw };
+  for (const line of match[1]!.split(/\r?\n/)) {
+    const field = /^(title|summary|order):\s*(.*)$/.exec(line);
+    if (!field) continue;
+    const value = field[2]!.replace(/^["']|["']$/g, "");
+    data[field[1]!] = field[1] === "order" ? Number(value) : value;
+  }
+  return { data, content: raw.slice(match[0].length) };
+}
 
 export const HELP_DIR = path.join(process.cwd(), "content", "help");
 

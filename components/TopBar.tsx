@@ -1,4 +1,5 @@
 "use client";
+import { mutateDemo } from "@/lib/demo-mutation";
 
 import { AlertCircle, Check, Menu, RefreshCw, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -28,7 +29,7 @@ export function TopBar({ snapshotGeneratedAt }: { snapshotGeneratedAt: string | 
 
   const refresh = useAsyncAction(
     useCallback(async () => {
-      const res = await fetch("/api/stats/refresh", { method: "POST" });
+      const res = await mutateDemo(() => fetch("/api/stats/refresh", { method: "POST" }));
       if (!res.ok) {
         const body = (await res.json().catch(() => null)) as { error?: string } | null;
         throw new Error(body?.error ?? `Refresh failed (${res.status})`);
@@ -72,7 +73,10 @@ export function TopBar({ snapshotGeneratedAt }: { snapshotGeneratedAt: string | 
       {/* Snapshot age is context, not an action — first thing to go on a narrow screen. */}
       <span className="ml-auto hidden shrink-0 text-[10px] text-ink-subtle lg:inline">
         {snapshotGeneratedAt ? (
-          <>Snapshot {new Date(snapshotGeneratedAt).toLocaleString()}</>
+          <>
+            Computed (UTC){" "}
+            {new Date(snapshotGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}
+          </>
         ) : (
           <>No snapshot yet</>
         )}
@@ -106,11 +110,7 @@ export function TopBar({ snapshotGeneratedAt }: { snapshotGeneratedAt: string | 
           <RefreshCw className={cx("size-3.5", refresh.busy && "animate-spin")} />
         )}
         <span className="hidden sm:inline">
-          {refresh.status === "success"
-            ? "Updated"
-            : refresh.busy
-              ? "Refreshing…"
-              : "Refresh"}
+          {refresh.status === "success" ? "Updated" : refresh.busy ? "Refreshing…" : "Refresh"}
         </span>
       </button>
     </header>

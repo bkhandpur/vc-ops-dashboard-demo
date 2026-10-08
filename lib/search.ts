@@ -81,21 +81,19 @@ export function searchAll(
     [...c.industry, ...c.categories].join(" "),
   ])
     .slice(0, perKindLimit)
-    .map(
-      ({ item }): SearchHit => ({
-        kind: "company",
-        recordId: item.recordId,
-        title: item.name ?? "Untitled company",
-        subtitle: item.domains[0] ?? item.summary ?? null,
-        // The Pipeline list's own status is more informative than the list name when
-        // we have it — "Sourcing" tells you more than "Pipeline".
-        meta: item.pipelineStage ?? stageMeta(item.stages),
-        href: `/company/${item.recordId}`,
-        external: false,
-        logoUrl: item.logoUrl,
-        theme: item.theme,
-      }),
-    );
+    .map(({ item }): SearchHit => ({
+      kind: "company",
+      recordId: item.recordId,
+      title: item.name ?? "Untitled company",
+      subtitle: item.domains[0] ?? item.summary ?? null,
+      // The Pipeline list's own status is more informative than the list name when
+      // we have it — "Sourcing" tells you more than "Pipeline".
+      meta: item.pipelineStage ?? stageMeta(item.stages),
+      href: `/company/${item.recordId}`,
+      external: false,
+      logoUrl: item.logoUrl,
+      theme: item.theme,
+    }));
 
   const personHits = (people: TrackedPerson[], kind: SearchKind, meta: string) =>
     fuzzySearch(trimmed, people, (p) => [
@@ -106,19 +104,17 @@ export function searchAll(
       p.fundFirm ?? "",
     ])
       .slice(0, perKindLimit)
-      .map(
-        ({ item }): SearchHit => ({
-          kind,
-          recordId: item.recordId,
-          title: item.name ?? "Unnamed person",
-          subtitle: item.fundFirm ?? personSubtitle(item),
-          meta,
-          href: crmRecordUrl("people", item.recordId),
-          external: true,
-          logoUrl: item.avatarUrl,
-          theme: null,
-        }),
-      );
+      .map(({ item }): SearchHit => ({
+        kind,
+        recordId: item.recordId,
+        title: item.name ?? "Unnamed person",
+        subtitle: item.fundFirm ?? personSubtitle(item),
+        meta,
+        href: crmRecordUrl("people", item.recordId),
+        external: true,
+        logoUrl: item.avatarUrl,
+        theme: null,
+      }));
 
   const groups = [
     { kind: "company" as const, hits: companyHits },

@@ -1,4 +1,5 @@
 "use client";
+import { mutateDemo } from "@/lib/demo-mutation";
 
 import { RefreshCw } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -20,7 +21,7 @@ export function BuildSnapshotButton() {
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch("/api/stats/refresh", { method: "POST" });
+      const res = await mutateDemo(() => fetch("/api/stats/refresh", { method: "POST" }));
       const payload = (await res.json().catch(() => null)) as { error?: string } | null;
       if (!res.ok) throw new Error(payload?.error || `Failed (${res.status})`);
       router.refresh();

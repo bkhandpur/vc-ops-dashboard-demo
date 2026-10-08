@@ -44,7 +44,7 @@ export function Sunburst({
 
   const { arcs, levelTotal } = useMemo(() => buildArcs(tree, path), [tree, path]);
 
-  const active = hovered ? arcs.find((a) => a.key === hovered) ?? null : null;
+  const active = hovered ? (arcs.find((a) => a.key === hovered) ?? null) : null;
 
   if (arcs.length === 0) {
     return (
@@ -62,7 +62,7 @@ export function Sunburst({
         // Re-keying on the drill path replays the ease-in when you change level, which
         // makes the transition legible instead of an abrupt swap.
         key={path.join("/") || "root"}
-        role="img"
+        role="group"
         aria-label={`Company count by ${
           path.length === 0 ? "theme and canonical sector" : "canonical sector and sub-sector"
         }. Exact values are in the table below.`}
@@ -88,7 +88,7 @@ export function Sunburst({
                 transition: "opacity 120ms ease-out",
               }}
               tabIndex={0}
-              role={arc.drillable ? "button" : undefined}
+              role={arc.drillable ? "button" : "img"}
               aria-label={`${arc.name}: ${arc.valueLabel}, ${arc.shareLabel}`}
               onMouseEnter={() => setHovered(arc.key)}
               onFocus={() => setHovered(arc.key)}
@@ -159,23 +159,11 @@ function CentreReadout({
         >
           {total}
         </text>
-        <text
-          x={CENTER}
-          y={CENTER + 24}
-          textAnchor="middle"
-          fontSize={12}
-          fill={CHROME.inkMuted}
-        >
+        <text x={CENTER} y={CENTER + 24} textAnchor="middle" fontSize={12} fill={CHROME.inkMuted}>
           {total === 1 ? "company" : "companies"}
         </text>
         {path.length > 0 && (
-          <text
-            x={CENTER}
-            y={CENTER + 42}
-            textAnchor="middle"
-            fontSize={11}
-            fill={CHROME.inkMuted}
-          >
+          <text x={CENTER} y={CENTER + 42} textAnchor="middle" fontSize={11} fill={CHROME.inkMuted}>
             in {truncate(path[path.length - 1]!, 18)}
           </text>
         )}
@@ -222,4 +210,3 @@ function CentreReadout({
     </>
   );
 }
-
