@@ -78,3 +78,11 @@ adapters and domain calculations, `data/seed/` for generated fixtures, and `cont
 for workflow explanations. SVG charts and logos are local assets.
 
 MIT. See [LICENSE](LICENSE).
+
+Browser writers and reset share one Web Lock across tabs. Unsupported browsers
+fail before a simulated write and explain the Web Locks requirement. Raw
+simultaneous whole-cookie API replacements remain last-writer operations. This
+is a bounded demo limitation, not cross-visitor persistence. Source age is the
+fixed October 8 sample date. Computation UTC times describe derived outputs.
+The synchronous root document contains an explicit streaming boundary for the
+request-local shell so cold hydration cannot begin from head metadata.

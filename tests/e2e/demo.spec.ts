@@ -148,6 +148,7 @@ test("keyboard palette edit, filtering and manual diff reach the visible result"
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/statistics");
+  await expect(page.locator("[data-shell-ready=true]")).toBeVisible();
   await page.keyboard.press("Control+k");
   await expect(page.getByRole("dialog", { name: "Command palette" })).toBeVisible();
   await page.getByRole("button", { name: /Add company to Pipeline/ }).click();

@@ -1,5 +1,6 @@
 import { demoSession, withDemoPage } from "@/lib/demo-session";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { AppShell } from "@/components/AppShell";
 import { THEME_INIT_SCRIPT, ThemeProvider } from "@/components/theme/ThemeProvider";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description: "Pipeline, portfolio, sourcing and co-investor workflows in one dashboard.",
 };
 
-async function RootLayout({ children }: { children: React.ReactNode }) {
+async function RequestShell({ children }: { children: React.ReactNode }) {
   /**
    * The search index is read here, once, for the whole app.
    *
@@ -24,28 +25,35 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
   const [stats, people] = await Promise.all([readOrBuildSnapshot(), readOrBuildPeople()]);
 
   return (
+    <ThemeProvider>
+      <AppShell
+        searchIndex={{
+          companies: stats.data.companies,
+          founders: people.data.stealthFounders,
+          coInvestors: people.data.coInvestors,
+        }}
+        snapshotGeneratedAt={stats.generatedAt}
+        stateError={demoSession().stateError}
+      >
+        {children}
+      </AppShell>
+    </ThemeProvider>
+  );
+}
+
+const ScopedShell = withDemoPage(RequestShell);
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Stamps an explicit theme before first paint so dark users get no white flash. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body>
-        <ThemeProvider>
-          <AppShell
-            searchIndex={{
-              companies: stats.data.companies,
-              founders: people.data.stealthFounders,
-              coInvestors: people.data.coInvestors,
-            }}
-            snapshotGeneratedAt={stats.generatedAt}
-            stateError={demoSession().stateError}
-          >
-            {children}
-          </AppShell>
-        </ThemeProvider>
+        <Suspense fallback={<div role="status">Loading fictional workspace</div>}>
+          <ScopedShell>{children}</ScopedShell>
+        </Suspense>
       </body>
     </html>
   );
 }
-
-export default withDemoPage(RootLayout);

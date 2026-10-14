@@ -8,7 +8,10 @@ export function DemoReset({ stateError }: { stateError?: string }) {
   const [busy, setBusy] = useState(false);
   return (
     <div className="flex items-center gap-2 text-xs">
-      <span>Sample as of Oct 8, 2026 · edits saved in this browser for 7 days</span>
+      <span>
+        Sample as of Oct 8, 2026 · browser edits retained for 7 days · editing requires Web Locks
+        support
+      </span>
       <button
         className="underline"
         disabled={busy}
@@ -19,8 +22,8 @@ export function DemoReset({ stateError }: { stateError?: string }) {
             if (!response.ok) throw new Error();
             router.refresh();
             setError("");
-          } catch {
-            setError("Reset failed. Try again.");
+          } catch (cause) {
+            setError(cause instanceof Error ? cause.message : "Reset failed. Try again.");
           } finally {
             setBusy(false);
           }

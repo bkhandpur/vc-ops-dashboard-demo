@@ -251,9 +251,9 @@ export function MomentumView({
       </Panel>
 
       <p className="mt-4 text-[11px] text-ink-subtle">
-        CRM snapshot {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}
+        Computed UTC {new Date(generatedAt).toLocaleString("en-US", { timeZone: "UTC" })}
         {enrichmentGeneratedAt
-          ? ` · enrichment snapshot ${new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}`
+          ? ` · enrichment computation UTC ${new Date(enrichmentGeneratedAt).toLocaleString("en-US", { timeZone: "UTC" })}`
           : ""}
         .{" "}
         <Link href="/data-health" className="text-accent hover:underline">

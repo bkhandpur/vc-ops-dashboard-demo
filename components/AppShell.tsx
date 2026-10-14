@@ -1,5 +1,6 @@
 "use client";
 
+import { useHydrated } from "./useHydrated";
 import { DemoReset } from "./DemoReset";
 import type { ReactNode } from "react";
 
@@ -34,11 +35,12 @@ export function AppShell({
   snapshotGeneratedAt: string | null;
   stateError?: string;
 }) {
+  const hydrated = useHydrated();
   return (
     <SidebarProvider>
       <CommandPaletteProvider index={searchIndex}>
         <SearchProvider index={searchIndex} generatedAt={snapshotGeneratedAt}>
-          <div className="flex h-screen overflow-hidden">
+          <div data-shell-ready={hydrated} className="flex h-screen overflow-hidden">
             <Sidebar />
             <div className="flex min-w-0 flex-1 flex-col">
               <TopBar snapshotGeneratedAt={snapshotGeneratedAt} />

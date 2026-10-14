@@ -1,3 +1,4 @@
+import { dateOnlyYear } from "./date-only";
 /**
  * Server-side half of the Statistics feature: read, cache, and hand a plain snapshot to
  * the UI. The aggregation maths lives in lib/aggregate.ts so the client can re-run it
@@ -94,7 +95,7 @@ export async function buildStatsSnapshot(): Promise<StatsSnapshot> {
         // Prefer `founded_year` (61/85/94) over parsing `founded_on` (23/62/53).
         yearFounded:
           company.yearFounded ??
-          (company.foundationDate ? new Date(company.foundationDate).getFullYear() : null),
+          (company.foundationDate ? dateOnlyYear(company.foundationDate) : null),
         createdAt: company.createdAt,
         pipelineStage: company.pipelineStage,
         portfolioStatus: company.portfolioStatus,
